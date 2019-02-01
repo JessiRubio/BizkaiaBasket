@@ -313,107 +313,9 @@ public class Aplicacion extends JFrame {
 		
 		PanelInformaciónInicio = new JPanel();
 		PanelInformaciónInicio.setVisible(false);
-		PanelInformaciónInicio.setBackground(new Color(255, 255, 255));
-		PanelInformaciónInicio.setBounds(127, 79, 456, 286);
-		contentPane.add(PanelInformaciónInicio);
-		PanelInformaciónInicio.setLayout(null);
-		
-		lblInicio = new JLabel("ELIJA UNA OPCI\u00D3N PARA COMENZAR ");
-		lblInicio.setBounds(0, 0, 446, 286);
-		lblInicio.setEnabled(false);
-		lblInicio.setFont(new Font("Agency FB", Font.PLAIN, 40));
-		lblInicio.setHorizontalAlignment(SwingConstants.CENTER);
-		PanelInformaciónInicio.add(lblInicio);
-		
-		PanelDatosJugador = new JPanel();
-		PanelDatosJugador.setVisible(false);
 		
 		PanelDatosEquipo = new JPanel();
 		PanelDatosEquipo.setVisible(false);
-		
-		PanelDatosLigas = new JPanel();
-		PanelDatosLigas.setVisible(false);
-		PanelDatosLigas.setLayout(null);
-		PanelDatosLigas.setBackground(Color.WHITE);
-		PanelDatosLigas.setBounds(127, 79, 456, 286);
-		contentPane.add(PanelDatosLigas);
-		
-		lblNombreLiga = new JLabel("  Liga:");
-		lblNombreLiga.setOpaque(true);
-		lblNombreLiga.setFont(new Font("Arial Black", Font.PLAIN, 11));
-		lblNombreLiga.setBackground(new Color(135, 206, 235));
-		lblNombreLiga.setBounds(10, 46, 152, 22);
-		PanelDatosLigas.add(lblNombreLiga);
-		
-		lblCodigoLiga = new JLabel("  Codigo:");
-		lblCodigoLiga.setOpaque(true);
-		lblCodigoLiga.setFont(new Font("Arial Black", Font.PLAIN, 11));
-		lblCodigoLiga.setBackground(new Color(135, 206, 235));
-		lblCodigoLiga.setBounds(10, 11, 152, 22);
-		PanelDatosLigas.add(lblCodigoLiga);
-		
-		lblGrupoLiga = new JLabel("  Grupo:");
-		lblGrupoLiga.setOpaque(true);
-		lblGrupoLiga.setFont(new Font("Arial Black", Font.PLAIN, 11));
-		lblGrupoLiga.setBackground(new Color(135, 206, 235));
-		lblGrupoLiga.setBounds(10, 112, 152, 22);
-		PanelDatosLigas.add(lblGrupoLiga);
-		
-		lblNMaxEquipos = new JLabel("  N\u00BA Max de Equipos:");
-		lblNMaxEquipos.setOpaque(true);
-		lblNMaxEquipos.setFont(new Font("Arial Black", Font.PLAIN, 11));
-		lblNMaxEquipos.setBackground(new Color(135, 206, 235));
-		lblNMaxEquipos.setBounds(10, 145, 152, 22);
-		PanelDatosLigas.add(lblNMaxEquipos);
-		
-		txtCodLiga = new JTextField();
-		txtCodLiga.setColumns(10);
-		txtCodLiga.setBackground(new Color(175, 238, 238));
-		txtCodLiga.setBounds(162, 11, 284, 22);
-		PanelDatosLigas.add(txtCodLiga);
-		
-		txtLiga = new JTextField();
-		txtLiga.setColumns(10);
-		txtLiga.setBackground(new Color(175, 238, 238));
-		txtLiga.setBounds(162, 46, 284, 22);
-		PanelDatosLigas.add(txtLiga);
-		
-		txtGrupoLiga = new JTextField();
-		txtGrupoLiga.setColumns(10);
-		txtGrupoLiga.setBackground(new Color(175, 238, 238));
-		txtGrupoLiga.setBounds(162, 112, 284, 22);
-		PanelDatosLigas.add(txtGrupoLiga);
-		
-		btnGuardarLiga = new JButton("GUARDAR");
-		btnGuardarLiga.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnGuardarLiga.setBackground(Color.GREEN);
-		btnGuardarLiga.setBounds(357, 252, 89, 23);
-		PanelDatosLigas.add(btnGuardarLiga);
-		
-		btnEliminarLiga = new JButton("ELIMINAR");
-		btnEliminarLiga.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnEliminarLiga.setBackground(Color.RED);
-		btnEliminarLiga.setBounds(262, 252, 89, 23);
-		PanelDatosLigas.add(btnEliminarLiga);
-		
-		txtNMaxEquipos = new JTextField();
-		txtNMaxEquipos.setColumns(10);
-		txtNMaxEquipos.setBackground(new Color(175, 238, 238));
-		txtNMaxEquipos.setBounds(162, 145, 284, 22);
-		PanelDatosLigas.add(txtNMaxEquipos);
-		
-		txtCatLiga = new JTextField();
-		txtCatLiga.setColumns(10);
-		txtCatLiga.setBackground(new Color(175, 238, 238));
-		txtCatLiga.setBounds(162, 79, 284, 22);
-		PanelDatosLigas.add(txtCatLiga);
-		
-		lblCategoriaLiga = new JLabel("  Categoria:");
-		lblCategoriaLiga.setOpaque(true);
-		lblCategoriaLiga.setFont(new Font("Arial Black", Font.PLAIN, 11));
-		lblCategoriaLiga.setBackground(new Color(135, 206, 235));
-		lblCategoriaLiga.setBounds(10, 79, 152, 22);
-		PanelDatosLigas.add(lblCategoriaLiga);
 		PanelDatosEquipo.setLayout(null);
 		PanelDatosEquipo.setBackground(Color.WHITE);
 		PanelDatosEquipo.setBounds(127, 79, 456, 286);
@@ -508,6 +410,104 @@ public class Aplicacion extends JFrame {
 		btnEliminarEquipo.setBackground(Color.RED);
 		btnEliminarEquipo.setBounds(262, 252, 89, 23);
 		PanelDatosEquipo.add(btnEliminarEquipo);
+		PanelInformaciónInicio.setBackground(new Color(255, 255, 255));
+		PanelInformaciónInicio.setBounds(127, 79, 456, 286);
+		contentPane.add(PanelInformaciónInicio);
+		PanelInformaciónInicio.setLayout(null);
+		
+		lblInicio = new JLabel("ELIJA UNA OPCI\u00D3N PARA COMENZAR ");
+		lblInicio.setBounds(0, 0, 446, 286);
+		lblInicio.setEnabled(false);
+		lblInicio.setFont(new Font("Agency FB", Font.PLAIN, 40));
+		lblInicio.setHorizontalAlignment(SwingConstants.CENTER);
+		PanelInformaciónInicio.add(lblInicio);
+		
+		PanelDatosJugador = new JPanel();
+		PanelDatosJugador.setVisible(false);
+		
+		PanelDatosLigas = new JPanel();
+		PanelDatosLigas.setVisible(false);
+		PanelDatosLigas.setLayout(null);
+		PanelDatosLigas.setBackground(Color.WHITE);
+		PanelDatosLigas.setBounds(127, 79, 456, 286);
+		contentPane.add(PanelDatosLigas);
+		
+		lblNombreLiga = new JLabel("  Liga:");
+		lblNombreLiga.setOpaque(true);
+		lblNombreLiga.setFont(new Font("Arial Black", Font.PLAIN, 11));
+		lblNombreLiga.setBackground(new Color(135, 206, 235));
+		lblNombreLiga.setBounds(10, 46, 152, 22);
+		PanelDatosLigas.add(lblNombreLiga);
+		
+		lblCodigoLiga = new JLabel("  Codigo:");
+		lblCodigoLiga.setOpaque(true);
+		lblCodigoLiga.setFont(new Font("Arial Black", Font.PLAIN, 11));
+		lblCodigoLiga.setBackground(new Color(135, 206, 235));
+		lblCodigoLiga.setBounds(10, 11, 152, 22);
+		PanelDatosLigas.add(lblCodigoLiga);
+		
+		lblGrupoLiga = new JLabel("  Grupo:");
+		lblGrupoLiga.setOpaque(true);
+		lblGrupoLiga.setFont(new Font("Arial Black", Font.PLAIN, 11));
+		lblGrupoLiga.setBackground(new Color(135, 206, 235));
+		lblGrupoLiga.setBounds(10, 112, 152, 22);
+		PanelDatosLigas.add(lblGrupoLiga);
+		
+		lblNMaxEquipos = new JLabel("  N\u00BA Max de Equipos:");
+		lblNMaxEquipos.setOpaque(true);
+		lblNMaxEquipos.setFont(new Font("Arial Black", Font.PLAIN, 11));
+		lblNMaxEquipos.setBackground(new Color(135, 206, 235));
+		lblNMaxEquipos.setBounds(10, 145, 152, 22);
+		PanelDatosLigas.add(lblNMaxEquipos);
+		
+		txtCodLiga = new JTextField();
+		txtCodLiga.setColumns(10);
+		txtCodLiga.setBackground(new Color(175, 238, 238));
+		txtCodLiga.setBounds(162, 11, 284, 22);
+		PanelDatosLigas.add(txtCodLiga);
+		
+		txtLiga = new JTextField();
+		txtLiga.setColumns(10);
+		txtLiga.setBackground(new Color(175, 238, 238));
+		txtLiga.setBounds(162, 46, 284, 22);
+		PanelDatosLigas.add(txtLiga);
+		
+		txtGrupoLiga = new JTextField();
+		txtGrupoLiga.setColumns(10);
+		txtGrupoLiga.setBackground(new Color(175, 238, 238));
+		txtGrupoLiga.setBounds(162, 112, 284, 22);
+		PanelDatosLigas.add(txtGrupoLiga);
+		
+		btnGuardarLiga = new JButton("GUARDAR");
+		btnGuardarLiga.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnGuardarLiga.setBackground(Color.GREEN);
+		btnGuardarLiga.setBounds(357, 252, 89, 23);
+		PanelDatosLigas.add(btnGuardarLiga);
+		
+		btnEliminarLiga = new JButton("ELIMINAR");
+		btnEliminarLiga.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnEliminarLiga.setBackground(Color.RED);
+		btnEliminarLiga.setBounds(262, 252, 89, 23);
+		PanelDatosLigas.add(btnEliminarLiga);
+		
+		txtNMaxEquipos = new JTextField();
+		txtNMaxEquipos.setColumns(10);
+		txtNMaxEquipos.setBackground(new Color(175, 238, 238));
+		txtNMaxEquipos.setBounds(162, 145, 284, 22);
+		PanelDatosLigas.add(txtNMaxEquipos);
+		
+		txtCatLiga = new JTextField();
+		txtCatLiga.setColumns(10);
+		txtCatLiga.setBackground(new Color(175, 238, 238));
+		txtCatLiga.setBounds(162, 79, 284, 22);
+		PanelDatosLigas.add(txtCatLiga);
+		
+		lblCategoriaLiga = new JLabel("  Categoria:");
+		lblCategoriaLiga.setOpaque(true);
+		lblCategoriaLiga.setFont(new Font("Arial Black", Font.PLAIN, 11));
+		lblCategoriaLiga.setBackground(new Color(135, 206, 235));
+		lblCategoriaLiga.setBounds(10, 79, 152, 22);
+		PanelDatosLigas.add(lblCategoriaLiga);
 		PanelDatosJugador.setBounds(127, 79, 456, 286);
 		contentPane.add(PanelDatosJugador);
 		PanelDatosJugador.setBackground(new Color(255, 255, 255));
