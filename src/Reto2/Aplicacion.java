@@ -45,6 +45,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 	private JPasswordField passwordField;
 	private JButton btnIniciarSesion;
 	private JLabel lblImagenFondo;
+	private JLabel lblError;
 
 	
 /*Panel superior de botones (Opciones iniciales Administrador)*/
@@ -82,7 +83,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 	private JLabel lblInicio;
 	
 /*Panel de Usuarios*/
-	private JPanel PanelDatosUsuarios;
+	private JPanel PanelUsuarios;
 	/*Botones principales del panel*/
 	private JButton btnNuevoUsuario;
 	private JButton btnListaUsuarios;
@@ -220,16 +221,23 @@ public class Aplicacion extends JFrame implements ActionListener {
 	private JTable tableEstadistica;
 	private JPanel PanelClasificacion;
 	private JTable tableClasificacion;
-	private JPanel POpcionesEquipo;
+	private JPanel POpciones;
 	/*Opciones de menu*/
 	private JComboBox<String> CBCategorias;
 	private JComboBox<String> CBGrupos ;
 	private JComboBox<String> CBEquipos;
 	private JButton VPañadir;
+	/*Aplicación vacia*/
+	private JLabel lblAplicacinVacia;
 	/*Lo que se muestra tras elegir las opciones*/
 	private JTable tableMuestraEquipos;
 
-
+/*Necesidades previas para la aplicación*/
+	private ArrayList<Liga> ListaLigas;
+	private ArrayList<Equipo> ListaEquipos;
+	private ArrayList<Jugador> ListaJugador;
+	private ArrayList<Partido> ListaPartidos;
+	private ArrayList<Cliente> ListaUsuarios;
 
 
 	/**
@@ -252,6 +260,16 @@ public class Aplicacion extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public Aplicacion() {
+	/*Necesidades previas*/
+		ListaLigas = new ArrayList<Liga>();
+		ListaEquipos = new ArrayList<Equipo>();
+		ListaJugador = new ArrayList<Jugador>();
+		ListaPartidos = new ArrayList<Partido>();
+		ListaUsuarios =new ArrayList<Cliente>();
+		/*Administrador por defecto*/
+		Cliente CAdmin = new Cliente("Admin","","12345678A",631245798,"ADMIN@gmail.com", "Admin", "admin", "Admin");
+		ListaUsuarios.add(CAdmin);
+		
 		setTitle("BizkaiaBasket.com");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 601, 410);
@@ -262,10 +280,17 @@ public class Aplicacion extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 		
 		PanelLogin = new JPanel();
-		PanelLogin.setVisible(false);
 		PanelLogin.setLayout(null);
 		PanelLogin.setBounds(0, 0, 583, 371);
 		contentPane.add(PanelLogin);
+		
+		lblError = new JLabel("Error. Introduzca un Usuario y Contrase\u00F1a validos");
+		lblError.setVisible(false);
+		lblError.setHorizontalAlignment(SwingConstants.CENTER);
+		lblError.setFont(new Font("Agency FB", Font.PLAIN, 30));
+		lblError.setForeground(new Color(255, 255, 255));
+		lblError.setBounds(44, 309, 529, 40);
+		PanelLogin.add(lblError);
 		
 		lblUsuario = new JLabel("Usuario");
 		lblUsuario.setForeground(Color.WHITE);
@@ -301,6 +326,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 		btnIniciarSesion.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btnIniciarSesion.setBackground(Color.WHITE);
 		btnIniciarSesion.setBounds(411, 238, 162, 33);
+		btnIniciarSesion.addActionListener(this);
 		PanelLogin.add(btnIniciarSesion);
 		
 		lblImagenFondo = new JLabel("");
@@ -308,11 +334,36 @@ public class Aplicacion extends JFrame implements ActionListener {
 		lblImagenFondo.setBounds(0, 0, 583, 371);
 		PanelLogin.add(lblImagenFondo);
 		
+		PanelSuperiorUO = new JPanel();
+		PanelSuperiorUO.setVisible(false);
+		
 		PanelBSuperAdmin = new JPanel();
+		PanelBSuperAdmin.setVisible(false);
 		PanelBSuperAdmin.setBackground(Color.WHITE);
 		PanelBSuperAdmin.setBounds(0, 0, 583, 68);
 		contentPane.add(PanelBSuperAdmin);
 		PanelBSuperAdmin.setLayout(null);
+		
+		PanelSupConfiUsuarios = new JPanel();
+		PanelSupConfiUsuarios.setVisible(false);
+		PanelSupConfiUsuarios.setBackground(Color.WHITE);
+		PanelSupConfiUsuarios.setBounds(131, 23, 442, 45);
+		PanelBSuperAdmin.add(PanelSupConfiUsuarios);
+		PanelSupConfiUsuarios.setLayout(null);
+		
+		btnNUsuario = new JButton("Nuevo Usuario");
+		btnNUsuario.setForeground(Color.WHITE);
+		btnNUsuario.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnNUsuario.setBackground(new Color(65, 105, 225));
+		btnNUsuario.setBounds(0, 0, 220, 39);
+		PanelSupConfiUsuarios.add(btnNUsuario);
+		
+		btnLUsuarios = new JButton("Lista Usuarios");
+		btnLUsuarios.setForeground(Color.WHITE);
+		btnLUsuarios.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnLUsuarios.setBackground(new Color(65, 105, 225));
+		btnLUsuarios.setBounds(220, 0, 222, 39);
+		PanelSupConfiUsuarios.add(btnLUsuarios);
 		
 		btnCerrarSesion = new JButton("Cerrar Sesi\u00F3n");
 		btnCerrarSesion.setFont(new Font("Agency FB", Font.PLAIN, 20));
@@ -368,11 +419,6 @@ public class Aplicacion extends JFrame implements ActionListener {
 		btnLiga.setBackground(new Color(65, 105, 225));
 		btnLiga.setBounds(461, 23, 110, 39);
 		PanelBSuperAdmin.add(btnLiga);
-		
-		PanelBAñadirAdmin = new JPanel();
-		PanelBAñadirAdmin.setVisible(false);
-		
-		PanelSuperiorUO = new JPanel();
 		PanelSuperiorUO.setLayout(null);
 		PanelSuperiorUO.setBounds(0, 0, 569, 66);
 		contentPane.add(PanelSuperiorUO);
@@ -422,6 +468,9 @@ public class Aplicacion extends JFrame implements ActionListener {
 		btnEus.setIcon(new ImageIcon(Aplicacion.class.getResource("/Imagenes/1928414-app.android.ikurrina.png")));
 		btnEus.setBounds(523, 0, 45, 23);
 		PanelSuperiorUO.add(btnEus);
+		
+		PanelBAñadirAdmin = new JPanel();
+		PanelBAñadirAdmin.setVisible(false);
 		PanelBAñadirAdmin.setBackground(new Color(255, 255, 255));
 		PanelBAñadirAdmin.setBounds(5, 79, 112, 286);
 		contentPane.add(PanelBAñadirAdmin);
@@ -467,6 +516,164 @@ public class Aplicacion extends JFrame implements ActionListener {
 		
 		PanelInformaciónInicio = new JPanel();
 		PanelInformaciónInicio.setVisible(false);
+		
+		PanelInformación = new JPanel();
+		PanelInformación.setVisible(false);
+		PanelInformación.setBounds(0, 79, 583, 292);
+		contentPane.add(PanelInformación);
+		PanelInformación.setLayout(null);
+		PanelInformación.setBackground(Color.WHITE);
+		
+		PanelMuestraJugadores = new JPanel();
+		PanelMuestraJugadores.setVisible(false);
+		
+		PanelInicioAplicación = new JPanel();
+		PanelInicioAplicación.setBackground(Color.WHITE);
+		PanelInicioAplicación.setBounds(126, 0, 457, 294);
+		PanelInformación.add(PanelInicioAplicación);
+		PanelInicioAplicación.setLayout(null);
+		
+		lblElijaUnaOpcion = new JLabel("Elija una opcion");
+		lblElijaUnaOpcion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblElijaUnaOpcion.setFont(new Font("Agency FB", Font.PLAIN, 50));
+		lblElijaUnaOpcion.setBounds(10, 11, 437, 272);
+		PanelInicioAplicación.add(lblElijaUnaOpcion);
+		
+		PanelAplicaciónVacia = new JPanel();
+		PanelAplicaciónVacia.setBackground(Color.WHITE);
+		PanelAplicaciónVacia.setBounds(136, 0, 447, 281);
+		PanelInformación.add(PanelAplicaciónVacia);
+		PanelAplicaciónVacia.setLayout(null);
+		
+		lblAplicacinVacia = new JLabel("APLICACI\u00D3N VACIA");
+		lblAplicacinVacia.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAplicacinVacia.setFont(new Font("Agency FB", Font.PLAIN, 42));
+		lblAplicacinVacia.setBounds(10, 11, 427, 270);
+		PanelAplicaciónVacia.add(lblAplicacinVacia);
+		
+		PanelClasificacion = new JPanel();
+		PanelClasificacion.setVisible(false);
+		PanelClasificacion.setBounds(116, 0, 467, 284);
+		PanelInformación.add(PanelClasificacion);
+		PanelClasificacion.setLayout(null);
+		
+		tableClasificacion = new JTable();
+		tableClasificacion.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"                    Nombre Equipo ", " Puesto", "  P.G.", "  P.P."},
+			},
+			new String[] {
+				"                   Nombre Equipo", "Puesto", " P.G", " P.P"
+			}
+		));
+		tableClasificacion.getColumnModel().getColumn(0).setPreferredWidth(191);
+		tableClasificacion.getColumnModel().getColumn(1).setPreferredWidth(44);
+		tableClasificacion.getColumnModel().getColumn(2).setPreferredWidth(31);
+		tableClasificacion.getColumnModel().getColumn(3).setPreferredWidth(34);
+		tableClasificacion.setGridColor(Color.BLACK);
+		tableClasificacion.setBackground(Color.WHITE);
+		tableClasificacion.setBounds(0, 0, 467, 284);
+		PanelClasificacion.add(tableClasificacion);
+		PanelMuestraJugadores.setBounds(121, 0, 462, 284);
+		PanelInformación.add(PanelMuestraJugadores);
+		PanelMuestraJugadores.setBackground(Color.WHITE);
+		PanelMuestraJugadores.setLayout(null);
+		
+		tableMostrarJugadores = new JTable();
+		tableMostrarJugadores.setBackground(Color.WHITE);
+		tableMostrarJugadores.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		tableMostrarJugadores.setColumnSelectionAllowed(true);
+		tableMostrarJugadores.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"                         NOMBRE Y APELLIDOS", " NACIONALIDAD", "        EDAD", "  N\u00BA"},
+			},
+			new String[] {
+				"                       NOMBRE Y APELLIDOS", "NACIONALIDAD", "       EDAD", "  N\u00BA"
+			}
+		));
+		tableMostrarJugadores.getColumnModel().getColumn(0).setPreferredWidth(278);
+		tableMostrarJugadores.getColumnModel().getColumn(1).setPreferredWidth(91);
+		tableMostrarJugadores.getColumnModel().getColumn(3).setPreferredWidth(35);
+		tableMostrarJugadores.setBounds(10, 11, 435, 262);
+		PanelMuestraJugadores.add(tableMostrarJugadores);
+		
+		PanelMuestraEquipos = new JPanel();
+		PanelMuestraEquipos.setVisible(false);
+		PanelMuestraEquipos.setBounds(121, 0, 455, 284);
+		PanelInformación.add(PanelMuestraEquipos);
+		PanelMuestraEquipos.setBackground(Color.WHITE);
+		PanelMuestraEquipos.setLayout(null);
+		
+		tableMuestraEquipos = new JTable();
+		tableMuestraEquipos.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"                       EQUIPO", "                   TERENO DE JUEGO", "          HORA DE JUEGO"},
+			},
+			new String[] {
+				"                      EQUIPO", "                  TERENO DE JUEGO", "         HORA DE JUEGO"
+			}
+		));
+		tableMuestraEquipos.getColumnModel().getColumn(0).setPreferredWidth(178);
+		tableMuestraEquipos.getColumnModel().getColumn(1).setPreferredWidth(211);
+		tableMuestraEquipos.getColumnModel().getColumn(2).setPreferredWidth(144);
+		tableMuestraEquipos.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		tableMuestraEquipos.setBounds(10, 11, 437, 264);
+		PanelMuestraEquipos.add(tableMuestraEquipos);
+		
+		POpciones = new JPanel();
+		POpciones.setLayout(null);
+		POpciones.setBackground(Color.WHITE);
+		POpciones.setBounds(0, 0, 111, 286);
+		PanelInformación.add(POpciones);
+		
+		CBCategorias = new JComboBox<String>();
+		CBCategorias.setBackground(new Color(65, 105, 225));
+		CBCategorias.setModel(new DefaultComboBoxModel<String>(new String[] {"     CATEGORIA"}));
+		CBCategorias.setFont(new Font("Agency FB", Font.PLAIN, 11));
+		CBCategorias.setEditable(true);
+		CBCategorias.setBounds(10, 11, 91, 41);
+		POpciones.add(CBCategorias);
+		
+		CBGrupos = new JComboBox<String>();
+		CBGrupos.setBackground(new Color(65, 105, 225));
+		CBGrupos.setModel(new DefaultComboBoxModel<String>(new String[] {"     GRUPO"}));
+		CBGrupos.setFont(new Font("Agency FB", Font.PLAIN, 11));
+		CBGrupos.setEditable(true);
+		CBGrupos.setBounds(10, 74, 91, 41);
+		POpciones.add(CBGrupos);
+		
+		CBEquipos = new JComboBox<String>();
+		CBEquipos.setBackground(new Color(65, 105, 225));
+		CBEquipos.setModel(new DefaultComboBoxModel<String>(new String[] {"     EQUIPO"}));
+		CBEquipos.setFont(new Font("Agency FB", Font.PLAIN, 11));
+		CBEquipos.setEditable(true);
+		CBEquipos.setBounds(10, 138, 91, 41);
+		POpciones.add(CBEquipos);
+		
+		VPañadir = new JButton("NUEVO");
+		VPañadir.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		VPañadir.setBackground(new Color(65, 105, 225));
+		VPañadir.setBounds(10, 234, 91, 41);
+		POpciones.add(VPañadir);
+		
+		PanelEstadistica = new JPanel();
+		PanelEstadistica.setVisible(false);
+		PanelEstadistica.setLayout(null);
+		PanelEstadistica.setBounds(133, 0, 450, 284);
+		PanelInformación.add(PanelEstadistica);
+		
+		tableEstadistica = new JTable();
+		tableEstadistica.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"      Nombre", "       Equipo", "       P. Tiros", "     P. Triples", "      Rebotes"},
+			},
+			new String[] {
+				"     Nombre", "     Equipo", "      P. Tiros", "    P. Triples", "     Rebotes"
+			}
+		));
+		tableEstadistica.getColumnModel().getColumn(2).setPreferredWidth(77);
+		tableEstadistica.setBounds(10, 11, 430, 255);
+		PanelEstadistica.add(tableEstadistica);
 		PanelInformaciónInicio.setBackground(new Color(255, 255, 255));
 		PanelInformaciónInicio.setBounds(127, 79, 456, 286);
 		contentPane.add(PanelInformaciónInicio);
@@ -485,21 +692,22 @@ public class Aplicacion extends JFrame implements ActionListener {
 		PanelDatosLigas = new JPanel();
 		PanelDatosLigas.setVisible(false);
 		
-		PanelDatosUsuarios = new JPanel();
-		PanelDatosUsuarios.setBackground(Color.WHITE);
-		PanelDatosUsuarios.setBounds(0, 65, 582, 306);
-		contentPane.add(PanelDatosUsuarios);
-		PanelDatosUsuarios.setLayout(null);
+		PanelUsuarios = new JPanel();
+		PanelUsuarios.setVisible(false);
+		PanelUsuarios.setBackground(Color.WHITE);
+		PanelUsuarios.setBounds(0, 65, 582, 306);
+		contentPane.add(PanelUsuarios);
+		PanelUsuarios.setLayout(null);
 		
 		btnNuevoUsuario = new JButton("Nuevo");
 		btnNuevoUsuario.setBackground(new Color(65, 105, 225));
 		btnNuevoUsuario.setBounds(0, 55, 112, 39);
-		PanelDatosUsuarios.add(btnNuevoUsuario);
+		PanelUsuarios.add(btnNuevoUsuario);
 		
 		btnListaUsuarios = new JButton("Lista Usuarios");
 		btnListaUsuarios.setBackground(new Color(65, 105, 225));
 		btnListaUsuarios.setBounds(0, 143, 112, 39);
-		PanelDatosUsuarios.add(btnListaUsuarios);
+		PanelUsuarios.add(btnListaUsuarios);
 		
 		tableUsuarios = new JTable();
 		tableUsuarios.setModel(new DefaultTableModel(
@@ -518,7 +726,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 		panelDatosUsuario = new JPanel();
 		panelDatosUsuario.setBackground(Color.WHITE);
 		panelDatosUsuario.setBounds(117, 0, 455, 295);
-		PanelDatosUsuarios.add(panelDatosUsuario);
+		PanelUsuarios.add(panelDatosUsuario);
 		panelDatosUsuario.setLayout(null);
 		
 		lblNombreUsuario = new JLabel("  Nombre:");
@@ -644,7 +852,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 		rdbtnObservador.setBounds(186, 0, 91, 22);
 		PanelTipoUsuario.add(rdbtnObservador);
 		tableUsuarios.setBounds(124, 11, 448, 284);
-		PanelDatosUsuarios.add(tableUsuarios);
+		PanelUsuarios.add(tableUsuarios);
 		PanelDatosLigas.setLayout(null);
 		PanelDatosLigas.setBackground(Color.WHITE);
 		PanelDatosLigas.setBounds(127, 79, 456, 286);
@@ -652,21 +860,21 @@ public class Aplicacion extends JFrame implements ActionListener {
 		
 		lblNombreLiga = new JLabel("  Liga:");
 		lblNombreLiga.setOpaque(true);
-		lblNombreLiga.setFont(new Font("Arial Black", Font.PLAIN, 11));
+		lblNombreLiga.setFont(new Font("Agency FB", Font.PLAIN, 15));
 		lblNombreLiga.setBackground(new Color(135, 206, 235));
 		lblNombreLiga.setBounds(10, 46, 152, 22);
 		PanelDatosLigas.add(lblNombreLiga);
 		
 		lblCodigoLiga = new JLabel("  Codigo:");
 		lblCodigoLiga.setOpaque(true);
-		lblCodigoLiga.setFont(new Font("Arial Black", Font.PLAIN, 11));
+		lblCodigoLiga.setFont(new Font("Agency FB", Font.PLAIN, 15));
 		lblCodigoLiga.setBackground(new Color(135, 206, 235));
 		lblCodigoLiga.setBounds(10, 11, 152, 22);
 		PanelDatosLigas.add(lblCodigoLiga);
 		
 		lblGrupoLiga = new JLabel("  Grupo:");
 		lblGrupoLiga.setOpaque(true);
-		lblGrupoLiga.setFont(new Font("Arial Black", Font.PLAIN, 11));
+		lblGrupoLiga.setFont(new Font("Agency FB", Font.PLAIN, 15));
 		lblGrupoLiga.setBackground(new Color(135, 206, 235));
 		lblGrupoLiga.setBounds(10, 112, 152, 22);
 		PanelDatosLigas.add(lblGrupoLiga);
@@ -1161,153 +1369,122 @@ public class Aplicacion extends JFrame implements ActionListener {
 		CBEquipoVisitante.setBackground(new Color(175, 238, 238));
 		CBEquipoVisitante.setBounds(162, 209, 284, 22);
 		PanelDatosPartidos.add(CBEquipoVisitante);
-		
-		PanelInformación = new JPanel();
-		PanelInformación.setBounds(0, 79, 583, 292);
-		contentPane.add(PanelInformación);
-		PanelInformación.setLayout(null);
-		PanelInformación.setBackground(Color.WHITE);
-		
-		PanelMuestraJugadores = new JPanel();
-		PanelMuestraJugadores.setVisible(false);
-		
-		PanelClasificacion = new JPanel();
-		PanelClasificacion.setBounds(116, 0, 467, 284);
-		PanelInformación.add(PanelClasificacion);
-		PanelClasificacion.setLayout(null);
-		
-		tableClasificacion = new JTable();
-		tableClasificacion.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"                    Nombre Equipo ", " Puesto", "  P.G.", "  P.P."},
-			},
-			new String[] {
-				"                   Nombre Equipo", "Puesto", " P.G", " P.P"
-			}
-		));
-		tableClasificacion.getColumnModel().getColumn(0).setPreferredWidth(191);
-		tableClasificacion.getColumnModel().getColumn(1).setPreferredWidth(44);
-		tableClasificacion.getColumnModel().getColumn(2).setPreferredWidth(31);
-		tableClasificacion.getColumnModel().getColumn(3).setPreferredWidth(34);
-		tableClasificacion.setGridColor(Color.BLACK);
-		tableClasificacion.setBackground(Color.WHITE);
-		tableClasificacion.setBounds(0, 0, 467, 284);
-		PanelClasificacion.add(tableClasificacion);
-		PanelMuestraJugadores.setBounds(121, 0, 462, 284);
-		PanelInformación.add(PanelMuestraJugadores);
-		PanelMuestraJugadores.setBackground(Color.WHITE);
-		PanelMuestraJugadores.setLayout(null);
-		
-		tableMostrarJugadores = new JTable();
-		tableMostrarJugadores.setBackground(Color.WHITE);
-		tableMostrarJugadores.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		tableMostrarJugadores.setColumnSelectionAllowed(true);
-		tableMostrarJugadores.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"                         NOMBRE Y APELLIDOS", " NACIONALIDAD", "        EDAD", "  N\u00BA"},
-			},
-			new String[] {
-				"                       NOMBRE Y APELLIDOS", "NACIONALIDAD", "       EDAD", "  N\u00BA"
-			}
-		));
-		tableMostrarJugadores.getColumnModel().getColumn(0).setPreferredWidth(278);
-		tableMostrarJugadores.getColumnModel().getColumn(1).setPreferredWidth(91);
-		tableMostrarJugadores.getColumnModel().getColumn(3).setPreferredWidth(35);
-		tableMostrarJugadores.setBounds(10, 11, 435, 262);
-		PanelMuestraJugadores.add(tableMostrarJugadores);
-		
-		PanelMuestraEquipos = new JPanel();
-		PanelMuestraEquipos.setVisible(false);
-		PanelMuestraEquipos.setBounds(121, 0, 455, 284);
-		PanelInformación.add(PanelMuestraEquipos);
-		PanelMuestraEquipos.setBackground(Color.WHITE);
-		PanelMuestraEquipos.setLayout(null);
-		
-		tableMuestraEquipos = new JTable();
-		tableMuestraEquipos.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"                       EQUIPO", "                   TERENO DE JUEGO", "          HORA DE JUEGO"},
-			},
-			new String[] {
-				"                      EQUIPO", "                  TERENO DE JUEGO", "         HORA DE JUEGO"
-			}
-		));
-		tableMuestraEquipos.getColumnModel().getColumn(0).setPreferredWidth(178);
-		tableMuestraEquipos.getColumnModel().getColumn(1).setPreferredWidth(211);
-		tableMuestraEquipos.getColumnModel().getColumn(2).setPreferredWidth(144);
-		tableMuestraEquipos.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		tableMuestraEquipos.setBounds(10, 11, 437, 264);
-		PanelMuestraEquipos.add(tableMuestraEquipos);
-		
-		POpcionesEquipo = new JPanel();
-		POpcionesEquipo.setLayout(null);
-		POpcionesEquipo.setBackground(Color.WHITE);
-		POpcionesEquipo.setBounds(0, 0, 111, 286);
-		PanelInformación.add(POpcionesEquipo);
-		
-		CBCategorias = new JComboBox<String>();
-		CBCategorias.setBackground(new Color(65, 105, 225));
-		CBCategorias.setModel(new DefaultComboBoxModel<String>(new String[] {"     CATEGORIA"}));
-		CBCategorias.setFont(new Font("Agency FB", Font.PLAIN, 11));
-		CBCategorias.setEditable(true);
-		CBCategorias.setBounds(10, 11, 91, 41);
-		POpcionesEquipo.add(CBCategorias);
-		
-		CBGrupos = new JComboBox<String>();
-		CBGrupos.setBackground(new Color(65, 105, 225));
-		CBGrupos.setModel(new DefaultComboBoxModel<String>(new String[] {"     GRUPO"}));
-		CBGrupos.setFont(new Font("Agency FB", Font.PLAIN, 11));
-		CBGrupos.setEditable(true);
-		CBGrupos.setBounds(10, 74, 91, 41);
-		POpcionesEquipo.add(CBGrupos);
-		
-		CBEquipos = new JComboBox<String>();
-		CBEquipos.setBackground(new Color(65, 105, 225));
-		CBEquipos.setModel(new DefaultComboBoxModel<String>(new String[] {"     EQUIPO"}));
-		CBEquipos.setFont(new Font("Agency FB", Font.PLAIN, 11));
-		CBEquipos.setEditable(true);
-		CBEquipos.setBounds(10, 138, 91, 41);
-		POpcionesEquipo.add(CBEquipos);
-		
-		VPañadir = new JButton("NUEVO");
-		VPañadir.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		VPañadir.setBackground(new Color(65, 105, 225));
-		VPañadir.setBounds(10, 234, 91, 41);
-		POpcionesEquipo.add(VPañadir);
-		
-		PanelEstadistica = new JPanel();
-		PanelEstadistica.setLayout(null);
-		PanelEstadistica.setBounds(133, 0, 450, 284);
-		PanelInformación.add(PanelEstadistica);
-		
-		tableEstadistica = new JTable();
-		tableEstadistica.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"      Nombre", "       Equipo", "       P. Tiros", "     P. Triples", "      Rebotes"},
-			},
-			new String[] {
-				"     Nombre", "     Equipo", "      P. Tiros", "    P. Triples", "     Rebotes"
-			}
-		));
-		tableEstadistica.getColumnModel().getColumn(2).setPreferredWidth(77);
-		tableEstadistica.setBounds(10, 11, 430, 255);
-		PanelEstadistica.add(tableEstadistica);
 	}
 	
-	private ArrayList<Liga> ListaLigas = new ArrayList<Liga>();
-	private ArrayList<Equipo> ListaEquipos = new ArrayList<Equipo>();
-	private ArrayList<Jugador> ListaJugador = new ArrayList<Jugador>();
-	private ArrayList<Partido> ListaPartidos = new ArrayList<Partido>();
-	private ArrayList<Cliente> ListaUsuarios =new ArrayList<Cliente>();
-	
 
+	String idioma = "ESP";
+	private JPanel PanelAplicaciónVacia;
+	private JPanel PanelInicioAplicación;
+	private JLabel lblElijaUnaOpcion;
+	private JPanel PanelSupConfiUsuarios;
+	private JButton btnNUsuario;
+	private JButton btnLUsuarios;
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object o = e.getSource();
 		
+		if((JButton)o == btnIniciarSesion) {
+			
+			IniciarSesionSegunTipo();
+		}
+		/*Botones de idioma*/
+		else if((((JButton)o == btnEs)||((JButton)o) == btnEsp)&& idioma=="EU") {
+			traducirESP();
+		}
+		else if((((JButton)o == btnEu)||((JButton)o) == btnEus)&& idioma=="ESP") {
+			traducirEUS();
+		}
 		
 		
 	}
+
 	
-	/*Metodos necesarios para el programa*/
+	private void IniciarSesionSegunTipo() {
+		
+		if(txtUsuario.getText().equals("")) {
+			
+			iniciarParaObservador();
+
+		}
+		else {
+			String tipo = comprobarTipo();
+			if(tipo.equals("Admin")) {
+				iniciarParaAdmin();
+			}
+			else if(tipo.equals("Usuario")) {
+				iniciarParaUsuario();
+			}
+			else if (tipo.equals("Observador")){
+				iniciarParaObservador();
+			}
+		else {
+			lblError.setVisible(true);
+			}
+		}
+		
+		
+	}
+	/*Metodo que realiza la configuración necesaria al inicio 
+	 * de la aplicación para que se vea 
+	 * la personalizacion para el observador*/
+	private void iniciarParaObservador() {
+		PanelLogin.setVisible(false);
+		configurarColoresObservador();
+		lblTipo.setText("Observador");
+		PanelSuperiorUO.setVisible(true);
+		PanelInformación.setVisible(true);
+		PanelInicioAplicación.setVisible(true);
+		POpciones.setVisible(true);
+		PanelAplicaciónVacia.setVisible(false);
+		PanelClasificacion.setVisible(false);
+		PanelMuestraEquipos.setVisible(false);
+		PanelMuestraJugadores.setVisible(false);
+		PanelBAñadirAdmin.setVisible(false);
+		PanelBSuperAdmin.setVisible(false);
+		PanelInformaciónInicio.setVisible(false);
+		PanelUsuarios.setVisible(false);
+		PanelDatosLigas.setVisible(false);
+		PanelDatosEquipo.setVisible(false);
+		PanelDatosJugador.setVisible(false);
+		PanelDatosPartidos.setVisible(false);
+		
+	}
+	/*Metodo que realiza la configuración necesaria al inicio 
+	 * de la aplicación para que se vea 
+	 * la personalizacion para el usuario*/
+	private void iniciarParaUsuario() {
+		// TODO Auto-generated method stub
+		
+	}
+	/*Metodo que realiza la configuración necesaria al inicio 
+	 * de la aplicación para que se vea 
+	 * la personalizacion para el administrador*/
+	private void iniciarParaAdmin() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private String comprobarTipo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	private void configurarColoresObservador() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void traducirESP() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	private void traducirEUS() {
+		// TODO Auto-generated method stub
+		
+	}
 }
