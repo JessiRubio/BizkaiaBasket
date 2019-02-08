@@ -1474,17 +1474,34 @@ public class Aplicacion extends JFrame implements ActionListener {
 
 	private void configurarColoresObservador() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	private void traducirESP() {
-		// TODO Auto-generated method stub
-		
+		btnNUsuario.setText("Nuevo Usuario");
+		btnLUsuarios.setText("Lista Usuarios");
+		btnCerrarSesion.setText("Cerrar Sesi\u00F3n");
+		btnJugadores.setText("Jugadores");
+		btnEquipos.setText("Equipos");
+		btnPartidos.setText("Partidos");
+		btnLiga.setText("Ligas");
+		btnCerrarSesionUO.setText("Cerrar Sesi\u00F3n");
+		btnVerEquipos.setText("Equipos");
+		lblTipo.setText("Observador");
+		btnVerPartidos.setText("Partidos");
 	}
 
 
 	private void traducirEUS() {
-		// TODO Auto-generated method stub
-		
+		btnNUsuario.setText("Erabiltzaile berria");
+		btnLUsuarios.setText("Erabiltzaile listak");
+		btnCerrarSesion.setText("Sasoia itxi");
+		btnJugadores.setText("Jokalariak");
+		btnEquipos.setText("Taldeak");
+		btnPartidos.setText("Partiduak");
+		btnLiga.setText("Ligak");
+		btnCerrarSesionUO.setText("Sasoia itxi");
+		btnVerEquipos.setText("Taldeak");
+		lblTipo.setText("Ikusle");
+	
 	}
 }
