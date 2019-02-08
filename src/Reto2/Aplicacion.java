@@ -266,7 +266,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 		ListaJugador = new ArrayList<Jugador>();
 		ListaPartidos = new ArrayList<Partido>();
 		ListaUsuarios =new ArrayList<Cliente>();
-		/*Administrador por defecto*/
+	/*Administrador por defecto*/
 		Cliente CAdmin = new Cliente("Admin","","12345678A",631245798,"ADMIN@gmail.com", "Admin", "admin", "Admin");
 		ListaUsuarios.add(CAdmin);
 		
