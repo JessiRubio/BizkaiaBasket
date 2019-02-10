@@ -757,7 +757,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		lblTelefonoUsuario.setBounds(10, 129, 152, 22);
 		panelDatosUsuario.add(lblTelefonoUsuario);
 		
-		lblEmailUsuario.setText("  Email:");
+		lblEmailUsuario = new JLabel("  Email:");
 		lblEmailUsuario.setOpaque(true);
 		lblEmailUsuario.setBackground(new Color(135, 206, 235));
 		lblEmailUsuario.setBounds(10, 162, 152, 22);
