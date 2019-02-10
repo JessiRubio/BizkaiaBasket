@@ -23,7 +23,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 
-public class Aplicacion extends JFrame implements ActionListener {
+public class BizkaiaBasket extends JFrame implements ActionListener {
 
 
 	private JPanel contentPane;
@@ -248,7 +248,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Aplicacion frame = new Aplicacion();
+					BizkaiaBasket frame = new BizkaiaBasket();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -260,7 +260,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public Aplicacion() {
+	public BizkaiaBasket() {
 	/*Necesidades previas*/
 		ListaLigas = new ArrayList<Liga>();
 		ListaEquipos = new ArrayList<Equipo>();
@@ -336,7 +336,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 		PanelLogin.add(btnIniciarSesion);
 		
 		lblImagenFondo = new JLabel("");
-		lblImagenFondo.setIcon(new ImageIcon(Aplicacion.class.getResource("/Imagenes/FondoInicio.PNG")));
+		lblImagenFondo.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/FondoInicio.PNG")));
 		lblImagenFondo.setBounds(0, 0, 583, 371);
 		PanelLogin.add(lblImagenFondo);
 		PanelBSuperAdmin.setBackground(Color.WHITE);
@@ -395,7 +395,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 		
 		btnEu = new JButton("");
 		btnEu.addActionListener(this);
-		btnEu.setIcon(new ImageIcon(Aplicacion.class.getResource("/Imagenes/1928414-app.android.ikurrina.png")));
+		btnEu.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/1928414-app.android.ikurrina.png")));
 		btnEu.setFont(new Font("Agency FB", Font.PLAIN, 11));
 		btnEu.setBackground(new Color(255, 255, 255));
 		btnEu.setBounds(523, 0, 45, 23);
@@ -403,7 +403,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 		
 		btnEs = new JButton("");
 		btnEs.addActionListener(this);
-		btnEs.setIcon(new ImageIcon(Aplicacion.class.getResource("/Imagenes/bandera-espana-con-escudo-para-exterior_xs.jpg")));
+		btnEs.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/bandera-espana-con-escudo-para-exterior_xs.jpg")));
 		btnEs.setFont(new Font("Agency FB", Font.PLAIN, 11));
 		btnEs.setBackground(new Color(255, 255, 255));
 		btnEs.setBounds(486, 0, 37, 23);
@@ -463,13 +463,13 @@ public class Aplicacion extends JFrame implements ActionListener {
 		
 		btnEsp = new JButton("");
 		btnEsp.addActionListener(this);
-		btnEsp.setIcon(new ImageIcon(Aplicacion.class.getResource("/Imagenes/bandera-espana-con-escudo-para-exterior_xs.jpg")));
+		btnEsp.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/bandera-espana-con-escudo-para-exterior_xs.jpg")));
 		btnEsp.setBounds(486, 0, 37, 23);
 		PanelSuperiorUO.add(btnEsp);
 		
 		btnEus = new JButton("");
 		btnEus.addActionListener(this);
-		btnEus.setIcon(new ImageIcon(Aplicacion.class.getResource("/Imagenes/1928414-app.android.ikurrina.png")));
+		btnEus.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/1928414-app.android.ikurrina.png")));
 		btnEus.setBounds(523, 0, 45, 23);
 		PanelSuperiorUO.add(btnEus);
 		
