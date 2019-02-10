@@ -84,6 +84,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 	
 /*Panel de Usuarios*/
 	private JPanel PanelUsuarios;
+	private JPanel PanelSupConfiUsuarios;
 	/*Botones principales del panel*/
 	private JButton btnNuevoUsuario;
 	private JButton btnListaUsuarios;
@@ -107,6 +108,9 @@ public class Aplicacion extends JFrame implements ActionListener {
 	private JLabel lblTipoUsuario;
 	/*Objetos tipo de usuario*/
 	private JPanel PanelTipoUsuario;
+	private JLabel lblElijaUnaOpcion;
+	private JButton btnNUsuario;
+	private JButton btnLUsuarios;
 	private JRadioButton rdbtnAdmin;
 	private JRadioButton rdbtnUsuario;
 	private JRadioButton rdbtnObservador;
@@ -215,6 +219,8 @@ public class Aplicacion extends JFrame implements ActionListener {
 	private JPanel PanelMuestraJugadores;
 	/*Objetos panel Información*/
 	private JPanel PanelInformación;
+	private JPanel PanelInicioAplicación;
+	private JPanel PanelAplicaciónVacia;
 	private JPanel PanelMuestraEquipos;
 	private JTable tableMostrarJugadores;
 	private JPanel PanelEstadistica;
@@ -231,6 +237,10 @@ public class Aplicacion extends JFrame implements ActionListener {
 	private JLabel lblAplicacinVacia;
 	/*Lo que se muestra tras elegir las opciones*/
 	private JTable tableMuestraEquipos;
+	
+
+
+
 
 /*Necesidades previas para la aplicación*/
 	private ArrayList<Liga> ListaLigas;
@@ -278,6 +288,12 @@ public class Aplicacion extends JFrame implements ActionListener {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		PanelSuperiorUO = new JPanel();
+		PanelSuperiorUO.setVisible(false);
+		
+		PanelBSuperAdmin = new JPanel();
+		PanelBSuperAdmin.setVisible(false);
 		
 		PanelLogin = new JPanel();
 		PanelLogin.setLayout(null);
@@ -333,12 +349,6 @@ public class Aplicacion extends JFrame implements ActionListener {
 		lblImagenFondo.setIcon(new ImageIcon(Aplicacion.class.getResource("/Imagenes/FondoInicio.PNG")));
 		lblImagenFondo.setBounds(0, 0, 583, 371);
 		PanelLogin.add(lblImagenFondo);
-		
-		PanelSuperiorUO = new JPanel();
-		PanelSuperiorUO.setVisible(false);
-		
-		PanelBSuperAdmin = new JPanel();
-		PanelBSuperAdmin.setVisible(false);
 		PanelBSuperAdmin.setBackground(Color.WHITE);
 		PanelBSuperAdmin.setBounds(0, 0, 583, 68);
 		contentPane.add(PanelBSuperAdmin);
@@ -394,6 +404,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 		PanelBSuperAdmin.add(btnPartidos);
 		
 		btnEu = new JButton("");
+		btnEu.addActionListener(this);
 		btnEu.setIcon(new ImageIcon(Aplicacion.class.getResource("/Imagenes/1928414-app.android.ikurrina.png")));
 		btnEu.setFont(new Font("Agency FB", Font.PLAIN, 11));
 		btnEu.setBackground(new Color(255, 255, 255));
@@ -401,6 +412,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 		PanelBSuperAdmin.add(btnEu);
 		
 		btnEs = new JButton("");
+		btnEs.addActionListener(this);
 		btnEs.setIcon(new ImageIcon(Aplicacion.class.getResource("/Imagenes/bandera-espana-con-escudo-para-exterior_xs.jpg")));
 		btnEs.setFont(new Font("Agency FB", Font.PLAIN, 11));
 		btnEs.setBackground(new Color(255, 255, 255));
@@ -460,11 +472,13 @@ public class Aplicacion extends JFrame implements ActionListener {
 		PanelSuperiorUO.add(btnVerEstadistica);
 		
 		btnEsp = new JButton("");
+		btnEsp.addActionListener(this);
 		btnEsp.setIcon(new ImageIcon(Aplicacion.class.getResource("/Imagenes/bandera-espana-con-escudo-para-exterior_xs.jpg")));
 		btnEsp.setBounds(486, 0, 37, 23);
 		PanelSuperiorUO.add(btnEsp);
 		
 		btnEus = new JButton("");
+		btnEus.addActionListener(this);
 		btnEus.setIcon(new ImageIcon(Aplicacion.class.getResource("/Imagenes/1928414-app.android.ikurrina.png")));
 		btnEus.setBounds(523, 0, 45, 23);
 		PanelSuperiorUO.add(btnEus);
@@ -753,7 +767,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 		lblTelefonoUsuario.setBounds(10, 129, 152, 22);
 		panelDatosUsuario.add(lblTelefonoUsuario);
 		
-		lblEmailUsuario = new JLabel("  Email:");
+		lblEmailUsuario.setText("  Email:");
 		lblEmailUsuario.setOpaque(true);
 		lblEmailUsuario.setBackground(new Color(135, 206, 235));
 		lblEmailUsuario.setBounds(10, 162, 152, 22);
@@ -1372,13 +1386,6 @@ public class Aplicacion extends JFrame implements ActionListener {
 	}
 	
 
-	String idioma = "ESP";
-	private JPanel PanelAplicaciónVacia;
-	private JPanel PanelInicioAplicación;
-	private JLabel lblElijaUnaOpcion;
-	private JPanel PanelSupConfiUsuarios;
-	private JButton btnNUsuario;
-	private JButton btnLUsuarios;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -1389,10 +1396,10 @@ public class Aplicacion extends JFrame implements ActionListener {
 			IniciarSesionSegunTipo();
 		}
 		/*Botones de idioma*/
-		else if((((JButton)o == btnEs)||((JButton)o) == btnEsp)&& idioma=="EU") {
+		else if((((JButton)o == btnEs)||((JButton)o) == btnEsp)) {
 			traducirESP();
 		}
-		else if((((JButton)o == btnEu)||((JButton)o) == btnEus)&& idioma=="ESP") {
+		else if((((JButton)o == btnEu)||((JButton)o) == btnEus)) {
 			traducirEUS();
 		}
 		
@@ -1408,7 +1415,8 @@ public class Aplicacion extends JFrame implements ActionListener {
 
 		}
 		else {
-			String tipo = comprobarTipo();
+			Cliente cli = new Cliente(txtUsuario.getText(),passwordField.getText(),"");
+			String tipo = comprobarTipo(cli);
 			if(tipo.equals("Admin")) {
 				iniciarParaAdmin();
 			}
@@ -1425,6 +1433,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 		
 		
 	}
+
 	/*Metodo que realiza la configuración necesaria al inicio 
 	 * de la aplicación para que se vea 
 	 * la personalizacion para el observador*/
@@ -1450,6 +1459,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 		PanelDatosPartidos.setVisible(false);
 		
 	}
+	
 	/*Metodo que realiza la configuración necesaria al inicio 
 	 * de la aplicación para que se vea 
 	 * la personalizacion para el usuario*/
@@ -1457,6 +1467,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	/*Metodo que realiza la configuración necesaria al inicio 
 	 * de la aplicación para que se vea 
 	 * la personalizacion para el administrador*/
@@ -1465,13 +1476,22 @@ public class Aplicacion extends JFrame implements ActionListener {
 		
 	}
 
-	private String comprobarTipo() {
-		// TODO Auto-generated method stub
-		return null;
+	/*Metodo que comprueba y devuelve el tipo de cliente para
+	 *  saber que ventanas debe mostrar al iniciar sesion*/
+	private String comprobarTipo(Cliente cliente) {
+		String mota = "";
+			for(int pos=0; pos<ListaUsuarios.size();pos++) {
+				if(ListaUsuarios.get(pos).loginEquals(cliente)) {
+					cliente.setTipoCliente(ListaUsuarios.get(pos).getTipoCliente());
+				}
+			}
+		mota = cliente.getTipoCliente();
+		return mota;
 	}
 
-
-
+	/*Metodo encargado de configurar los colores de los objetos
+	 * (botones,paneles,labels, etc...) para el cliente de tipo 
+	 * OBSERVADOR*/
 	private void configurarColoresObservador() {
 		// TODO Auto-generated method stub
 	}
@@ -1488,6 +1508,67 @@ public class Aplicacion extends JFrame implements ActionListener {
 		btnVerEquipos.setText("Equipos");
 		lblTipo.setText("Observador");
 		btnVerPartidos.setText("Partidos");
+		btnVerClasificación.setText("Clasificaci\u00F3n");
+		btnVerEstadistica.setText("Estad\u00EDsticas");
+		btnAadirJugador.setText("A\u00F1adir Jugador");
+		btnAadirEquipo.setText("A\u00F1adir Equipo");
+		btnAadirPartido.setText("A\u00F1adir Partido");
+		btnConfiguracion.setText("Configuraci\u00F3n");
+		btnCrearLigas.setText("Crear Ligas");
+		lblElijaUnaOpcion.setText("Elija una opcion");
+		lblAplicacinVacia.setText("APLICACI\u00D3N VACIA");
+		VPañadir.setText("NUEVO");
+		lblInicio.setText("ELIJA UNA OPCI\u00D3N PARA COMENZAR ");
+		btnNuevoUsuario.setText("Nuevo");
+		btnListaUsuarios.setText("Lista Usuarios");
+		lblNombreUsuario.setText("  Nombre:");
+		lblApellidoUsuario.setText("  Apellido:");
+		lblDniUsuario.setText("  DNI:");
+		lblTelefonoUsuario.setText("  Telefono:");
+		lblEmailUsuario.setText("  Email:");
+		lblNickUsuario.setText("  Nick:");
+		lblContrasea.setText("  Contrase\u00F1a:");
+		btnGuardarUsuario.setText("GUARDAR");
+		btnEliminarUsuario.setText("ELIMINAR");
+		lblTipoUsuario.setText("  Tipo:");
+		rdbtnUsuario.setText("Usuario");
+		rdbtnObservador.setText("Observador");
+		lblNombreLiga .setText("  Liga:");
+		lblCodigoLiga.setText("  Codigo:");
+		lblGrupoLiga.setText("  Grupo:");
+		lblNMaxEquipos.setText("  N\u00BA Max de Equipos:");
+		btnGuardarLiga.setText("GUARDAR");
+		btnEliminarLiga.setText("ELIMINAR");
+		lblCategoriaLiga.setText("  Categoria:");
+		NombreEquipo.setText("  Nombre: ");
+		lblCodigo.setText("  Codigo:");
+		lblMunicipio.setText("  Municipio:");
+		lblTerrenoDeJuego.setText("  Terreno de Juego:");
+		lblTelefono.setText("  Telefono:");
+		lblEmail.setText("  Email:");
+		btnGuardarDatos.setText("GUARDAR");
+		btnEliminarEquipo.setText("ELIMINAR");
+		lblNombre.setText("  Nombre: ");
+		lblApellido.setText("  Apellido: ");
+		lblDni.setText("  DNI:");
+		lblNacionalidad.setText("  Nacionalidad:");
+		lblFechaDeNacimiento.setText("  Fecha de nacimiento: ");
+		lblPeso.setText("  Peso:");
+		lblEdad.setText("  Edad:");
+		lblAltura.setText("  Altura: ");
+		lblEquipo.setText("  Equipo:");
+		btnGuardar.setText("GUARDAR");
+		btnEliminarEquipo.setText("ELIMINAR");
+		lblNombre.setText("  Nombre: ");
+		btnEliminar.setText("ELIMINAR");
+		lblCategoria.setText("  Categoria:");
+		lblCodPartido.setText("  Codigo:");
+		lblGrupo.setText("  Grupo:");
+		lblFecha.setText("  Fecha:");
+		lblResultado.setText("  Resultado:");
+		lblEquipolocal.setText("  Equipo Local:");
+		btnGuardarPartido.setText("GUARDAR");
+		btnEliminarPartido.setText("ELIMINAR");
 	}
 
 
@@ -1502,6 +1583,64 @@ public class Aplicacion extends JFrame implements ActionListener {
 		btnCerrarSesionUO.setText("Sasoia itxi");
 		btnVerEquipos.setText("Taldeak");
 		lblTipo.setText("Ikusle");
-	
+		btnVerClasificación.setText("Klasifikazioa");
+		btnVerEstadistica.setText("Estadistikak");
+		btnAadirJugador.setText("Jokalaria gehitu");
+		btnAadirEquipo.setText("Taldeak gehitu");
+		btnAadirPartido.setText("Partiduak gehitu");
+		btnConfiguracion.setText("Konfigurazioa");
+		btnCrearLigas.setText("Ligak gehitu");
+		lblElijaUnaOpcion.setText("Autatu aukera bat");
+		lblAplicacinVacia.setText("Aplicazio hutsik");
+		VPañadir.setText("BERRIA");
+		lblInicio.setText("Autatu aukera bat hasteko");
+		btnNuevoUsuario.setText("Berria");
+		btnListaUsuarios.setText("Erabiltzaile listak");
+		lblNombreUsuario.setText("  Izena:");
+		lblApellidoUsuario.setText("  Abizena:");
+		lblDniUsuario.setText("  NAN:");
+		lblTelefonoUsuario.setText("  Telefonoa:");
+		lblEmailUsuario.setText("  Emaila:");
+		lblNickUsuario.setText("  Nick:");
+		lblContrasea.setText("  Pasahitza:");
+		btnGuardarUsuario.setText("GORDE");
+		btnEliminarUsuario.setText("EZABATU");
+		lblTipoUsuario.setText("  Mota:");
+		rdbtnUsuario.setText("Erabiltzaile");
+		rdbtnObservador.setText("Ikusle");
+		lblNombreLiga.setText("  Liga:");
+		lblCodigoLiga.setText("  Kodea:");
+		lblGrupoLiga.setText("  Talde:");
+		lblNMaxEquipos.setText("  Zbk max Taldeak:");
+		btnGuardarLiga.setText("GORDE");
+		btnEliminarLiga.setText("EZABATU");
+		lblCategoriaLiga.setText("  Maila:");
+		NombreEquipo.setText("  Izena: ");
+		lblCodigo.setText("  Kodea:");
+		lblMunicipio.setText("  Udalerria:");
+		lblTerrenoDeJuego.setText("  Joko zelaia:");
+		lblTelefono.setText("  Telefonoa:");
+		lblEmail.setText("  Emaila:");
+		btnGuardarDatos.setText("GORDE");
+		btnEliminarEquipo.setText("EZABATU");
+		lblNombre.setText("  Izena: ");
+		lblApellido.setText("  Abizena: ");
+		lblDni.setText("  NAN:");
+		lblNacionalidad.setText("  Herritartasun:");
+		lblFechaDeNacimiento.setText("  Jaioeguna: ");
+		lblPeso.setText("  Pisua:");
+		lblEdad.setText("  Adina:");
+		lblAltura.setText("  Altuera: ");
+		lblEquipo.setText("  Taldea:");
+		btnGuardar.setText("GORDE");
+		btnEliminar.setText("EZABATU");
+		lblCategoria.setText("  Maila:");
+		lblCodPartido.setText("  Kode:");
+		lblGrupo.setText("  Taldea:");
+		lblFecha.setText("  Data:");
+		lblResultado.setText("  Emaitza:");
+		lblEquipolocal.setText("  Talde lokala:");
+		btnGuardarPartido.setText("GORDE");
+		btnEliminarPartido.setText("EZABATU");
 	}
 }
