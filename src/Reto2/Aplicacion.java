@@ -282,7 +282,6 @@ public class Aplicacion extends JFrame implements ActionListener {
 		
 		PanelSuperiorUO = new JPanel();
 		PanelSuperiorUO.setVisible(false);
-		
 		PanelBSuperAdmin = new JPanel();
 		PanelBSuperAdmin.setVisible(false);
 		
