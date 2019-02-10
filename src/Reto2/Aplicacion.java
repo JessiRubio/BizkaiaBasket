@@ -1,12 +1,9 @@
 package Reto2;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -15,17 +12,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
-import javax.swing.JMenu;
 import javax.swing.ImageIcon;
-import java.awt.ScrollPane;
-import java.awt.Scrollbar;
-import java.awt.Insets;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.SystemColor;
@@ -34,6 +24,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 
 public class Aplicacion extends JFrame implements ActionListener {
+
 
 	private JPanel contentPane;
 	
@@ -1474,7 +1465,7 @@ public class Aplicacion extends JFrame implements ActionListener {
 	private void iniciarParaAdmin() {
 		// TODO Auto-generated method stub
 		
-	}
+}
 
 	/*Metodo que comprueba y devuelve el tipo de cliente para
 	 *  saber que ventanas debe mostrar al iniciar sesion*/
