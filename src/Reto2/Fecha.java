@@ -9,21 +9,16 @@ public class Fecha implements Comparable <Fecha> {
 	private int hora;
 	private int min;
 	
-	// métodos 
-	// Personalizados 
-	public Fecha(int d, int m, int a, int h, int min) {
-		this.dia = d;
-		this.mes = m;
-		this.año = a;
-		this.hora = h;
-		this.min = min;
+	// Contructoras
+	//Por defecto
+	public Fecha() {
+		this.dia = 1;
+		this.mes = 1;
+		this.año = 0;
+		this.hora = 00;
+		this.min = 00;
 	}
-	
-	public Fecha(int d, int m, int a) {
-		this.dia = d;
-		this.mes = m;
-		this.año = a;
-	}
+
 
 //Geters an seters de la clase fecha
 

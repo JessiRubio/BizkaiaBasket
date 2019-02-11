@@ -17,15 +17,15 @@ public class Jugador implements Comparable <Jugador> {
 	private int RebotesCogidos; 
 
 //Métodos, personalizados 
-	public Jugador(String n, String a, String na, String d, String e, Fecha f, double al, int ed, int tt, int tm, int tr, int trm, int r) {
-		this.Nombre = n;
-		this.Apellido = a; 
-		this.Nacionalidad = na; 
-		this.DNI = d; 
-		this.Equipo = e; 
-		this.FechaNacimiento = f; 
-		this.Altura = al; 
-		this.Edad = ed; 
+	public Jugador() {
+		this.Nombre = "";
+		this.Apellido = ""; 
+		this.Nacionalidad = ""; 
+		this.DNI = ""; 
+		this.Equipo = ""; 
+		this.FechaNacimiento = new Fecha(); 
+		this.Altura = 0; 
+		this.Edad = 0; 
 		this.TirosTirados = 0;
 		this.TirosMetidos = 0; 
 		this.TriplesTirados = 0; 
