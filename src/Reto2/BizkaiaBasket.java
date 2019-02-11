@@ -74,13 +74,8 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	private JButton btnAadirPartido;
 	private JButton btnConfiguracion;
 	
-/*Panel inicial de la aplicación vacia o iniciada*/
-	private JPanel PanelInformaciónInicio ;
-	private JLabel lblInicio;
-	
 /*Panel de Usuarios*/
-	private JPanel PanelUsuarios;
-	private JPanel PanelSupConfiUsuarios;
+	private JPanel PanelDatosUsuarios;
 	/*Botones principales del panel*/
 	private JButton btnNuevoUsuario;
 	private JButton btnListaUsuarios;
@@ -105,8 +100,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	/*Objetos tipo de usuario*/
 	private JPanel PanelTipoUsuario;
 	private JLabel lblElijaUnaOpcion;
-	private JButton btnNUsuario;
-	private JButton btnLUsuarios;
 	private JRadioButton rdbtnAdmin;
 	private JRadioButton rdbtnUsuario;
 	private JRadioButton rdbtnObservador;
@@ -132,7 +125,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	
 /*Objetos panel equipo (Panel de información de un equipo para crear o modificar)*/
 	private JPanel PanelDatosEquipo;
-	private JLabel NombreEquipo;
+	private JLabel lblNombreEquipo;
 	private JTextField txtNombreEquipo;
 	private JLabel lblCodigo;
 	private JTextField txtCodigo;
@@ -145,7 +138,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	private JLabel lblEmail;
 	private JTextField txtEmail;
 	/*Botones del panel*/
-	private JButton btnGuardarDatos;
+	private JButton btnGuardarEquipo;
 	private JButton btnEliminarEquipo;
 	
 /*Objetos panel de jugador(Panel de información de un jugador, para crear o modificar)*/
@@ -228,7 +221,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	private JComboBox<String> CBCategorias;
 	private JComboBox<String> CBGrupos ;
 	private JComboBox<String> CBEquipos;
-	private JButton VPañadir;
 	/*Aplicación vacia*/
 	private JLabel lblAplicacinVacia;
 	/*Lo que se muestra tras elegir las opciones*/
@@ -352,28 +344,8 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		contentPane.add(PanelBSuperAdmin);
 		PanelBSuperAdmin.setLayout(null);
 		
-		PanelSupConfiUsuarios = new JPanel();
-		PanelSupConfiUsuarios.setVisible(false);
-		PanelSupConfiUsuarios.setBackground(Color.WHITE);
-		PanelSupConfiUsuarios.setBounds(131, 23, 442, 45);
-		PanelBSuperAdmin.add(PanelSupConfiUsuarios);
-		PanelSupConfiUsuarios.setLayout(null);
-		
-		btnNUsuario = new JButton("Nuevo Usuario");
-		btnNUsuario.setForeground(Color.WHITE);
-		btnNUsuario.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnNUsuario.setBackground(new Color(65, 105, 225));
-		btnNUsuario.setBounds(0, 0, 220, 39);
-		PanelSupConfiUsuarios.add(btnNUsuario);
-		
-		btnLUsuarios = new JButton("Lista Usuarios");
-		btnLUsuarios.setForeground(Color.WHITE);
-		btnLUsuarios.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnLUsuarios.setBackground(new Color(65, 105, 225));
-		btnLUsuarios.setBounds(220, 0, 222, 39);
-		PanelSupConfiUsuarios.add(btnLUsuarios);
-		
 		btnCerrarSesion = new JButton("Cerrar Sesi\u00F3n");
+		btnCerrarSesion.addActionListener(this);
 		btnCerrarSesion.setFont(new Font("Agency FB", Font.PLAIN, 20));
 		btnCerrarSesion.setForeground(Color.WHITE);
 		btnCerrarSesion.setBackground(new Color(0, 0, 128));
@@ -434,6 +406,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		contentPane.add(PanelSuperiorUO);
 		
 		btnCerrarSesionUO = new JButton("Cerrar Sesi\u00F3n");
+		btnCerrarSesionUO.addActionListener(this);
 		btnCerrarSesionUO.setToolTipText("");
 		btnCerrarSesionUO.setFont(new Font("Agency FB", Font.PLAIN, 18));
 		btnCerrarSesionUO.setBackground(new Color(138, 45, 47));
@@ -509,13 +482,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnAadirPartido.setBounds(0, 161, 112, 39);
 		PanelBAñadirAdmin.add(btnAadirPartido);
 		
-		btnConfiguracion = new JButton("Configuraci\u00F3n");
-		btnConfiguracion.setForeground(Color.WHITE);
-		btnConfiguracion.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnConfiguracion.setBackground(new Color(65, 105, 225));
-		btnConfiguracion.setBounds(0, 236, 112, 39);
-		PanelBAñadirAdmin.add(btnConfiguracion);
-		
 		btnCrearLigas = new JButton("Crear Ligas");
 		btnCrearLigas.setBounds(0, 11, 112, 39);
 		PanelBAñadirAdmin.add(btnCrearLigas);
@@ -523,11 +489,21 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnCrearLigas.setFont(new Font("Agency FB", Font.PLAIN, 15));
 		btnCrearLigas.setBackground(new Color(65, 105, 225));
 		
-		PanelDatosPartidos = new JPanel();
-		PanelDatosPartidos.setVisible(false);
+		btnConfiguracion = new JButton("Configuraci\u00F3n");
+		btnConfiguracion.setForeground(Color.WHITE);
+		btnConfiguracion.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnConfiguracion.setBackground(new Color(65, 105, 225));
+		btnConfiguracion.setBounds(0, 236, 112, 39);
+		PanelBAñadirAdmin.add(btnConfiguracion);
 		
-		PanelInformaciónInicio = new JPanel();
-		PanelInformaciónInicio.setVisible(false);
+		PanelDatosJugador = new JPanel();
+		PanelDatosJugador.setVisible(false);
+		
+		PanelDatosLigas = new JPanel();
+		PanelDatosLigas.setVisible(false);
+		
+		PanelDatosUsuarios = new JPanel();
+		PanelDatosUsuarios.setVisible(false);
 		
 		PanelInformación = new JPanel();
 		PanelInformación.setVisible(false);
@@ -632,6 +608,25 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		tableMuestraEquipos.setBounds(10, 11, 437, 264);
 		PanelMuestraEquipos.add(tableMuestraEquipos);
 		
+		PanelEstadistica = new JPanel();
+		PanelEstadistica.setVisible(false);
+		PanelEstadistica.setLayout(null);
+		PanelEstadistica.setBounds(133, 0, 450, 284);
+		PanelInformación.add(PanelEstadistica);
+		
+		tableEstadistica = new JTable();
+		tableEstadistica.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"      Nombre", "       Equipo", "       P. Tiros", "     P. Triples", "      Rebotes"},
+			},
+			new String[] {
+				"     Nombre", "     Equipo", "      P. Tiros", "    P. Triples", "     Rebotes"
+			}
+		));
+		tableEstadistica.getColumnModel().getColumn(2).setPreferredWidth(77);
+		tableEstadistica.setBounds(10, 11, 430, 255);
+		PanelEstadistica.add(tableEstadistica);
+		
 		POpciones = new JPanel();
 		POpciones.setLayout(null);
 		POpciones.setBackground(Color.WHITE);
@@ -661,65 +656,20 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		CBEquipos.setEditable(true);
 		CBEquipos.setBounds(10, 138, 91, 41);
 		POpciones.add(CBEquipos);
-		
-		VPañadir = new JButton("NUEVO");
-		VPañadir.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		VPañadir.setBackground(new Color(65, 105, 225));
-		VPañadir.setBounds(10, 234, 91, 41);
-		POpciones.add(VPañadir);
-		
-		PanelEstadistica = new JPanel();
-		PanelEstadistica.setVisible(false);
-		PanelEstadistica.setLayout(null);
-		PanelEstadistica.setBounds(133, 0, 450, 284);
-		PanelInformación.add(PanelEstadistica);
-		
-		tableEstadistica = new JTable();
-		tableEstadistica.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"      Nombre", "       Equipo", "       P. Tiros", "     P. Triples", "      Rebotes"},
-			},
-			new String[] {
-				"     Nombre", "     Equipo", "      P. Tiros", "    P. Triples", "     Rebotes"
-			}
-		));
-		tableEstadistica.getColumnModel().getColumn(2).setPreferredWidth(77);
-		tableEstadistica.setBounds(10, 11, 430, 255);
-		PanelEstadistica.add(tableEstadistica);
-		PanelInformaciónInicio.setBackground(new Color(255, 255, 255));
-		PanelInformaciónInicio.setBounds(127, 79, 456, 286);
-		contentPane.add(PanelInformaciónInicio);
-		PanelInformaciónInicio.setLayout(null);
-		
-		lblInicio = new JLabel("ELIJA UNA OPCI\u00D3N PARA COMENZAR ");
-		lblInicio.setBounds(0, 0, 446, 286);
-		lblInicio.setEnabled(false);
-		lblInicio.setFont(new Font("Agency FB", Font.PLAIN, 40));
-		lblInicio.setHorizontalAlignment(SwingConstants.CENTER);
-		PanelInformaciónInicio.add(lblInicio);
-		
-		PanelDatosJugador = new JPanel();
-		PanelDatosJugador.setVisible(false);
-		
-		PanelDatosLigas = new JPanel();
-		PanelDatosLigas.setVisible(false);
-		
-		PanelUsuarios = new JPanel();
-		PanelUsuarios.setVisible(false);
-		PanelUsuarios.setBackground(Color.WHITE);
-		PanelUsuarios.setBounds(0, 65, 582, 306);
-		contentPane.add(PanelUsuarios);
-		PanelUsuarios.setLayout(null);
+		PanelDatosUsuarios.setBackground(Color.WHITE);
+		PanelDatosUsuarios.setBounds(0, 65, 582, 306);
+		contentPane.add(PanelDatosUsuarios);
+		PanelDatosUsuarios.setLayout(null);
 		
 		btnNuevoUsuario = new JButton("Nuevo");
 		btnNuevoUsuario.setBackground(new Color(65, 105, 225));
 		btnNuevoUsuario.setBounds(0, 55, 112, 39);
-		PanelUsuarios.add(btnNuevoUsuario);
+		PanelDatosUsuarios.add(btnNuevoUsuario);
 		
 		btnListaUsuarios = new JButton("Lista Usuarios");
 		btnListaUsuarios.setBackground(new Color(65, 105, 225));
 		btnListaUsuarios.setBounds(0, 143, 112, 39);
-		PanelUsuarios.add(btnListaUsuarios);
+		PanelDatosUsuarios.add(btnListaUsuarios);
 		
 		tableUsuarios = new JTable();
 		tableUsuarios.setModel(new DefaultTableModel(
@@ -738,7 +688,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		panelDatosUsuario = new JPanel();
 		panelDatosUsuario.setBackground(Color.WHITE);
 		panelDatosUsuario.setBounds(117, 0, 455, 295);
-		PanelUsuarios.add(panelDatosUsuario);
+		PanelDatosUsuarios.add(panelDatosUsuario);
 		panelDatosUsuario.setLayout(null);
 		
 		lblNombreUsuario = new JLabel("  Nombre:");
@@ -864,7 +814,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		rdbtnObservador.setBounds(186, 0, 91, 22);
 		PanelTipoUsuario.add(rdbtnObservador);
 		tableUsuarios.setBounds(124, 11, 448, 284);
-		PanelUsuarios.add(tableUsuarios);
+		PanelDatosUsuarios.add(tableUsuarios);
 		PanelDatosLigas.setLayout(null);
 		PanelDatosLigas.setBackground(Color.WHITE);
 		PanelDatosLigas.setBounds(127, 79, 456, 286);
@@ -954,12 +904,12 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelDatosEquipo.setBounds(127, 79, 456, 286);
 		contentPane.add(PanelDatosEquipo);
 		
-		NombreEquipo = new JLabel("  Nombre: ");
-		NombreEquipo.setOpaque(true);
-		NombreEquipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		NombreEquipo.setBackground(new Color(135, 206, 235));
-		NombreEquipo.setBounds(10, 11, 152, 22);
-		PanelDatosEquipo.add(NombreEquipo);
+		lblNombreEquipo = new JLabel("  Nombre: ");
+		lblNombreEquipo.setOpaque(true);
+		lblNombreEquipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblNombreEquipo.setBackground(new Color(135, 206, 235));
+		lblNombreEquipo.setBounds(10, 11, 152, 22);
+		PanelDatosEquipo.add(lblNombreEquipo);
 		
 		lblCodigo = new JLabel("  Codigo:");
 		lblCodigo.setOpaque(true);
@@ -1032,11 +982,11 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		txtTelefono.setBounds(162, 176, 284, 22);
 		PanelDatosEquipo.add(txtTelefono);
 		
-		btnGuardarDatos = new JButton("GUARDAR");
-		btnGuardarDatos.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnGuardarDatos.setBackground(Color.GREEN);
-		btnGuardarDatos.setBounds(357, 252, 89, 23);
-		PanelDatosEquipo.add(btnGuardarDatos);
+		btnGuardarEquipo = new JButton("GUARDAR");
+		btnGuardarEquipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnGuardarEquipo.setBackground(Color.GREEN);
+		btnGuardarEquipo.setBounds(357, 252, 89, 23);
+		PanelDatosEquipo.add(btnGuardarEquipo);
 		
 		btnEliminarEquipo = new JButton("ELIMINAR");
 		btnEliminarEquipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
@@ -1205,6 +1155,9 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		CBEquipoJugador.setBackground(new Color(175, 238, 238));
 		CBEquipoJugador.setBounds(162, 209, 284, 22);
 		PanelDatosJugador.add(CBEquipoJugador);
+		
+		PanelDatosPartidos = new JPanel();
+		PanelDatosPartidos.setVisible(false);
 		PanelDatosPartidos.setLayout(null);
 		PanelDatosPartidos.setBackground(Color.WHITE);
 		PanelDatosPartidos.setBounds(127, 79, 456, 286);
@@ -1392,6 +1345,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		if((JButton)o == btnIniciarSesion) {
 			
 			IniciarSesionSegunTipo();
+			limpiarLogin();
 		}
 		/*Botones de idioma*/
 		else if((((JButton)o == btnEs)||((JButton)o) == btnEsp)) {
@@ -1400,11 +1354,27 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		else if((((JButton)o == btnEu)||((JButton)o) == btnEus)) {
 			traducirEUS();
 		}
-		
+		else if(((JButton)o == btnCerrarSesion)||((JButton)o == btnCerrarSesionUO)) {
+			PanelLogin.setVisible(true);
+			PanelBSuperAdmin.setVisible(false);
+			PanelBAñadirAdmin.setVisible(false);
+			PanelDatosUsuarios.setVisible(false);
+			PanelDatosLigas.setVisible(false);
+			PanelDatosEquipo.setVisible(false);
+			PanelDatosJugador.setVisible(false);
+			PanelDatosPartidos.setVisible(false);
+			PanelInformación.setVisible(false);
+			PanelSuperiorUO.setVisible(false);
+		}
 		
 	}
 
 	
+	private void limpiarLogin() {
+		txtUsuario.setText("");
+		passwordField.setText("");
+	}
+
 	private void IniciarSesionSegunTipo() {
 		
 		if(txtUsuario.getText().equals("")) {
@@ -1451,14 +1421,13 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelMuestraJugadores.setVisible(false);
 		PanelBAñadirAdmin.setVisible(false);
 		PanelBSuperAdmin.setVisible(false);
-		PanelInformaciónInicio.setVisible(false);
-		PanelUsuarios.setVisible(false);
+		PanelDatosUsuarios.setVisible(false);
 		PanelDatosLigas.setVisible(false);
 		PanelDatosEquipo.setVisible(false);
 		PanelDatosJugador.setVisible(false);
 		PanelDatosPartidos.setVisible(false);
-		
 	}
+	
 	
 	/*Metodo que realiza la configuración necesaria al inicio 
 	 * de la aplicación para que se vea 
@@ -1468,6 +1437,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		
 	}
 	
+	
 	/*Metodo que realiza la configuración necesaria al inicio 
 	 * de la aplicación para que se vea 
 	 * la personalizacion para el administrador*/
@@ -1476,6 +1446,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		
 }
 
+	
 	/*Metodo que comprueba y devuelve el tipo de cliente para
 	 *  saber que ventanas debe mostrar al iniciar sesion*/
 	private String comprobarTipo(Cliente cliente) {
@@ -1489,6 +1460,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		return mota;
 	}
 
+	
 	/*Metodo encargado de configurar los colores de los objetos
 	 * (botones,paneles,labels, etc...) para el cliente de tipo 
 	 * OBSERVADOR*/
@@ -1496,9 +1468,9 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 	}
 
+	
+	/*Metodo encargado de traducir la información del programa a Español*/
 	private void traducirESP() {
-		btnNUsuario.setText("Nuevo Usuario");
-		btnLUsuarios.setText("Lista Usuarios");
 		btnCerrarSesion.setText("Cerrar Sesi\u00F3n");
 		btnJugadores.setText("Jugadores");
 		btnEquipos.setText("Equipos");
@@ -1506,7 +1478,12 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnLiga.setText("Ligas");
 		btnCerrarSesionUO.setText("Cerrar Sesi\u00F3n");
 		btnVerEquipos.setText("Equipos");
-		lblTipo.setText("Observador");
+		if (lblTipo.getText().equals("Ikusle")) {
+			lblTipo.setText("Observador");
+		}
+		else if (lblTipo.getText().equals("Erabiltzailea")) {
+			lblTipo.setText("Usuario");
+		}
 		btnVerPartidos.setText("Partidos");
 		btnVerClasificación.setText("Clasificaci\u00F3n");
 		btnVerEstadistica.setText("Estad\u00EDsticas");
@@ -1517,8 +1494,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnCrearLigas.setText("Crear Ligas");
 		lblElijaUnaOpcion.setText("Elija una opcion");
 		lblAplicacinVacia.setText("APLICACI\u00D3N VACIA");
-		VPañadir.setText("NUEVO");
-		lblInicio.setText("ELIJA UNA OPCI\u00D3N PARA COMENZAR ");
 		btnNuevoUsuario.setText("Nuevo");
 		btnListaUsuarios.setText("Lista Usuarios");
 		lblNombreUsuario.setText("  Nombre:");
@@ -1540,13 +1515,13 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnGuardarLiga.setText("GUARDAR");
 		btnEliminarLiga.setText("ELIMINAR");
 		lblCategoriaLiga.setText("  Categoria:");
-		NombreEquipo.setText("  Nombre: ");
+		lblNombreEquipo.setText("  Nombre: ");
 		lblCodigo.setText("  Codigo:");
 		lblMunicipio.setText("  Municipio:");
 		lblTerrenoDeJuego.setText("  Terreno de Juego:");
 		lblTelefono.setText("  Telefono:");
 		lblEmail.setText("  Email:");
-		btnGuardarDatos.setText("GUARDAR");
+		btnGuardarEquipo.setText("GUARDAR");
 		btnEliminarEquipo.setText("ELIMINAR");
 		lblNombre.setText("  Nombre: ");
 		lblApellido.setText("  Apellido: ");
@@ -1571,10 +1546,9 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnEliminarPartido.setText("ELIMINAR");
 	}
 
-
+	
+	/*Metodo encargado de traducir la información del programa a Español*/
 	private void traducirEUS() {
-		btnNUsuario.setText("Erabiltzaile berria");
-		btnLUsuarios.setText("Erabiltzaile listak");
 		btnCerrarSesion.setText("Sasoia itxi");
 		btnJugadores.setText("Jokalariak");
 		btnEquipos.setText("Taldeak");
@@ -1582,7 +1556,12 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnLiga.setText("Ligak");
 		btnCerrarSesionUO.setText("Sasoia itxi");
 		btnVerEquipos.setText("Taldeak");
-		lblTipo.setText("Ikusle");
+		if (lblTipo.getText().equals("Observador")) {
+			lblTipo.setText("Ikusle");
+		}
+		else if (lblTipo.getText().equals("Usuario")) {
+			lblTipo.setText("Erabiltzailea");
+		}
 		btnVerClasificación.setText("Klasifikazioa");
 		btnVerEstadistica.setText("Estadistikak");
 		btnAadirJugador.setText("Jokalaria gehitu");
@@ -1592,8 +1571,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnCrearLigas.setText("Ligak gehitu");
 		lblElijaUnaOpcion.setText("Autatu aukera bat");
 		lblAplicacinVacia.setText("Aplicazio hutsik");
-		VPañadir.setText("BERRIA");
-		lblInicio.setText("Autatu aukera bat hasteko");
 		btnNuevoUsuario.setText("Berria");
 		btnListaUsuarios.setText("Erabiltzaile listak");
 		lblNombreUsuario.setText("  Izena:");
@@ -1615,13 +1592,13 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnGuardarLiga.setText("GORDE");
 		btnEliminarLiga.setText("EZABATU");
 		lblCategoriaLiga.setText("  Maila:");
-		NombreEquipo.setText("  Izena: ");
+		lblNombreEquipo.setText("  Izena: ");
 		lblCodigo.setText("  Kodea:");
 		lblMunicipio.setText("  Udalerria:");
 		lblTerrenoDeJuego.setText("  Joko zelaia:");
 		lblTelefono.setText("  Telefonoa:");
 		lblEmail.setText("  Emaila:");
-		btnGuardarDatos.setText("GORDE");
+		btnGuardarEquipo.setText("GORDE");
 		btnEliminarEquipo.setText("EZABATU");
 		lblNombre.setText("  Izena: ");
 		lblApellido.setText("  Abizena: ");
@@ -1643,4 +1620,5 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnGuardarPartido.setText("GORDE");
 		btnEliminarPartido.setText("EZABATU");
 	}
+
 }
