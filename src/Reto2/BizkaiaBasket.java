@@ -234,10 +234,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	/*Lo que se muestra tras elegir las opciones*/
 	private JTable tableMuestraEquipos;
 	
-
-
-
-
 /*Necesidades previas para la aplicación*/
 	private ArrayList<Liga> ListaLigas;
 	private ArrayList<Equipo> ListaEquipos;
