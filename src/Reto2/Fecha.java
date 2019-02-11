@@ -43,7 +43,7 @@ public class Fecha implements Comparable <Fecha> {
 	}
 
 	public void setAño(int ano) {
-		this.año = año;
+		this.año = ano;
 	}
 
 	public int getHora() {
