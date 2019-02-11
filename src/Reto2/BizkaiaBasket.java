@@ -26,6 +26,11 @@ import javax.swing.JRadioButton;
 public class BizkaiaBasket extends JFrame implements ActionListener {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7592641826926799539L;
+
 	private JPanel contentPane;
 	
 /*Objetos panel Login*/
@@ -268,7 +273,14 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		ListaPartidos = new ArrayList<Partido>();
 		ListaUsuarios =new ArrayList<Cliente>();
 	/*Administrador por defecto*/
-		Cliente CAdmin = new Cliente("Admin","","12345678A",631245798,"ADMIN@gmail.com", "Admin", "admin", "Admin");
+		Cliente CAdmin = new Cliente();
+		CAdmin.setNombreCliente("Admin");
+		CAdmin.setDNICliente("12345678A");
+		CAdmin.setTelefonoCliente(631245798);
+		CAdmin.setEmailCliente("ADMIN@gmail.com");
+		CAdmin.setNick("Admin");
+		CAdmin.setPassword("admin");
+		CAdmin.setTipoCliente("Admin");
 		ListaUsuarios.add(CAdmin);
 		
 		setTitle("BizkaiaBasket.com");
@@ -1405,7 +1417,9 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 
 		}
 		else {
-			Cliente cli = new Cliente(txtUsuario.getText(),passwordField.getText(),"");
+			Cliente cli = new Cliente();
+			cli.setNick(txtUsuario.getText());
+			cli.setPassword(passwordField.getText());
 			String tipo = comprobarTipo(cli);
 			if(tipo.equals("Admin")) {
 				iniciarParaAdmin();

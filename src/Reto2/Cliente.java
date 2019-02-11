@@ -11,26 +11,17 @@ public class Cliente {
 	private String Password;
 	private String TipoCliente;
 	
-	public Cliente(String n, String a, String d, int t, String e, String nick, String pass, String tp) {
-		this.NombreCliente = n;
-		this.ApellidosCliente = a;
-		this.DNICliente = d;
-		this.TelefonoCliente = t;
-		this.emailCliente = e;
-		this.Nick = nick;
-		this.Password = pass;
-		this.TipoCliente = tp;
-	}
-	public Cliente(String n, String p, String tp) {
+	public Cliente() {
 		this.NombreCliente = "";
 		this.ApellidosCliente = "";
 		this.DNICliente = "";
 		this.TelefonoCliente = 0;
 		this.emailCliente = "";
-		this.Nick = n;
-		this.Password = p;
-		this.TipoCliente = tp;
+		this.Nick = "";
+		this.Password = "";
+		this.TipoCliente = "";
 	}
+
 	
 	public String getNombreCliente() {
 		return NombreCliente;
