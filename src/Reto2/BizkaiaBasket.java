@@ -254,6 +254,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public BizkaiaBasket() {
+		setResizable(false);
 	/*Necesidades previas*/
 		ListaLigas = new ArrayList<Liga>();
 		ListaEquipos = new ArrayList<Equipo>();
@@ -270,6 +271,16 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		CAdmin.setPassword("admin");
 		CAdmin.setTipoCliente("Admin");
 		ListaUsuarios.add(CAdmin);
+	/*Usuario por defecto*/
+		Cliente CUser = new Cliente();
+		CUser.setNombreCliente("User");
+		CUser.setDNICliente("13579024B");
+		CUser.setTelefonoCliente(625397842);
+		CUser.setEmailCliente("Usuario@gmail.com");
+		CUser.setNick("User");
+		CUser.setPassword("user");
+		CUser.setTipoCliente("Usuario");
+		ListaUsuarios.add(CUser);
 		
 		setTitle("BizkaiaBasket.com");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -502,9 +513,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelDatosLigas = new JPanel();
 		PanelDatosLigas.setVisible(false);
 		
-		PanelDatosUsuarios = new JPanel();
-		PanelDatosUsuarios.setVisible(false);
-		
 		PanelInformación = new JPanel();
 		PanelInformación.setVisible(false);
 		PanelInformación.setBounds(0, 79, 583, 292);
@@ -656,6 +664,9 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		CBEquipos.setEditable(true);
 		CBEquipos.setBounds(10, 138, 91, 41);
 		POpciones.add(CBEquipos);
+		
+		PanelDatosUsuarios = new JPanel();
+		PanelDatosUsuarios.setVisible(false);
 		PanelDatosUsuarios.setBackground(Color.WHITE);
 		PanelDatosUsuarios.setBounds(0, 65, 582, 306);
 		contentPane.add(PanelDatosUsuarios);
@@ -1367,14 +1378,26 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 			PanelSuperiorUO.setVisible(false);
 		}
 		
+		
 	}
 
 	
-	private void limpiarLogin() {
-		txtUsuario.setText("");
-		passwordField.setText("");
+	/*Metodo que comprueba y devuelve el tipo de cliente para
+	 *  saber que ventanas debe mostrar al iniciar sesion*/
+	private String comprobarTipo(Cliente cliente) {
+		String mota = "";
+			for(int pos=0; pos<ListaUsuarios.size();pos++) {
+				if(ListaUsuarios.get(pos).loginEquals(cliente)) {
+					cliente.setTipoCliente(ListaUsuarios.get(pos).getTipoCliente());
+				}
+			}
+		mota = cliente.getTipoCliente();
+		return mota;
 	}
 
+
+	/*Comprueba de que tipo es el usuario que esta iniciando
+	 * sesion y prepara la aplicacion para el*/
 	private void IniciarSesionSegunTipo() {
 		
 		if(txtUsuario.getText().equals("")) {
@@ -1404,6 +1427,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		
 	}
 
+	
 	/*Metodo que realiza la configuración necesaria al inicio 
 	 * de la aplicación para que se vea 
 	 * la personalizacion para el observador*/
@@ -1413,12 +1437,13 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		lblTipo.setText("Observador");
 		PanelSuperiorUO.setVisible(true);
 		PanelInformación.setVisible(true);
-		PanelInicioAplicación.setVisible(true);
-		POpciones.setVisible(true);
-		PanelAplicaciónVacia.setVisible(false);
-		PanelClasificacion.setVisible(false);
-		PanelMuestraEquipos.setVisible(false);
-		PanelMuestraJugadores.setVisible(false);
+			PanelInicioAplicación.setVisible(true);
+			POpciones.setVisible(true);
+			PanelAplicaciónVacia.setVisible(false);
+			PanelClasificacion.setVisible(false);
+			PanelMuestraEquipos.setVisible(false);
+			PanelMuestraJugadores.setVisible(false);
+			PanelEstadistica.setVisible(false);
 		PanelBAñadirAdmin.setVisible(false);
 		PanelBSuperAdmin.setVisible(false);
 		PanelDatosUsuarios.setVisible(false);
@@ -1433,8 +1458,25 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	 * de la aplicación para que se vea 
 	 * la personalizacion para el usuario*/
 	private void iniciarParaUsuario() {
-		// TODO Auto-generated method stub
-		
+		PanelLogin.setVisible(false);
+		configurarColoresUsuario();
+		lblTipo.setText("Usuario");
+		PanelSuperiorUO.setVisible(true);
+		PanelInformación.setVisible(true);
+			PanelInicioAplicación.setVisible(true);
+			POpciones.setVisible(true);
+			PanelAplicaciónVacia.setVisible(false);
+			PanelClasificacion.setVisible(false);
+			PanelMuestraEquipos.setVisible(false);
+			PanelMuestraJugadores.setVisible(false);
+			PanelEstadistica.setVisible(false);
+		PanelBAñadirAdmin.setVisible(false);
+		PanelBSuperAdmin.setVisible(false);
+		PanelDatosUsuarios.setVisible(false);
+		PanelDatosLigas.setVisible(false);
+		PanelDatosEquipo.setVisible(false);
+		PanelDatosJugador.setVisible(false);
+		PanelDatosPartidos.setVisible(false);
 	}
 	
 	
@@ -1442,22 +1484,69 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	 * de la aplicación para que se vea 
 	 * la personalizacion para el administrador*/
 	private void iniciarParaAdmin() {
-		// TODO Auto-generated method stub
+		PanelLogin.setVisible(false);
+		configurarColoresAdmin();
+		PanelBSuperAdmin.setVisible(true);
+		PanelBAñadirAdmin.setVisible(true);
+		PanelSuperiorUO.setVisible(false);
+		PanelInformación.setVisible(true);
+			PanelInicioAplicación.setVisible(true);
+			POpciones.setVisible(false);
+			PanelAplicaciónVacia.setVisible(false);
+			PanelClasificacion.setVisible(false);
+			PanelMuestraEquipos.setVisible(false);
+			PanelMuestraJugadores.setVisible(false);
+		PanelDatosUsuarios.setVisible(false);
+		PanelDatosLigas.setVisible(false);
+		PanelDatosEquipo.setVisible(false);
+		PanelDatosJugador.setVisible(false);
+		PanelDatosPartidos.setVisible(false);
 		
 }
 
 	
-	/*Metodo que comprueba y devuelve el tipo de cliente para
-	 *  saber que ventanas debe mostrar al iniciar sesion*/
-	private String comprobarTipo(Cliente cliente) {
-		String mota = "";
-			for(int pos=0; pos<ListaUsuarios.size();pos++) {
-				if(ListaUsuarios.get(pos).loginEquals(cliente)) {
-					cliente.setTipoCliente(ListaUsuarios.get(pos).getTipoCliente());
-				}
-			}
-		mota = cliente.getTipoCliente();
-		return mota;
+
+	/*Una vez iniciada la sesion deja vacios el hueco del textfield y passwordField
+	 * del panel Login, para que al cerrar sesion pueda usarse como si la aplicación
+	 * acabase de iniciar*/
+	private void limpiarLogin() {
+		txtUsuario.setText("");
+		passwordField.setText("");
+	}
+	
+	
+	/*Metodo encargado de configurar los colores de los objetos
+	 * (botones,paneles,labels, etc...) para el cliente de tipo 
+	 * ADMINISTRADOR*/
+	private void configurarColoresAdmin() {
+		/*Panel superior*/
+		btnCerrarSesion.setBackground(new Color(0,0,128));
+		btnJugadores.setBackground(new Color(65, 105, 225));
+		btnEquipos.setBackground(new Color(65, 105, 225));
+		btnPartidos.setBackground(new Color(65, 105, 225));
+		btnLiga.setBackground(new Color(65, 105, 225));
+		/*PanelBAñadir*/
+		btnAadirJugador.setBackground(new Color(65, 105, 225));
+		btnAadirEquipo.setBackground(new Color(65, 105, 225));
+		btnAadirPartido.setBackground(new Color(65, 105, 225));
+		btnCrearLigas.setBackground(new Color(65, 105, 225));
+		btnConfiguracion.setBackground(new Color(65, 105, 225));
+		/*PanelDatosUsuario*/
+		btnNuevoUsuario.setBackground(new Color(65, 105, 225));
+		btnListaUsuarios.setBackground(new Color(65, 105, 225));
+		btnGuardarUsuario.setBackground(Color.GREEN);
+		btnEliminarUsuario.setBackground(Color.RED);
+		
+		
+	}
+
+
+	/*Metodo encargado de configurar los colores de los objetos
+	 * (botones,paneles,labels, etc...) para el cliente de tipo 
+	 * USUARIO*/
+	private void configurarColoresUsuario() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
