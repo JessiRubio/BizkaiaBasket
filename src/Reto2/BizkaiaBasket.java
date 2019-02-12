@@ -1536,7 +1536,25 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnListaUsuarios.setBackground(new Color(65, 105, 225));
 		btnGuardarUsuario.setBackground(Color.GREEN);
 		btnEliminarUsuario.setBackground(Color.RED);
-		
+		lblNombreUsuario.setBackground(new Color(135,206,235));
+		lblApellidoUsuario.setBackground(new Color(135,206,235));
+		lblDniUsuario.setBackground(new Color(135,206,235));
+		lblTelefonoUsuario.setBackground(new Color(135,206,235));
+		lblEmailUsuario.setBackground(new Color(135,206,235));
+		lblNickUsuario.setBackground(new Color(135,206,235));
+		lblContrasea.setBackground(new Color(135,206,235));
+		lblTipoUsuario.setBackground(new Color(135,206,235));
+		txtNombreUsuario.setBackground(new Color(175,238,238));
+		txtApellidoUsuario.setBackground(new Color(175,238,238));
+		txtDniUsuario.setBackground(new Color(175,238,238));
+		txtTelefonoUsuario.setBackground(new Color(175,238,238));
+		txtEmailUsuario.setBackground(new Color(175,238,238));
+		txtNickUsuario.setBackground(new Color(175,238,238));
+		txtPasswordUsuario.setBackground(new Color(175,238,238));
+		PanelTipoUsuario.setBackground(new Color(175,238,238));
+		rdbtnAdmin.setBackground(new Color(175,238,238));
+		rdbtnObservador.setBackground(new Color(175,238,238));
+		rdbtnUsuario.setBackground(new Color(175,238,238));
 		
 	}
 
