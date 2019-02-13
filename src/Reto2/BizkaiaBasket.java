@@ -575,6 +575,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelBAñadirAdmin.add(btnAadirJugador);
 		
 		btnAadirEquipo = new JButton("A\u00F1adir Equipo");
+		btnAadirEquipo.addActionListener(this);
 		btnAadirEquipo.setForeground(Color.WHITE);
 		btnAadirEquipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
 		btnAadirEquipo.setBackground(new Color(65, 105, 225));
@@ -1011,12 +1012,14 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelDatosEquipo.add(txtTelefono);
 		
 		btnGuardarEquipo = new JButton("GUARDAR");
+		btnGuardarEquipo.addActionListener(this);
 		btnGuardarEquipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
 		btnGuardarEquipo.setBackground(Color.GREEN);
 		btnGuardarEquipo.setBounds(357, 252, 89, 23);
 		PanelDatosEquipo.add(btnGuardarEquipo);
 		
 		btnEliminarEquipo = new JButton("ELIMINAR");
+		btnEliminarEquipo.addActionListener(this);
 		btnEliminarEquipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
 		btnEliminarEquipo.setBackground(Color.RED);
 		btnEliminarEquipo.setBounds(262, 252, 89, 23);
@@ -1397,11 +1400,8 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		/*Configuración Administrador
 		 * OPCION CREAR LIGA*/
 		else if((JButton)o == btnCrearLigas) {
-			PanelLogin.setVisible(false);
-			configurarColoresAdmin();
 			PanelBSuperAdmin.setVisible(true);
 			PanelBAñadirAdmin.setVisible(true);
-			PanelSuperiorUO.setVisible(false);
 			PanelInformación.setVisible(false);
 			PanelDatosUsuarios.setVisible(false);
 			PanelDatosLigas.setVisible(true);
@@ -1415,10 +1415,28 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		else if ((JButton)o == btnEliminarLiga) {
 			eliminarLiga();
 		}
+		else if((JButton)o == btnAadirEquipo) {
+			PanelBSuperAdmin.setVisible(true);
+			PanelBAñadirAdmin.setVisible(true);
+			PanelInformación.setVisible(false);
+			PanelDatosUsuarios.setVisible(false);
+			PanelDatosLigas.setVisible(false);
+			PanelDatosEquipo.setVisible(true);
+			PanelDatosJugador.setVisible(false);
+			PanelDatosPartidos.setVisible(false);
+		}
+		else if((JButton)o == btnGuardarEquipo) {
+			añadirEquipo();
+		}
+		else if((JButton)o == btnEliminarEquipo) {
+			EliminarEquipo();
+		}
 		
 	}
 
 
+
+/*------------------------------- CONFIGURACIÓN INICIO APLICACIÓN-----------------------------------------------*/	
 
 	/*Metodo que comprueba y devuelve el tipo de cliente para
 	 *  saber que ventanas debe mostrar al iniciar sesion*/
@@ -1666,6 +1684,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		passwordField.setText("");
 	}
 	
+/*------------------------------------- BOTONES TRADUCCION -----------------------------------------*/	
 	
 	/*Metodo encargado de traducir la información del programa a Español*/
 	private void traducirESP() {
@@ -1819,6 +1838,8 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnEliminarPartido.setText("EZABATU");
 	}
 	
+/*------------------------------------- VENTANA LIGAS ------------------------------------------*/	
+	
 	/*Metodo encargado de crear una liga y guardarla en el lugar adecuado*/
 	private void añadirLiga() {
 		Liga ligaAnadir = new Liga();
@@ -1866,9 +1887,60 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		
 	}
 
+/*----------------------------------------------------------------------------------------------*/	
+
+	
+	private void añadirEquipo() {
+		Equipo eqAnadir = new Equipo();
+		eqAnadir.setNombreEquipo(txtNombreEquipo.getText());
+		eqAnadir.setCodEquipo(txtCodigo.getText());
+		eqAnadir.setMunicipio(txtMunicipio.getText());
+		eqAnadir.setTerrenoDeJuego(txtTerrenoDeJuego.getText());
+		eqAnadir.setTelefono(Integer.parseInt(txtTelefono.getText()));
+		eqAnadir.setCorreoElectronico(txtEmail.getText());
+		
+		añadirAListaEquipos();
+		añadirEnLiga();
+		
+	}
+	
+
+	private void EliminarEquipo() {
+		Equipo eqAnadir = new Equipo();
+		eqAnadir.setNombreEquipo(txtNombreEquipo.getText());
+		eqAnadir.setCodEquipo(txtCodigo.getText());
+		eqAnadir.setMunicipio(txtMunicipio.getText());
+		eqAnadir.setTerrenoDeJuego(txtTerrenoDeJuego.getText());
+		eqAnadir.setTelefono(Integer.parseInt(txtTelefono.getText()));
+		eqAnadir.setCorreoElectronico(txtEmail.getText());
+		
+		eliminarDListaEquipos();
+		eliminarDLiga();
+	}
 
 
+	private void añadirEnLiga() {
+		// TODO Auto-generated method stub
+		
+	}
 
+	
+	private void añadirAListaEquipos() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	private void eliminarDLiga() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	private void eliminarDListaEquipos() {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 
