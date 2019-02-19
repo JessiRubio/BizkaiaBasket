@@ -2139,10 +2139,27 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	/*Comprobando que el jugador no exista previamente, se le añade a el arrayList*/
 
 	private void añadirAListaJugadores(Jugador jAnadir) {
-		// TODO Auto-generated method stub
+		boolean comprobador = comprobarSiJugador();
+		if(!comprobador) {
+			ListaJugador.add(jAnadir);
+			JOptionPane.showMessageDialog(null, "Jugador añadido");
+		}
+		else {
+			for(int pos = 0; pos < ListaJugador.size();pos++) {
+				if (ListaJugador.get(pos).equals(jAnadir)){
+					ListaJugador.get(pos).setNombre(jAnadir.getNombre());
+					break;
+				}
+			}
+		}
 		
 	}
 	
+	private boolean comprobarSiJugador() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	/*Tras añadir el jugador al arrayList de jugadores lo añadimos al arrayListInterno de el equipo*/
 	private void añadirAEquipo(Jugador jAnadir) {
 		// TODO Auto-generated method stub
