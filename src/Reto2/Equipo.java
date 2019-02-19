@@ -11,6 +11,7 @@ public class Equipo {
 	private String CorreoElectronico;
 	private String TerrenoDeJuego;
 	private ArrayList<Jugador> ListaJugadores;
+	private String CodLiga;
 	
 	public Equipo() {
 		CodEquipo = "";
@@ -19,6 +20,7 @@ public class Equipo {
 		telefono = 0;
 		CorreoElectronico = "";
 		TerrenoDeJuego = "";
+		CodLiga = "";
 	}
 
 	public String getCodEquipo() {
@@ -75,6 +77,20 @@ public class Equipo {
 
 	public void setListaJugadores(ArrayList<Jugador> listaJugadores) {
 		ListaJugadores = listaJugadores;
+	}
+
+	public String getCodLiga() {
+		return CodLiga;
+	}
+	
+	public void setCodLiga(String codLiga) {
+		CodLiga = codLiga;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Equipo [NombreEquipo=" + NombreEquipo + "]";
 	}
 
 	@Override

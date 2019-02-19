@@ -9,6 +9,7 @@ public class Jugador implements Comparable <Jugador> {
 	private String Equipo;
 	private Fecha FechaNacimiento;
 	private double  Altura;
+	private double  Peso;
 	private int Edad; 
 	private int TirosTirados; 
 	private int TirosMetidos; 
@@ -25,6 +26,7 @@ public class Jugador implements Comparable <Jugador> {
 		this.Equipo = ""; 
 		this.FechaNacimiento = new Fecha(); 
 		this.Altura = 0; 
+		this.Peso = 0;
 		this.Edad = 0; 
 		this.TirosTirados = 0;
 		this.TirosMetidos = 0; 
@@ -76,6 +78,14 @@ public class Jugador implements Comparable <Jugador> {
 	public void setAltura(double altura) {
 		Altura = altura;
 	}
+	public double getPeso() {
+		return Peso;
+	}
+
+	public void setPeso(double peso) {
+		Peso = peso;
+	}
+
 	public int getEdad() {
 		return Edad;
 	}

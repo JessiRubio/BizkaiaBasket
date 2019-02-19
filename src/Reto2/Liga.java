@@ -78,6 +78,13 @@ public class Liga {
 		}
 		return comparador;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return nombreLiga;
+	}
 	
 
 
