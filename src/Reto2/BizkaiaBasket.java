@@ -139,6 +139,9 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	private JTextField txtTelefono;
 	private JLabel lblEmail;
 	private JTextField txtEmail;
+	private JLabel lblLiga;
+	private JComboBox<String> CBLigas;
+	private DefaultComboBoxModel<String> ModelLigas;
 	/*Botones del panel*/
 	private JButton btnGuardarEquipo;
 	private JButton btnEliminarEquipo;
@@ -302,224 +305,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		
 		PanelSuperiorUO = new JPanel();
 		PanelSuperiorUO.setVisible(false);
-		
-		PanelLogin = new JPanel();
-		PanelLogin.setLayout(null);
-		PanelLogin.setBounds(0, 0, 583, 371);
-		contentPane.add(PanelLogin);
-		
-		lblError = new JLabel("Error. Introduzca un Usuario y Contrase\u00F1a validos");
-		lblError.setVisible(false);
-		lblError.setHorizontalAlignment(SwingConstants.CENTER);
-		lblError.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		lblError.setForeground(new Color(255, 255, 255));
-		lblError.setBounds(44, 309, 529, 40);
-		PanelLogin.add(lblError);
-		
-		lblUsuario = new JLabel("Usuario");
-		lblUsuario.setForeground(Color.WHITE);
-		lblUsuario.setFont(new Font("Agency FB", Font.PLAIN, 28));
-		lblUsuario.setBackground(Color.WHITE);
-		lblUsuario.setBounds(333, 113, 93, 33);
-		PanelLogin.add(lblUsuario);
-		
-		lblContraseña = new JLabel("Contrase\u00F1a");
-		lblContraseña.setForeground(Color.LIGHT_GRAY);
-		lblContraseña.setFont(new Font("Agency FB", Font.PLAIN, 28));
-		lblContraseña.setBounds(331, 150, 95, 32);
-		PanelLogin.add(lblContraseña);
-		
-		txtUsuario = new JTextField();
-		txtUsuario.setForeground(Color.BLACK);
-		txtUsuario.setColumns(10);
-		txtUsuario.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(255, 165, 0), null, null, null));
-		txtUsuario.setBackground(SystemColor.controlHighlight);
-		txtUsuario.setBounds(427, 121, 146, 25);
-		PanelLogin.add(txtUsuario);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(255, 165, 0), null, null, null));
-		passwordField.setBackground(SystemColor.controlHighlight);
-		passwordField.setBounds(427, 157, 146, 25);
-		PanelLogin.add(passwordField);
-		
-		btnIniciarSesion = new JButton("Iniciar Sesi\u00F3n");
-		btnIniciarSesion.setOpaque(false);
-		btnIniciarSesion.setForeground(Color.WHITE);
-		btnIniciarSesion.setFont(new Font("Agency FB", Font.PLAIN, 28));
-		btnIniciarSesion.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btnIniciarSesion.setBackground(Color.WHITE);
-		btnIniciarSesion.setBounds(411, 238, 162, 33);
-		btnIniciarSesion.addActionListener(this);
-		PanelLogin.add(btnIniciarSesion);
-		
-		lblImagenFondo = new JLabel("");
-		lblImagenFondo.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/FondoInicio.PNG")));
-		lblImagenFondo.setBounds(0, 0, 583, 371);
-		PanelLogin.add(lblImagenFondo);
-		PanelSuperiorUO.setLayout(null);
-		PanelSuperiorUO.setBounds(0, 0, 569, 66);
-		contentPane.add(PanelSuperiorUO);
-		
-		btnCerrarSesionUO = new JButton("Cerrar Sesi\u00F3n");
-		btnCerrarSesionUO.addActionListener(this);
-		btnCerrarSesionUO.setToolTipText("");
-		btnCerrarSesionUO.setFont(new Font("Agency FB", Font.PLAIN, 18));
-		btnCerrarSesionUO.setBackground(new Color(138, 45, 47));
-		btnCerrarSesionUO.setBounds(0, 0, 131, 62);
-		PanelSuperiorUO.add(btnCerrarSesionUO);
-		
-		btnVerEquipos = new JButton("Equipos");
-		btnVerEquipos.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnVerEquipos.setBackground(new Color(183, 69, 68));
-		btnVerEquipos.setBounds(131, 23, 110, 39);
-		PanelSuperiorUO.add(btnVerEquipos);
-		
-		lblTipo = new JLabel("Observador");
-		lblTipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblTipo.setBounds(425, 4, 64, 14);
-		PanelSuperiorUO.add(lblTipo);
-		
-		btnVerPartidos = new JButton("Partidos");
-		btnVerPartidos.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnVerPartidos.setBackground(new Color(183, 69, 68));
-		btnVerPartidos.setBounds(241, 23, 110, 39);
-		PanelSuperiorUO.add(btnVerPartidos);
-		
-		btnVerClasificación = new JButton("Clasificaci\u00F3n");
-		btnVerClasificación.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnVerClasificación.setBackground(new Color(183, 69, 68));
-		btnVerClasificación.setBounds(351, 23, 110, 39);
-		PanelSuperiorUO.add(btnVerClasificación);
-		
-		btnVerEstadistica = new JButton("Estad\u00EDsticas");
-		btnVerEstadistica.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnVerEstadistica.setBackground(new Color(183, 69, 68));
-		btnVerEstadistica.setBounds(461, 23, 110, 39);
-		PanelSuperiorUO.add(btnVerEstadistica);
-		
-		btnEsp = new JButton("");
-		btnEsp.addActionListener(this);
-		btnEsp.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/bandera-espana-con-escudo-para-exterior_xs.jpg")));
-		btnEsp.setBounds(486, 0, 37, 23);
-		PanelSuperiorUO.add(btnEsp);
-		
-		btnEus = new JButton("");
-		btnEus.addActionListener(this);
-		btnEus.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/1928414-app.android.ikurrina.png")));
-		btnEus.setBounds(523, 0, 45, 23);
-		PanelSuperiorUO.add(btnEus);
-		
-		PanelBAñadirAdmin = new JPanel();
-		PanelBAñadirAdmin.setVisible(false);
-		PanelBSuperAdmin = new JPanel();
-		PanelBSuperAdmin.setVisible(false);
-		PanelBSuperAdmin.setBackground(Color.WHITE);
-		PanelBSuperAdmin.setBounds(0, 0, 583, 68);
-		contentPane.add(PanelBSuperAdmin);
-		PanelBSuperAdmin.setLayout(null);
-		
-		btnCerrarSesion = new JButton("Cerrar Sesi\u00F3n");
-		btnCerrarSesion.addActionListener(this);
-		btnCerrarSesion.setFont(new Font("Agency FB", Font.PLAIN, 20));
-		btnCerrarSesion.setForeground(Color.WHITE);
-		btnCerrarSesion.setBackground(new Color(0, 0, 128));
-		btnCerrarSesion.setBounds(0, 0, 131, 62);
-		PanelBSuperAdmin.add(btnCerrarSesion);
-		
-		btnJugadores = new JButton("Jugadores");
-		btnJugadores.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnJugadores.setBackground(new Color(65, 105, 225));
-		btnJugadores.setForeground(Color.WHITE);
-		btnJugadores.setBounds(131, 23, 110, 39);
-		PanelBSuperAdmin.add(btnJugadores);
-		
-		btnEquipos = new JButton("Equipos");
-		btnEquipos.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnEquipos.setBackground(new Color(65, 105, 225));
-		btnEquipos.setForeground(Color.WHITE);
-		btnEquipos.setBounds(241, 23, 110, 39);
-		PanelBSuperAdmin.add(btnEquipos);
-		
-		btnPartidos = new JButton("Partidos");
-		btnPartidos.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnPartidos.setForeground(Color.WHITE);
-		btnPartidos.setBackground(new Color(65, 105, 225));
-		btnPartidos.setBounds(351, 23, 110, 39);
-		PanelBSuperAdmin.add(btnPartidos);
-		
-		btnEu = new JButton("");
-		btnEu.addActionListener(this);
-		btnEu.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/1928414-app.android.ikurrina.png")));
-		btnEu.setFont(new Font("Agency FB", Font.PLAIN, 11));
-		btnEu.setBackground(new Color(255, 255, 255));
-		btnEu.setBounds(523, 0, 45, 23);
-		PanelBSuperAdmin.add(btnEu);
-		
-		btnEs = new JButton("");
-		btnEs.addActionListener(this);
-		btnEs.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/bandera-espana-con-escudo-para-exterior_xs.jpg")));
-		btnEs.setFont(new Font("Agency FB", Font.PLAIN, 11));
-		btnEs.setBackground(new Color(255, 255, 255));
-		btnEs.setBounds(486, 0, 37, 23);
-		PanelBSuperAdmin.add(btnEs);
-		
-		lblAdmin = new JLabel("Admin");
-		lblAdmin.setFont(new Font("Agency FB", Font.PLAIN, 12));
-		lblAdmin.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblAdmin.setBounds(425, 4, 44, 14);
-		PanelBSuperAdmin.add(lblAdmin);
-		
-		btnLiga = new JButton("Ligas");
-		btnLiga.setForeground(Color.WHITE);
-		btnLiga.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnLiga.setBackground(new Color(65, 105, 225));
-		btnLiga.setBounds(461, 23, 110, 39);
-		PanelBSuperAdmin.add(btnLiga);
-		PanelBAñadirAdmin.setBackground(new Color(255, 255, 255));
-		PanelBAñadirAdmin.setBounds(5, 79, 112, 286);
-		contentPane.add(PanelBAñadirAdmin);
-		PanelBAñadirAdmin.setLayout(null);
-		
-		btnAadirJugador = new JButton("A\u00F1adir Jugador");
-		btnAadirJugador.setForeground(Color.WHITE);
-		btnAadirJugador.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnAadirJugador.setBackground(new Color(65, 105, 225));
-		btnAadirJugador.setBounds(0, 111, 112, 39);
-		PanelBAñadirAdmin.add(btnAadirJugador);
-		
-		btnAadirEquipo = new JButton("A\u00F1adir Equipo");
-		btnAadirEquipo.addActionListener(this);
-		btnAadirEquipo.setForeground(Color.WHITE);
-		btnAadirEquipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnAadirEquipo.setBackground(new Color(65, 105, 225));
-		btnAadirEquipo.setBounds(0, 61, 112, 39);
-		PanelBAñadirAdmin.add(btnAadirEquipo);
-		
-		btnAadirPartido = new JButton("A\u00F1adir Partido");
-		btnAadirPartido.setForeground(Color.WHITE);
-		btnAadirPartido.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnAadirPartido.setBackground(new Color(65, 105, 225));
-		btnAadirPartido.setBounds(0, 161, 112, 39);
-		PanelBAñadirAdmin.add(btnAadirPartido);
-		
-		btnCrearLigas = new JButton("Crear Ligas");
-		btnCrearLigas.addActionListener(this);
-		btnCrearLigas.setBounds(0, 11, 112, 39);
-		PanelBAñadirAdmin.add(btnCrearLigas);
-		btnCrearLigas.setForeground(Color.WHITE);
-		btnCrearLigas.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnCrearLigas.setBackground(new Color(65, 105, 225));
-		
-		btnConfiguracion = new JButton("Configuraci\u00F3n");
-		btnConfiguracion.setForeground(Color.WHITE);
-		btnConfiguracion.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnConfiguracion.setBackground(new Color(65, 105, 225));
-		btnConfiguracion.setBounds(0, 236, 112, 39);
-		PanelBAñadirAdmin.add(btnConfiguracion);
-		
-		PanelDatosJugador = new JPanel();
-		PanelDatosJugador.setVisible(false);
+		ModelLigas = new DefaultComboBoxModel<>();
 		
 		PanelInformación = new JPanel();
 		PanelInformación.setVisible(false);
@@ -650,7 +436,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelInformación.add(POpciones);
 		
 		CBCategorias = new JComboBox<String>();
-		CBCategorias.setBackground(new Color(65, 105, 225));
 		CBCategorias.setModel(new DefaultComboBoxModel<String>(new String[] {"     CATEGORIA"}));
 		CBCategorias.setFont(new Font("Agency FB", Font.PLAIN, 11));
 		CBCategorias.setEditable(true);
@@ -658,7 +443,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		POpciones.add(CBCategorias);
 		
 		CBGrupos = new JComboBox<String>();
-		CBGrupos.setBackground(new Color(65, 105, 225));
 		CBGrupos.setModel(new DefaultComboBoxModel<String>(new String[] {"     GRUPO"}));
 		CBGrupos.setFont(new Font("Agency FB", Font.PLAIN, 11));
 		CBGrupos.setEditable(true);
@@ -666,15 +450,219 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		POpciones.add(CBGrupos);
 		
 		CBEquipos = new JComboBox<String>();
-		CBEquipos.setBackground(new Color(65, 105, 225));
 		CBEquipos.setModel(new DefaultComboBoxModel<String>(new String[] {"     EQUIPO"}));
 		CBEquipos.setFont(new Font("Agency FB", Font.PLAIN, 11));
 		CBEquipos.setEditable(true);
 		CBEquipos.setBounds(10, 138, 91, 41);
 		POpciones.add(CBEquipos);
 		
-		PanelDatosEquipo = new JPanel();
-		PanelDatosEquipo.setVisible(false);
+		PanelLogin = new JPanel();
+		PanelLogin.setLayout(null);
+		PanelLogin.setBounds(0, 0, 583, 371);
+		contentPane.add(PanelLogin);
+		
+		lblError = new JLabel("Error. Introduzca un Usuario y Contrase\u00F1a validos");
+		lblError.setVisible(false);
+		lblError.setHorizontalAlignment(SwingConstants.CENTER);
+		lblError.setFont(new Font("Agency FB", Font.PLAIN, 30));
+		lblError.setForeground(new Color(255, 255, 255));
+		lblError.setBounds(44, 309, 529, 40);
+		PanelLogin.add(lblError);
+		
+		lblUsuario = new JLabel("Usuario");
+		lblUsuario.setForeground(Color.WHITE);
+		lblUsuario.setFont(new Font("Agency FB", Font.PLAIN, 28));
+		lblUsuario.setBackground(Color.WHITE);
+		lblUsuario.setBounds(333, 113, 93, 33);
+		PanelLogin.add(lblUsuario);
+		
+		lblContraseña = new JLabel("Contrase\u00F1a");
+		lblContraseña.setForeground(Color.LIGHT_GRAY);
+		lblContraseña.setFont(new Font("Agency FB", Font.PLAIN, 28));
+		lblContraseña.setBounds(331, 150, 95, 32);
+		PanelLogin.add(lblContraseña);
+		
+		txtUsuario = new JTextField();
+		txtUsuario.setForeground(Color.BLACK);
+		txtUsuario.setColumns(10);
+		txtUsuario.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(255, 165, 0), null, null, null));
+		txtUsuario.setBackground(SystemColor.controlHighlight);
+		txtUsuario.setBounds(427, 121, 146, 25);
+		PanelLogin.add(txtUsuario);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(255, 165, 0), null, null, null));
+		passwordField.setBackground(SystemColor.controlHighlight);
+		passwordField.setBounds(427, 157, 146, 25);
+		PanelLogin.add(passwordField);
+		
+		btnIniciarSesion = new JButton("Iniciar Sesi\u00F3n");
+		btnIniciarSesion.setOpaque(false);
+		btnIniciarSesion.setForeground(Color.WHITE);
+		btnIniciarSesion.setFont(new Font("Agency FB", Font.PLAIN, 28));
+		btnIniciarSesion.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnIniciarSesion.setBackground(Color.WHITE);
+		btnIniciarSesion.setBounds(411, 238, 162, 33);
+		btnIniciarSesion.addActionListener(this);
+		PanelLogin.add(btnIniciarSesion);
+		
+		lblImagenFondo = new JLabel("");
+		lblImagenFondo.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/FondoInicio.PNG")));
+		lblImagenFondo.setBounds(0, 0, 583, 371);
+		PanelLogin.add(lblImagenFondo);
+		PanelSuperiorUO.setLayout(null);
+		PanelSuperiorUO.setBounds(0, 0, 569, 66);
+		contentPane.add(PanelSuperiorUO);
+		
+		btnCerrarSesionUO = new JButton("Cerrar Sesi\u00F3n");
+		btnCerrarSesionUO.addActionListener(this);
+		btnCerrarSesionUO.setToolTipText("");
+		btnCerrarSesionUO.setFont(new Font("Agency FB", Font.PLAIN, 18));
+		btnCerrarSesionUO.setBackground(new Color(138, 45, 47));
+		btnCerrarSesionUO.setBounds(0, 0, 131, 62);
+		PanelSuperiorUO.add(btnCerrarSesionUO);
+		
+		btnVerEquipos = new JButton("Equipos");
+		btnVerEquipos.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnVerEquipos.setBackground(new Color(183, 69, 68));
+		btnVerEquipos.setBounds(131, 23, 110, 39);
+		PanelSuperiorUO.add(btnVerEquipos);
+		
+		lblTipo = new JLabel("Observador");
+		lblTipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblTipo.setBounds(425, 4, 64, 14);
+		PanelSuperiorUO.add(lblTipo);
+		
+		btnVerPartidos = new JButton("Partidos");
+		btnVerPartidos.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnVerPartidos.setBackground(new Color(183, 69, 68));
+		btnVerPartidos.setBounds(241, 23, 110, 39);
+		PanelSuperiorUO.add(btnVerPartidos);
+		
+		btnVerClasificación = new JButton("Clasificaci\u00F3n");
+		btnVerClasificación.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnVerClasificación.setBackground(new Color(183, 69, 68));
+		btnVerClasificación.setBounds(351, 23, 110, 39);
+		PanelSuperiorUO.add(btnVerClasificación);
+		
+		btnVerEstadistica = new JButton("Estad\u00EDsticas");
+		btnVerEstadistica.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnVerEstadistica.setBackground(new Color(183, 69, 68));
+		btnVerEstadistica.setBounds(461, 23, 110, 39);
+		PanelSuperiorUO.add(btnVerEstadistica);
+		
+		btnEsp = new JButton("");
+		btnEsp.addActionListener(this);
+		btnEsp.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/bandera-espana-con-escudo-para-exterior_xs.jpg")));
+		btnEsp.setBounds(486, 0, 37, 23);
+		PanelSuperiorUO.add(btnEsp);
+		
+		btnEus = new JButton("");
+		btnEus.addActionListener(this);
+		btnEus.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/1928414-app.android.ikurrina.png")));
+		btnEus.setBounds(523, 0, 45, 23);
+		PanelSuperiorUO.add(btnEus);
+		
+		PanelBAñadirAdmin = new JPanel();
+		PanelBAñadirAdmin.setVisible(false);
+		PanelBSuperAdmin = new JPanel();
+		PanelBSuperAdmin.setVisible(false);
+		PanelBSuperAdmin.setBackground(Color.WHITE);
+		PanelBSuperAdmin.setBounds(0, 0, 583, 68);
+		contentPane.add(PanelBSuperAdmin);
+		PanelBSuperAdmin.setLayout(null);
+		
+		btnCerrarSesion = new JButton("Cerrar Sesi\u00F3n");
+		btnCerrarSesion.addActionListener(this);
+		btnCerrarSesion.setFont(new Font("Agency FB", Font.PLAIN, 20));
+		btnCerrarSesion.setForeground(Color.WHITE);
+		btnCerrarSesion.setBounds(0, 0, 131, 62);
+		PanelBSuperAdmin.add(btnCerrarSesion);
+		
+		btnJugadores = new JButton("Jugadores");
+		btnJugadores.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnJugadores.setForeground(Color.WHITE);
+		btnJugadores.setBounds(131, 23, 110, 39);
+		PanelBSuperAdmin.add(btnJugadores);
+		
+		btnEquipos = new JButton("Equipos");
+		btnEquipos.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnEquipos.setForeground(Color.WHITE);
+		btnEquipos.setBounds(241, 23, 110, 39);
+		PanelBSuperAdmin.add(btnEquipos);
+		
+		btnPartidos = new JButton("Partidos");
+		btnPartidos.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnPartidos.setForeground(Color.WHITE);
+		btnPartidos.setBounds(351, 23, 110, 39);
+		PanelBSuperAdmin.add(btnPartidos);
+		
+		btnEu = new JButton("");
+		btnEu.addActionListener(this);
+		btnEu.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/1928414-app.android.ikurrina.png")));
+		btnEu.setFont(new Font("Agency FB", Font.PLAIN, 11));
+		btnEu.setBackground(new Color(255, 255, 255));
+		btnEu.setBounds(523, 0, 45, 23);
+		PanelBSuperAdmin.add(btnEu);
+		
+		btnEs = new JButton("");
+		btnEs.addActionListener(this);
+		btnEs.setIcon(new ImageIcon(BizkaiaBasket.class.getResource("/Imagenes/bandera-espana-con-escudo-para-exterior_xs.jpg")));
+		btnEs.setFont(new Font("Agency FB", Font.PLAIN, 11));
+		btnEs.setBackground(new Color(255, 255, 255));
+		btnEs.setBounds(486, 0, 37, 23);
+		PanelBSuperAdmin.add(btnEs);
+		
+		lblAdmin = new JLabel("Admin");
+		lblAdmin.setFont(new Font("Agency FB", Font.PLAIN, 12));
+		lblAdmin.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblAdmin.setBounds(425, 4, 44, 14);
+		PanelBSuperAdmin.add(lblAdmin);
+		
+		btnLiga = new JButton("Ligas");
+		btnLiga.setForeground(Color.WHITE);
+		btnLiga.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnLiga.setBounds(461, 23, 110, 39);
+		PanelBSuperAdmin.add(btnLiga);
+		PanelBAñadirAdmin.setBackground(new Color(255, 255, 255));
+		PanelBAñadirAdmin.setBounds(5, 79, 112, 286);
+		contentPane.add(PanelBAñadirAdmin);
+		PanelBAñadirAdmin.setLayout(null);
+		
+		btnAadirJugador = new JButton("A\u00F1adir Jugador");
+		btnAadirJugador.setForeground(Color.WHITE);
+		btnAadirJugador.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnAadirJugador.setBounds(0, 111, 112, 39);
+		PanelBAñadirAdmin.add(btnAadirJugador);
+		
+		btnAadirEquipo = new JButton("A\u00F1adir Equipo");
+		btnAadirEquipo.addActionListener(this);
+		btnAadirEquipo.setForeground(Color.WHITE);
+		btnAadirEquipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnAadirEquipo.setBounds(0, 61, 112, 39);
+		PanelBAñadirAdmin.add(btnAadirEquipo);
+		
+		btnAadirPartido = new JButton("A\u00F1adir Partido");
+		btnAadirPartido.setForeground(Color.WHITE);
+		btnAadirPartido.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnAadirPartido.setBounds(0, 161, 112, 39);
+		PanelBAñadirAdmin.add(btnAadirPartido);
+		
+		btnCrearLigas = new JButton("Crear Ligas");
+		btnCrearLigas.addActionListener(this);
+		btnCrearLigas.setBounds(0, 11, 112, 39);
+		PanelBAñadirAdmin.add(btnCrearLigas);
+		btnCrearLigas.setForeground(Color.WHITE);
+		btnCrearLigas.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		
+		btnConfiguracion = new JButton("Configuraci\u00F3n");
+		btnConfiguracion.setForeground(Color.WHITE);
+		btnConfiguracion.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnConfiguracion.setBounds(0, 236, 112, 39);
+		PanelBAñadirAdmin.add(btnConfiguracion);
+		
+		PanelDatosJugador = new JPanel();
+		PanelDatosJugador.setVisible(false);
 		
 		PanelDatosUsuarios = new JPanel();
 		PanelDatosUsuarios.setVisible(false);
@@ -684,12 +672,10 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelDatosUsuarios.setLayout(null);
 		
 		btnNuevoUsuario = new JButton("Nuevo");
-		btnNuevoUsuario.setBackground(new Color(65, 105, 225));
 		btnNuevoUsuario.setBounds(0, 55, 112, 39);
 		PanelDatosUsuarios.add(btnNuevoUsuario);
 		
 		btnListaUsuarios = new JButton("Lista Usuarios");
-		btnListaUsuarios.setBackground(new Color(65, 105, 225));
 		btnListaUsuarios.setBounds(0, 143, 112, 39);
 		PanelDatosUsuarios.add(btnListaUsuarios);
 		
@@ -839,7 +825,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelDatosUsuarios.add(tableUsuarios);
 		
 		btnAtras = new JButton("Atras");
-		btnAtras.setBackground(new Color(65, 105, 225));
 		btnAtras.setBounds(0, 239, 112, 39);
 		PanelDatosUsuarios.add(btnAtras);
 		
@@ -928,6 +913,9 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		lblCategoriaLiga.setBackground(new Color(135, 206, 235));
 		lblCategoriaLiga.setBounds(10, 79, 152, 22);
 		PanelDatosLigas.add(lblCategoriaLiga);
+		
+		PanelDatosEquipo = new JPanel();
+		PanelDatosEquipo.setVisible(false);
 		PanelDatosEquipo.setLayout(null);
 		PanelDatosEquipo.setBackground(Color.WHITE);
 		PanelDatosEquipo.setBounds(127, 79, 456, 286);
@@ -1024,6 +1012,20 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnEliminarEquipo.setBackground(Color.RED);
 		btnEliminarEquipo.setBounds(262, 252, 89, 23);
 		PanelDatosEquipo.add(btnEliminarEquipo);
+		
+		lblLiga = new JLabel("  Liga:");
+		lblLiga.setOpaque(true);
+		lblLiga.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblLiga.setBackground(new Color(135, 206, 235));
+		lblLiga.setBounds(10, 209, 152, 22);
+		PanelDatosEquipo.add(lblLiga);
+		
+		CBLigas = new JComboBox<String>();
+		CBLigas.setOpaque(false);
+		CBLigas.setBackground(new Color(175, 238, 238));
+		CBLigas.setBounds(162, 209, 284, 22);
+		PanelDatosEquipo.add(CBLigas);
+		CBLigas.setModel(ModelLigas);
 		PanelDatosJugador.setBounds(127, 79, 456, 286);
 		contentPane.add(PanelDatosJugador);
 		PanelDatosJugador.setBackground(new Color(255, 255, 255));
@@ -1424,6 +1426,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 			PanelDatosEquipo.setVisible(true);
 			PanelDatosJugador.setVisible(false);
 			PanelDatosPartidos.setVisible(false);
+			cargarCBLigas();
 		}
 		else if((JButton)o == btnGuardarEquipo) {
 			añadirEquipo();
@@ -1433,6 +1436,8 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		}
 		
 	}
+
+
 
 
 
@@ -1622,12 +1627,14 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		lblTerrenoDeJuego.setBackground(new Color(135,206,235));
 		lblTelefono.setBackground(new Color(135,206,235));
 		lblEmail.setBackground(new Color(135,206,235));
+		lblLiga.setBackground(new Color(135,206,235));
 		txtNombreEquipo.setBackground(new Color(175,238,238));
 		txtCodigo.setBackground(new Color(175,238,238));
 		txtMunicipio.setBackground(new Color(175,238,238));
 		txtTerrenoDeJuego.setBackground(new Color(175,238,238));
 		txtEmail.setBackground(new Color(175,238,238));
 		txtTelefono.setBackground(new Color(175,238,238));
+		CBLigas.setBackground(new Color(175,238,238));
 		btnGuardarEquipo.setBackground(Color.GREEN);
 		btnEliminarEquipo.setBackground(Color.RED);
 		/*PanelDatosJugador*/
@@ -1656,6 +1663,40 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		txtDia.setBackground(new Color(175,238,238));
 		label_1.setBackground(new Color(175,238,238));
 		label_2.setBackground(new Color(175,238,238));
+		/*PanelDatosPartidos*/
+		lblCategoria.setBackground(new Color(135,206,235));
+		lblGrupo.setBackground(new Color(135,206,235));
+		lblCodPartido.setBackground(new Color(135,206,235));
+		lblFecha.setBackground(new Color(135,206,235));
+		lblResultado.setBackground(new Color(135,206,235));;
+		lblEquipolocal.setBackground(new Color(135,206,235));
+		lblEquipovisitante.setBackground(new Color(135,206,235));
+		lblResultadoPartido.setBackground(new Color(175,238,238));
+		txtCategoria.setBackground(new Color(175,238,238));
+		txtGrupo.setBackground(new Color(175,238,238));
+		txtCodPartido.setBackground(new Color(175,238,238));
+		txtResulVisitante.setBackground(new Color(175,238,238));
+		txtResulLocal.setBackground(new Color(175,238,238));
+		lblFechaPartido.setBackground(new Color(175,238,238));
+		lbl3.setBackground(new Color(175,238,238));
+		lbl4.setBackground(new Color(175,238,238));
+		txtHora.setBackground(new Color(175,238,238));
+		txtMinutos.setBackground(new Color(175,238,238));
+		CBEquipoVisitante.setBackground(new Color(175,238,238));
+		CBEquipoLocal.setBackground(new Color(175,238,238));
+		FechaPartido.setBackground(new Color(175,238,238));
+		txtAnoPartido.setBackground(new Color(175,238,238));
+		txtMesParido.setBackground(new Color(175,238,238));
+		txtDiaPartido.setBackground(new Color(175,238,238));
+		lbl1.setBackground(new Color(175,238,238));
+		lbl2.setBackground(new Color(175,238,238));
+		btnGuardarPartido.setBackground(Color.GREEN);
+		btnEliminarEquipo.setBackground(Color.RED);
+		/*Panel Información CBOpciones*/
+		CBCategorias.setBackground(new Color(65, 105, 225));
+		CBGrupos.setBackground(new Color(65, 105, 225));
+		CBEquipos.setBackground(new Color(65, 105, 225));
+		
 	}
 
 
@@ -1663,7 +1704,60 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	 * (botones,paneles,labels, etc...) para el cliente de tipo 
 	 * USUARIO*/
 	private void configurarColoresUsuario() {
-		// TODO Auto-generated method stub
+		//Panel Superior
+		btnCerrarSesionUO.setBackground(new Color(103,131,46));
+		btnVerEquipos.setBackground(new Color(130,178,44));
+		btnVerPartidos.setBackground(new Color(130,178,44));
+		btnVerClasificación.setBackground(new Color(130,178,44));
+		btnVerEstadistica.setBackground(new Color(130,178,44));
+		//Panel Información
+		CBCategorias.setBackground(new Color(165, 42, 42));
+		CBGrupos.setBackground(new Color(165, 42, 42));
+		CBEquipos.setBackground(new Color(165, 42, 42));
+		//PanelDatosEquipos
+		lblNombreEquipo.setBackground(new Color(197,232,179));
+		lblCodigo.setBackground(new Color(197,232,179));
+		lblMunicipio.setBackground(new Color(197,232,179));
+		lblTerrenoDeJuego.setBackground(new Color(197,232,179));
+		lblTelefono.setBackground(new Color(197,232,179));
+		lblEmail.setBackground(new Color(197,232,179));
+		lblLiga.setBackground(new Color(197,232,179));
+		txtNombreEquipo.setBackground(new Color(241,249,236));
+		txtCodigo.setBackground(new Color(241,249,236));
+		txtMunicipio.setBackground(new Color(241,249,236));
+		txtTerrenoDeJuego.setBackground(new Color(241,249,236));
+		txtEmail.setBackground(new Color(241,249,236));
+		txtTelefono.setBackground(new Color(241,249,236));
+		CBLigas.setBackground(new Color(241,249,236));
+		/*PanelDatosPartidos*/
+		lblCategoria.setBackground(new Color(197,232,179));
+		lblGrupo.setBackground(new Color(197,232,179));
+		lblCodPartido.setBackground(new Color(197,232,179));
+		lblFecha.setBackground(new Color(197,232,179));
+		lblResultado.setBackground(new Color(197,232,179));;
+		lblEquipolocal.setBackground(new Color(197,232,179));
+		lblEquipovisitante.setBackground(new Color(197,232,179));
+		lblResultadoPartido.setBackground(new Color(197,232,179));
+		txtCategoria.setBackground(new Color(241,249,236));
+		txtGrupo.setBackground(new Color(241,249,236));
+		txtCodPartido.setBackground(new Color(241,249,236));
+		txtResulVisitante.setBackground(new Color(241,249,236));
+		txtResulLocal.setBackground(new Color(241,249,236));
+		lblFechaPartido.setBackground(new Color(241,249,236));
+		lbl3.setBackground(new Color(241,249,236));
+		lbl4.setBackground(new Color(241,249,236));
+		txtHora.setBackground(new Color(241,249,236));
+		txtMinutos.setBackground(new Color(241,249,236));
+		CBEquipoVisitante.setBackground(new Color(241,249,236));
+		CBEquipoLocal.setBackground(new Color(241,249,236));
+		FechaPartido.setBackground(new Color(241,249,236));
+		txtAnoPartido.setBackground(new Color(241,249,236));
+		txtMesParido.setBackground(new Color(241,249,236));
+		txtDiaPartido.setBackground(new Color(241,249,236));
+		lbl1.setBackground(new Color(241,249,236));
+		lbl2.setBackground(new Color(241,249,236));
+		btnGuardarPartido.setBackground(Color.GREEN);
+		btnEliminarEquipo.setBackground(Color.RED);
 		
 	}
 
@@ -1887,9 +1981,17 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		
 	}
 
-/*----------------------------------------------------------------------------------------------*/	
-
+/*------------------------------------- VENTANA EQUIPO ------------------------------------------*/
 	
+	/*Cargamos la información del array List de ligas en el comboBox para poder elegir despues la adecuada*/
+	private void cargarCBLigas() {
+		for(int pos =0; pos<ListaEquipos.size();pos ++) {
+			ModelLigas.addElement(ListaEquipos.get(pos).toString());
+		}
+		CBLigas.setModel(ModelLigas);
+		
+	}
+
 	private void añadirEquipo() {
 		Equipo eqAnadir = new Equipo();
 		eqAnadir.setNombreEquipo(txtNombreEquipo.getText());
@@ -1941,8 +2043,5 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
 
 }
