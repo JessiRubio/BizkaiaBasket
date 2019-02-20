@@ -7,7 +7,7 @@ public class Equipo {
 	private String CodEquipo;
 	private String NombreEquipo;
 	private String Municipio;
-	private int telefono;
+	private String Telefono;
 	private String CorreoElectronico;
 	private String TerrenoDeJuego;
 	private ArrayList<Jugador> ListaJugadores;
@@ -17,7 +17,7 @@ public class Equipo {
 		CodEquipo = "";
 		NombreEquipo = "";
 		Municipio = "";
-		telefono = 0;
+		Telefono = "";
 		CorreoElectronico = "";
 		TerrenoDeJuego = "";
 		CodLiga = "";
@@ -47,12 +47,12 @@ public class Equipo {
 		Municipio = municipio;
 	}
 
-	public int getTelefono() {
-		return telefono;
+	public String getTelefono() {
+		return Telefono;
 	}
 
-	public void setTelefono(int telefono) {
-		this.telefono = telefono;
+	public void setTelefono(String telefono) {
+		Telefono = telefono;
 	}
 
 	public String getCorreoElectronico() {

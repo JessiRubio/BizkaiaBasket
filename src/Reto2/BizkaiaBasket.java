@@ -503,6 +503,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnCrearLigas.setFont(new Font("Agency FB", Font.PLAIN, 15));
 		
 		btnConfiguracion = new JButton("Configuraci\u00F3n");
+		btnConfiguracion.addActionListener(this);
 		btnConfiguracion.setForeground(Color.WHITE);
 		btnConfiguracion.setFont(new Font("Agency FB", Font.PLAIN, 15));
 		btnConfiguracion.setBounds(0, 236, 112, 39);
@@ -668,11 +669,11 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelDatosUsuarios.setLayout(null);
 		
 		btnNuevoUsuario = new JButton("Nuevo");
-		btnNuevoUsuario.setBounds(0, 55, 112, 39);
+		btnNuevoUsuario.setBounds(5, 55, 107, 39);
 		PanelDatosUsuarios.add(btnNuevoUsuario);
 		
 		btnListaUsuarios = new JButton("Lista Usuarios");
-		btnListaUsuarios.setBounds(0, 143, 112, 39);
+		btnListaUsuarios.setBounds(5, 143, 107, 39);
 		PanelDatosUsuarios.add(btnListaUsuarios);
 		
 		tableUsuarios = new JTable();
@@ -800,7 +801,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelDatosUsuarios.add(tableUsuarios);
 		
 		btnAtras = new JButton("Atras");
-		btnAtras.setBounds(0, 239, 112, 39);
+		btnAtras.setBounds(5, 239, 107, 39);
 		PanelDatosUsuarios.add(btnAtras);
 		
 		PanelDatosLigas = new JPanel();
@@ -1319,6 +1320,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		else if ((JButton)o == btnEliminarLiga) {
 			eliminarLiga();
 		}
+		/*OPCION CREAR EQUIPOS*/
 		else if((JButton)o == btnAadirEquipo) {
 			PanelBSuperAdmin.setVisible(true);
 			PanelBAñadirAdmin.setVisible(true);
@@ -1332,10 +1334,20 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		}
 		else if((JButton)o == btnGuardarEquipo) {
 			añadirEquipo();
+			if(ListaEquipos.size()>0) {
+				btnAadirPartido.setEnabled(true);
+			}
 		}
 		else if((JButton)o == btnEliminarEquipo) {
 			EliminarEquipo();
+			if(ListaEquipos.size()>0) {
+				btnAadirPartido.setEnabled(true);
+			}
+			else {
+				btnAadirPartido.setEnabled(false);
+			}
 		}
+		/*OPCION CREAR JUGADORES*/
 		else if((JButton)o == btnAadirJugador) {
 			PanelBSuperAdmin.setVisible(true);
 			PanelBAñadirAdmin.setVisible(true);
@@ -1350,8 +1362,23 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		else if((JButton)o == btnGuardar) {
 			añadirJugador();
 		}
-		
+		else if((JButton)o == btnEliminar) {
+			eliminarJugador();
+		}
+		/*OPCIONES CREAR USUARIOS*/
+		else if((JButton)o == btnConfiguracion) {
+			PanelBSuperAdmin.setVisible(true);
+			PanelBAñadirAdmin.setVisible(false);
+			PanelInformación.setVisible(false);
+			PanelDatosUsuarios.setVisible(true);
+			panelDatosUsuario.setVisible(false);
+			PanelDatosLigas.setVisible(false);
+			PanelDatosEquipo.setVisible(false);
+			PanelDatosJugador.setVisible(false);
+			PanelDatosPartidos.setVisible(false);
+		}
 	}
+
 
 
 
@@ -1412,6 +1439,9 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		configurarColoresAdmin();
 		PanelBSuperAdmin.setVisible(true);
 		PanelBAñadirAdmin.setVisible(true);
+		if(ListaEquipos.size()==0) {
+			btnAadirPartido.setEnabled(false);
+		}
 		PanelSuperiorUO.setVisible(false);
 		PanelInformación.setVisible(true);
 			PanelInicioAplicación.setVisible(true);
@@ -1500,6 +1530,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		/*PanelDatosUsuario*/
 		btnNuevoUsuario.setBackground(new Color(65, 105, 225));
 		btnListaUsuarios.setBackground(new Color(65, 105, 225));
+		btnAtras.setBackground(new Color(65, 105, 225));
 		btnGuardarUsuario.setBackground(Color.GREEN);
 		btnEliminarUsuario.setBackground(Color.RED);
 		lblNombreUsuario.setBackground(new Color(135,206,235));
@@ -2026,30 +2057,26 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		eqAnadir.setCodEquipo(txtCodigo.getText());
 		eqAnadir.setMunicipio(txtMunicipio.getText());
 		eqAnadir.setTerrenoDeJuego(txtTerrenoDeJuego.getText());
-		eqAnadir.setTelefono(Integer.parseInt(txtTelefono.getText()));
+		eqAnadir.setTelefono(txtTelefono.getText());
 		eqAnadir.setCorreoElectronico(txtEmail.getText());
 		/*Lo añadimos mediante otro metodo que comprobara si existe previamente*/
 		añadirAListaEquipos(eqAnadir);
 		añadirEnLiga(eqAnadir);
+		limpiarDatosEquipos();
 	}
 	
+
 	/*Añadimos el equipo si existe la posibilidad*/
-	private void añadirAListaEquipos(Equipo equipo) {
-		boolean comprobar = comprobarSiExiste(equipo);
-		if(!comprobar) {
-			ListaEquipos.add(equipo);
-			JOptionPane.showMessageDialog(null, "Equipo añadido");
-		}
-		else {
+	private void añadirAListaEquipos(Equipo eqAnadir) {
+		if(ListaEquipos.contains(eqAnadir)) {
 			JOptionPane.showMessageDialog(null, "Ese equipo ya existe");
 		}
+		else {
+			ListaEquipos.add(eqAnadir);
+			JOptionPane.showMessageDialog(null, "Equipo añadido");
+		}
 	}
-	
-	/*Comprobamos si el equipo existe*/
-	private boolean comprobarSiExiste(Equipo equipo) {
 		
-		return ListaEquipos.contains(equipo);
-	}
 
 	/*Elimina un equipo si es que existe previamente*/
 	private void EliminarEquipo() {
@@ -2058,7 +2085,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		eqAnadir.setCodEquipo(txtCodigo.getText());
 		eqAnadir.setMunicipio(txtMunicipio.getText());
 		eqAnadir.setTerrenoDeJuego(txtTerrenoDeJuego.getText());
-		eqAnadir.setTelefono(Integer.parseInt(txtTelefono.getText()));
+		eqAnadir.setTelefono(txtTelefono.getText());
 		eqAnadir.setCorreoElectronico(txtEmail.getText());
 		eqAnadir.setCodLiga(CBLigas.getSelectedItem().toString());
 		
@@ -2068,12 +2095,12 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 
 	/*Tras comprobar que el equipo existe lo elimina del arrayList*/
 	private void eliminarDListaEquipos(Equipo equipo) {
-		boolean comprobar = comprobarSiExiste(equipo);
-		if(comprobar) {
+		if(ListaEquipos.contains(equipo)) {
 			ListaEquipos.remove(equipo);
 			JOptionPane.showMessageDialog(null, "Equipo eliminado");
 		}
 		else {
+			
 			JOptionPane.showMessageDialog(null, "El equipo no existe, pruebe de nuevo");
 		}
 		
@@ -2091,8 +2118,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	
 	/*Elimina el equipo de la liga en la que este*/
 	private void eliminarDLiga(Equipo equipo) {
-		boolean comprobar = comprobarSiExiste(equipo);
-		if(comprobar) {
+		if(ListaEquipos.contains(equipo)) {
 			for(int pos = 0; pos <ListaLigas.size(); pos++) {
 				if(equipo.getCodEquipo().equals(ListaLigas.get(pos).getCodigo())) {
 					ListaLigas.get(pos).getListaEquipos().remove(equipo);
@@ -2103,6 +2129,17 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		else {
 			JOptionPane.showMessageDialog(null, "El equipo no existe, pruebe de nuevo");
 		}
+		
+	}
+	
+	/*Vacia la información de los textFields*/
+	private void limpiarDatosEquipos() {
+		txtNombreEquipo.setText("");
+		txtCodigo.setText("");
+		txtMunicipio.setText("");
+		txtTerrenoDeJuego.setText("");
+		txtEmail.setText("");
+		txtTelefono.setText("");
 		
 	}
 
@@ -2171,9 +2208,16 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		}
 		
 	}
+	
+	private void eliminarJugador() {
+		// TODO Auto-generated method stub
+		
+	}
 
+/*------------------------------- METODOS DE PARTIDOS, VENTANA DATOS PARTIDO -----------------------------------*/
 
-
+	
+/*------------------------------- METODOS DE USUARIO, VENTANA DATOS USUARIO -----------------------------------*/
 
 
 
