@@ -442,6 +442,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelTipoUsuario.add(rdbtnObservador);
 		
 		btnAtras = new JButton("Atras");
+		btnAtras.addActionListener(this);
 		btnAtras.setBounds(5, 239, 107, 39);
 		PanelDatosUsuarios.add(btnAtras);
 		
@@ -1371,6 +1372,16 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 			PanelDatosJugador.setVisible(false);
 			PanelDatosPartidos.setVisible(false);
 			cargarTablaUsuarios();
+		}
+		else if((JButton)o == btnAtras) {
+			PanelBSuperAdmin.setVisible(true);
+			PanelBAñadirAdmin.setVisible(true);
+			PanelInformación.setVisible(false);
+			PanelDatosUsuarios.setVisible(false);
+			PanelDatosLigas.setVisible(false);
+			PanelDatosEquipo.setVisible(false);
+			PanelDatosJugador.setVisible(false);
+			PanelDatosPartidos.setVisible(false);
 		}
 	}
 
