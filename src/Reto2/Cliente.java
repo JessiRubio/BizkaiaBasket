@@ -5,7 +5,7 @@ public class Cliente {
 	private String NombreCliente;
 	private String ApellidosCliente;
 	private String DNICliente;
-	private int TelefonoCliente;
+	private String TelefonoCliente;
 	private String emailCliente;
 	private String Nick;
 	private String Password;
@@ -15,7 +15,7 @@ public class Cliente {
 		this.NombreCliente = "";
 		this.ApellidosCliente = "";
 		this.DNICliente = "";
-		this.TelefonoCliente = 0;
+		this.TelefonoCliente = "";
 		this.emailCliente = "";
 		this.Nick = "";
 		this.Password = "";
@@ -41,10 +41,10 @@ public class Cliente {
 	public void setDNICliente(String dNICliente) {
 		DNICliente = dNICliente;
 	}
-	public int getTelefonoCliente() {
+	public String getTelefonoCliente() {
 		return TelefonoCliente;
 	}
-	public void setTelefonoCliente(int telefonoCliente) {
+	public void setTelefonoCliente(String telefonoCliente) {
 		TelefonoCliente = telefonoCliente;
 	}
 	public String getEmailCliente() {
@@ -71,6 +71,7 @@ public class Cliente {
 	public void setTipoCliente(String tipoCliente) {
 		TipoCliente = tipoCliente;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -80,11 +81,13 @@ public class Cliente {
 		result = prime * result + ((Nick == null) ? 0 : Nick.hashCode());
 		result = prime * result + ((NombreCliente == null) ? 0 : NombreCliente.hashCode());
 		result = prime * result + ((Password == null) ? 0 : Password.hashCode());
-		result = prime * result + TelefonoCliente;
+		result = prime * result + ((TelefonoCliente == null) ? 0 : TelefonoCliente.hashCode());
 		result = prime * result + ((TipoCliente == null) ? 0 : TipoCliente.hashCode());
 		result = prime * result + ((emailCliente == null) ? 0 : emailCliente.hashCode());
 		return result;
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		boolean iguales = false;

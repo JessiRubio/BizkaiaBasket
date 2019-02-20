@@ -24,6 +24,7 @@ import java.awt.SystemColor;
 import javax.swing.border.BevelBorder;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.border.LineBorder;
 
 public class BizkaiaBasket extends JFrame implements ActionListener {
 
@@ -109,7 +110,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	/*Botones panel datos de usuarios*/
 	private JButton btnGuardarUsuario;
 	private JButton btnEliminarUsuario;
-	
+	private DefaultTableModel tableUsuariosModel;
 /*Objetos panel Liga (Permite crear una nueva liga)*/
 	private JPanel PanelDatosLigas;
 	private JLabel lblCodigoLiga;
@@ -272,7 +273,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		Cliente CAdmin = new Cliente();
 		CAdmin.setNombreCliente("Admin");
 		CAdmin.setDNICliente("12345678A");
-		CAdmin.setTelefonoCliente(631245798);
+		CAdmin.setTelefonoCliente("631245798");
 		CAdmin.setEmailCliente("ADMIN@gmail.com");
 		CAdmin.setNick("Admin");
 		CAdmin.setPassword("admin");
@@ -282,7 +283,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		Cliente CUser = new Cliente();
 		CUser.setNombreCliente("User");
 		CUser.setDNICliente("13579024B");
-		CUser.setTelefonoCliente(625397842);
+		CUser.setTelefonoCliente("625397842");
 		CUser.setEmailCliente("Usuario@gmail.com");
 		CUser.setNick("User");
 		CUser.setPassword("user");
@@ -308,6 +309,141 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelSuperiorUO = new JPanel();
 		PanelSuperiorUO.setVisible(false);
 		ModelLigas = new DefaultComboBoxModel<>();
+		
+		PanelDatosUsuarios = new JPanel();
+		PanelDatosUsuarios.setVisible(false);
+		PanelDatosUsuarios.setBackground(Color.WHITE);
+		PanelDatosUsuarios.setBounds(0, 65, 582, 306);
+		contentPane.add(PanelDatosUsuarios);
+		PanelDatosUsuarios.setLayout(null);
+		
+		btnNuevoUsuario = new JButton("Nuevo");
+		btnNuevoUsuario.setBounds(5, 55, 107, 39);
+		PanelDatosUsuarios.add(btnNuevoUsuario);
+		
+		btnListaUsuarios = new JButton("Lista Usuarios");
+		btnListaUsuarios.setBounds(5, 143, 107, 39);
+		PanelDatosUsuarios.add(btnListaUsuarios);
+		
+
+		tableUsuarios = new JTable();
+		tableUsuarios.setBorder(new LineBorder(new Color(0, 0, 0)));
+		tableUsuariosModel = new DefaultTableModel();
+		tableUsuarios.setModel(tableUsuariosModel);
+		tableUsuarios.setBounds(124, 11, 448, 284);
+		PanelDatosUsuarios.add(tableUsuarios);
+		
+		panelDatosUsuario = new JPanel();
+		panelDatosUsuario.setBackground(Color.WHITE);
+		panelDatosUsuario.setBounds(117, 0, 455, 295);
+		PanelDatosUsuarios.add(panelDatosUsuario);
+		panelDatosUsuario.setLayout(null);
+		
+		lblNombreUsuario = new JLabel("  Nombre:");
+		lblNombreUsuario.setOpaque(true);
+		lblNombreUsuario.setBounds(10, 30, 152, 22);
+		panelDatosUsuario.add(lblNombreUsuario);
+		
+		lblApellidoUsuario = new JLabel("  Apellido:");
+		lblApellidoUsuario.setOpaque(true);
+		lblApellidoUsuario.setBounds(10, 63, 152, 22);
+		panelDatosUsuario.add(lblApellidoUsuario);
+		
+		lblDniUsuario = new JLabel("  DNI:");
+		lblDniUsuario.setOpaque(true);
+		lblDniUsuario.setBounds(10, 96, 152, 22);
+		panelDatosUsuario.add(lblDniUsuario);
+		
+		lblTelefonoUsuario = new JLabel("  Telefono:");
+		lblTelefonoUsuario.setOpaque(true);
+		lblTelefonoUsuario.setBounds(10, 129, 152, 22);
+		panelDatosUsuario.add(lblTelefonoUsuario);
+		
+		lblEmailUsuario = new JLabel("  Email:");
+		lblEmailUsuario.setOpaque(true);
+		lblEmailUsuario.setBounds(10, 162, 152, 22);
+		panelDatosUsuario.add(lblEmailUsuario);
+		
+		lblNickUsuario = new JLabel("  Nick:");
+		lblNickUsuario.setOpaque(true);
+		lblNickUsuario.setBounds(10, 195, 152, 22);
+		panelDatosUsuario.add(lblNickUsuario);
+		
+		lblContrasea = new JLabel("  Contrase\u00F1a:");
+		lblContrasea.setOpaque(true);
+		lblContrasea.setBounds(276, 195, 78, 22);
+		panelDatosUsuario.add(lblContrasea);
+		
+		btnGuardarUsuario = new JButton("GUARDAR");
+		btnGuardarUsuario.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnGuardarUsuario.setBounds(356, 261, 89, 23);
+		panelDatosUsuario.add(btnGuardarUsuario);
+		
+		btnEliminarUsuario = new JButton("ELIMINAR");
+		btnEliminarUsuario.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnEliminarUsuario.setBounds(250, 261, 89, 23);
+		panelDatosUsuario.add(btnEliminarUsuario);
+		
+		txtNombreUsuario = new JTextField();
+		txtNombreUsuario.setBounds(162, 30, 283, 22);
+		panelDatosUsuario.add(txtNombreUsuario);
+		txtNombreUsuario.setColumns(10);
+		
+		txtApellidoUsuario = new JTextField();
+		txtApellidoUsuario.setColumns(10);
+		txtApellidoUsuario.setBounds(162, 63, 283, 22);
+		panelDatosUsuario.add(txtApellidoUsuario);
+		
+		txtDniUsuario = new JTextField();
+		txtDniUsuario.setColumns(10);
+		txtDniUsuario.setBounds(162, 96, 283, 22);
+		panelDatosUsuario.add(txtDniUsuario);
+		
+		txtTelefonoUsuario = new JTextField();
+		txtTelefonoUsuario.setColumns(10);
+		txtTelefonoUsuario.setBounds(162, 129, 283, 22);
+		panelDatosUsuario.add(txtTelefonoUsuario);
+		
+		txtEmailUsuario = new JTextField();
+		txtEmailUsuario.setColumns(10);
+		txtEmailUsuario.setBounds(162, 162, 283, 22);
+		panelDatosUsuario.add(txtEmailUsuario);
+		
+		txtNickUsuario = new JTextField();
+		txtNickUsuario.setColumns(10);
+		txtNickUsuario.setBounds(162, 195, 114, 22);
+		panelDatosUsuario.add(txtNickUsuario);
+		
+		txtPasswordUsuario = new JTextField();
+		txtPasswordUsuario.setColumns(10);
+		txtPasswordUsuario.setBounds(354, 195, 91, 22);
+		panelDatosUsuario.add(txtPasswordUsuario);
+		
+		lblTipoUsuario = new JLabel("  Tipo:");
+		lblTipoUsuario.setOpaque(true);
+		lblTipoUsuario.setBounds(10, 224, 152, 22);
+		panelDatosUsuario.add(lblTipoUsuario);
+		
+		PanelTipoUsuario = new JPanel();
+		PanelTipoUsuario.setBounds(161, 223, 283, 22);
+		panelDatosUsuario.add(PanelTipoUsuario);
+		PanelTipoUsuario.setLayout(null);
+		
+		rdbtnAdmin = new JRadioButton("Admin");
+		rdbtnAdmin.setBounds(0, 0, 63, 22);
+		PanelTipoUsuario.add(rdbtnAdmin);
+		
+		rdbtnUsuario = new JRadioButton("Usuario");
+		rdbtnUsuario.setBounds(86, 0, 63, 22);
+		PanelTipoUsuario.add(rdbtnUsuario);
+		
+		rdbtnObservador = new JRadioButton("Observador");
+		rdbtnObservador.setBounds(186, 0, 91, 22);
+		PanelTipoUsuario.add(rdbtnObservador);
+		
+		btnAtras = new JButton("Atras");
+		btnAtras.setBounds(5, 239, 107, 39);
+		PanelDatosUsuarios.add(btnAtras);
 		
 		PanelLogin = new JPanel();
 		PanelLogin.setLayout(null);
@@ -512,9 +648,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelDatosJugador = new JPanel();
 		PanelDatosJugador.setVisible(false);
 		
-		PanelDatosUsuarios = new JPanel();
-		PanelDatosUsuarios.setVisible(false);
-		
 		PanelInformación = new JPanel();
 		PanelInformación.setVisible(false);
 		PanelInformación.setBounds(0, 79, 583, 292);
@@ -663,146 +796,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		CBEquipos.setEditable(true);
 		CBEquipos.setBounds(10, 138, 91, 41);
 		POpciones.add(CBEquipos);
-		PanelDatosUsuarios.setBackground(Color.WHITE);
-		PanelDatosUsuarios.setBounds(0, 65, 582, 306);
-		contentPane.add(PanelDatosUsuarios);
-		PanelDatosUsuarios.setLayout(null);
-		
-		btnNuevoUsuario = new JButton("Nuevo");
-		btnNuevoUsuario.setBounds(5, 55, 107, 39);
-		PanelDatosUsuarios.add(btnNuevoUsuario);
-		
-		btnListaUsuarios = new JButton("Lista Usuarios");
-		btnListaUsuarios.setBounds(5, 143, 107, 39);
-		PanelDatosUsuarios.add(btnListaUsuarios);
-		
-		tableUsuarios = new JTable();
-		tableUsuarios.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"                    Nombre", "               Apellido", "                    DNI", "                    Nick"},
-			},
-			new String[] {
-				"                   Nombre", "              Apellido ", "                   DNI", "                   Nick"
-			}
-		));
-		tableUsuarios.getColumnModel().getColumn(0).setPreferredWidth(167);
-		tableUsuarios.getColumnModel().getColumn(1).setPreferredWidth(146);
-		tableUsuarios.getColumnModel().getColumn(2).setPreferredWidth(134);
-		tableUsuarios.getColumnModel().getColumn(3).setPreferredWidth(149);
-		
-		panelDatosUsuario = new JPanel();
-		panelDatosUsuario.setBackground(Color.WHITE);
-		panelDatosUsuario.setBounds(117, 0, 455, 295);
-		PanelDatosUsuarios.add(panelDatosUsuario);
-		panelDatosUsuario.setLayout(null);
-		
-		lblNombreUsuario = new JLabel("  Nombre:");
-		lblNombreUsuario.setOpaque(true);
-		lblNombreUsuario.setBounds(10, 30, 152, 22);
-		panelDatosUsuario.add(lblNombreUsuario);
-		
-		lblApellidoUsuario = new JLabel("  Apellido:");
-		lblApellidoUsuario.setOpaque(true);
-		lblApellidoUsuario.setBounds(10, 63, 152, 22);
-		panelDatosUsuario.add(lblApellidoUsuario);
-		
-		lblDniUsuario = new JLabel("  DNI:");
-		lblDniUsuario.setOpaque(true);
-		lblDniUsuario.setBounds(10, 96, 152, 22);
-		panelDatosUsuario.add(lblDniUsuario);
-		
-		lblTelefonoUsuario = new JLabel("  Telefono:");
-		lblTelefonoUsuario.setOpaque(true);
-		lblTelefonoUsuario.setBounds(10, 129, 152, 22);
-		panelDatosUsuario.add(lblTelefonoUsuario);
-		
-		lblEmailUsuario = new JLabel("  Email:");
-		lblEmailUsuario.setOpaque(true);
-		lblEmailUsuario.setBounds(10, 162, 152, 22);
-		panelDatosUsuario.add(lblEmailUsuario);
-		
-		lblNickUsuario = new JLabel("  Nick:");
-		lblNickUsuario.setOpaque(true);
-		lblNickUsuario.setBounds(10, 195, 152, 22);
-		panelDatosUsuario.add(lblNickUsuario);
-		
-		lblContrasea = new JLabel("  Contrase\u00F1a:");
-		lblContrasea.setOpaque(true);
-		lblContrasea.setBounds(276, 195, 78, 22);
-		panelDatosUsuario.add(lblContrasea);
-		
-		btnGuardarUsuario = new JButton("GUARDAR");
-		btnGuardarUsuario.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnGuardarUsuario.setBounds(356, 261, 89, 23);
-		panelDatosUsuario.add(btnGuardarUsuario);
-		
-		btnEliminarUsuario = new JButton("ELIMINAR");
-		btnEliminarUsuario.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnEliminarUsuario.setBounds(250, 261, 89, 23);
-		panelDatosUsuario.add(btnEliminarUsuario);
-		
-		txtNombreUsuario = new JTextField();
-		txtNombreUsuario.setBounds(162, 30, 283, 22);
-		panelDatosUsuario.add(txtNombreUsuario);
-		txtNombreUsuario.setColumns(10);
-		
-		txtApellidoUsuario = new JTextField();
-		txtApellidoUsuario.setColumns(10);
-		txtApellidoUsuario.setBounds(162, 63, 283, 22);
-		panelDatosUsuario.add(txtApellidoUsuario);
-		
-		txtDniUsuario = new JTextField();
-		txtDniUsuario.setColumns(10);
-		txtDniUsuario.setBounds(162, 96, 283, 22);
-		panelDatosUsuario.add(txtDniUsuario);
-		
-		txtTelefonoUsuario = new JTextField();
-		txtTelefonoUsuario.setColumns(10);
-		txtTelefonoUsuario.setBounds(162, 129, 283, 22);
-		panelDatosUsuario.add(txtTelefonoUsuario);
-		
-		txtEmailUsuario = new JTextField();
-		txtEmailUsuario.setColumns(10);
-		txtEmailUsuario.setBounds(162, 162, 283, 22);
-		panelDatosUsuario.add(txtEmailUsuario);
-		
-		txtNickUsuario = new JTextField();
-		txtNickUsuario.setColumns(10);
-		txtNickUsuario.setBounds(162, 195, 114, 22);
-		panelDatosUsuario.add(txtNickUsuario);
-		
-		txtPasswordUsuario = new JTextField();
-		txtPasswordUsuario.setColumns(10);
-		txtPasswordUsuario.setBounds(354, 195, 91, 22);
-		panelDatosUsuario.add(txtPasswordUsuario);
-		
-		lblTipoUsuario = new JLabel("  Tipo:");
-		lblTipoUsuario.setOpaque(true);
-		lblTipoUsuario.setBounds(10, 224, 152, 22);
-		panelDatosUsuario.add(lblTipoUsuario);
-		
-		PanelTipoUsuario = new JPanel();
-		PanelTipoUsuario.setBounds(161, 223, 283, 22);
-		panelDatosUsuario.add(PanelTipoUsuario);
-		PanelTipoUsuario.setLayout(null);
-		
-		rdbtnAdmin = new JRadioButton("Admin");
-		rdbtnAdmin.setBounds(0, 0, 63, 22);
-		PanelTipoUsuario.add(rdbtnAdmin);
-		
-		rdbtnUsuario = new JRadioButton("Usuario");
-		rdbtnUsuario.setBounds(86, 0, 63, 22);
-		PanelTipoUsuario.add(rdbtnUsuario);
-		
-		rdbtnObservador = new JRadioButton("Observador");
-		rdbtnObservador.setBounds(186, 0, 91, 22);
-		PanelTipoUsuario.add(rdbtnObservador);
-		tableUsuarios.setBounds(124, 11, 448, 284);
-		PanelDatosUsuarios.add(tableUsuarios);
-		
-		btnAtras = new JButton("Atras");
-		btnAtras.setBounds(5, 239, 107, 39);
-		PanelDatosUsuarios.add(btnAtras);
+		tableUsuariosModel = new DefaultTableModel();
 		
 		PanelDatosLigas = new JPanel();
 		PanelDatosLigas.setVisible(false);
@@ -1376,12 +1370,9 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 			PanelDatosEquipo.setVisible(false);
 			PanelDatosJugador.setVisible(false);
 			PanelDatosPartidos.setVisible(false);
+			cargarTablaUsuarios();
 		}
 	}
-
-
-
-
 
 /*------------------------------- CONFIGURACIÓN INICIO APLICACIÓN-----------------------------------------------*/	
 
@@ -1829,8 +1820,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 /*------------------------------------- BOTONES TRADUCCION -----------------------------------------*/	
 	
 	/*Metodo encargado de traducir la información del programa a Español*/
-	
-/*------------------------------- METODOS DE TRADUCCIONES -----------------------------------------------*/	
 	private void traducirESP() {
 		btnCerrarSesion.setText("Cerrar Sesi\u00F3n");
 		btnJugadores.setText("Jugadores");
@@ -1984,10 +1973,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	
 /*------------------------------------- VENTANA LIGAS ------------------------------------------*/	
 	
-	/*Metodo encargado de crear una liga y guardarla en el lugar adecuado*/
-	
-/*------------------------------- METODOS DE LIGAS, VENTANA DATOS LIGA -----------------------------------*/		
-	/*Metodo que crea la liga y la añade a el arrayList de ligas*/
+	/*Metodo encargado de crear una liga y guardarla en el lugar adecuado*/		
 	private void añadirLiga() {
 		Liga ligaAnadir = new Liga();
 		ligaAnadir.setNombreLiga(txtLiga.getText());
@@ -2010,8 +1996,8 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		}
 	}
 
-	/*Crea la liga y la elimina del arrayList*/
-	/*Metodo que elimina una Liga que exista, si es que existe*/
+	/*Crea la liga y la elimina del arrayList
+	 * Metodo que elimina una Liga que exista, si es que existe*/
 	private void eliminarLiga() {
 		Liga ligaEliminar = new Liga();
 		ligaEliminar.setNombreLiga(txtLiga.getText());
@@ -2038,10 +2024,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 /*------------------------------------- VENTANA EQUIPO ------------------------------------------*/
 	
 	/*Cargamos la información del array List de ligas en el comboBox para poder elegir despues la adecuada*/
-	
-/*------------------------------- METODOS DE EQUIPO, VENTANA DATOS EQUIPO -----------------------------------*/
-	/*Carga los datos del arrayList de ligas en en ComboBox poder añadir más tarde
-	 * el equipo a una liga. Mediante la seleccion */
 	private void cargarCBLigas() {
 		for(int pos =0; pos<ListaLigas.size();pos ++) {
 			ModelLigas.addElement(ListaLigas.get(pos).toString());
@@ -2143,7 +2125,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		
 	}
 
-/*------------------------------- METODOS DE JUGADOR, VENTANA DATOS JUGADOR -----------------------------------*/	
+/*------------------------------------ VENTANA JUGADOR ----------------------------------------*/	
 	/*Cargamos en el combo box de la ventana datos 
 	 * jugador la información de la lista de equipos.*/
 	private void cargarCBEquiposJugador() {
@@ -2217,12 +2199,30 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 /*------------------------------- METODOS DE PARTIDOS, VENTANA DATOS PARTIDO -----------------------------------*/
 
 	
-/*------------------------------- METODOS DE USUARIO, VENTANA DATOS USUARIO -----------------------------------*/
+/*------------------------------- VENTANA DE USUARIOS -----------------------------------*/
 
+	/*Carga la información del array de usuarios a la tabla*/
+	private void cargarTablaUsuarios() {
+		tableUsuariosModel.addColumn("NOMBRE");
+		tableUsuariosModel.addColumn("APELLIDO");
+		tableUsuariosModel.addColumn("DNI");
+		tableUsuariosModel.addColumn("TELEFONO");
+		tableUsuariosModel.addColumn("EMAIL");
+		tableUsuariosModel.addRow(new Object[]{"NOMBRE", "APELLIDO", "DNI", "TELEFONO", "EMAIL"});
+		for(int pos = 0; pos <ListaUsuarios.size();pos++) {
+			String nom = ListaUsuarios.get(pos).getNombreCliente();
+			String ap = ListaUsuarios.get(pos).getApellidosCliente();
+			String dni = ListaUsuarios.get(pos).getDNICliente();
+			String tel = ListaUsuarios.get(pos).getTelefonoCliente();
+			String email = ListaUsuarios.get(pos).getEmailCliente();
+			String[] usuario = new String[]{nom, ap, dni, tel, email};
+			tableUsuariosModel.addRow(usuario);
+			tableUsuarios.setModel(tableUsuariosModel);
+		}
 
+	}
 
-
-
+	/**/
 
 
 
