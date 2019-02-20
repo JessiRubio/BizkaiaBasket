@@ -2139,7 +2139,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	/*Comprobando que el jugador no exista previamente, se le añade a el arrayList*/
 
 	private void añadirAListaJugadores(Jugador jAnadir) {
-		boolean comprobador = comprobarSiJugador();
+		boolean comprobador = comprobarSiJugador(jAnadir);
 		if(!comprobador) {
 			ListaJugador.add(jAnadir);
 			JOptionPane.showMessageDialog(null, "Jugador añadido");
@@ -2155,15 +2155,31 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		
 	}
 	
-	private boolean comprobarSiJugador() {
-		// TODO Auto-generated method stub
-		return false;
+	
+	private boolean comprobarSiJugador(Jugador jAnadir) {
+		
+		return ListaJugador.contains(jAnadir);
 	}
 
 	/*Tras añadir el jugador al arrayList de jugadores lo añadimos al arrayListInterno de el equipo*/
 	private void añadirAEquipo(Jugador jAnadir) {
-		// TODO Auto-generated method stub
+		for(int pos=0; pos<ListaEquipos.size();pos++) {
+			if(ListaEquipos.get(pos).getNombreEquipo().equals(jAnadir.getEquipo())) {
+				ListaEquipos.get(pos).getListaJugadores().add(jAnadir);
+				break;
+			}
+		}
 		
 	}
+
+
+
+
+
+
+
+
+
+
 
 }
