@@ -16,7 +16,6 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-import javax.swing.AbstractButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -182,6 +181,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	/*Botones del panel*/
 	private JButton btnGuardar;
 	private JButton btnEliminar;
+	private JButton btnDatosEstadisticos;
 	
 /*Objetos panel partido (Permite crear un nuevo partido o modificar la inofrmación de uno ya creado)*/
 	private JPanel PanelDatosPartidos;
@@ -326,184 +326,153 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		ModelLigas = new DefaultComboBoxModel<>();
 		tablePartidosModel = new DefaultTableModel();
 		
-		PanelInformación = new JPanel();
-		PanelInformación.setVisible(false);
-		PanelInformación.setBounds(0, 79, 583, 292);
-		contentPane.add(PanelInformación);
-		PanelInformación.setLayout(null);
-		PanelInformación.setBackground(Color.WHITE);
+		PanelDatosJugador = new JPanel();
+		PanelDatosJugador.setVisible(false);
 		
-		PanelMuestraJugadores = new JPanel();
-		PanelMuestraJugadores.setVisible(false);
+		PanelDatosJugador.setBounds(127, 79, 456, 286);
+		contentPane.add(PanelDatosJugador);
+		PanelDatosJugador.setBackground(new Color(255, 255, 255));
+		PanelDatosJugador.setLayout(null);
 		
-		PanelLigas = new JPanel();
-		PanelLigas.setVisible(false);
-		PanelLigas.setBackground(Color.WHITE);
-		PanelLigas.setBounds(116, 0, 467, 295);
-		PanelInformación.add(PanelLigas);
-		PanelLigas.setLayout(null);
+		lblNombre = new JLabel("  Nombre: ");
+		lblNombre.setOpaque(true);
+		lblNombre.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblNombre.setBounds(10, 11, 152, 22);
+		PanelDatosJugador.add(lblNombre);
 		
-		tableLigas = new JTable();
-		tableLigas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-		    /*   int row = tableLigas.columnAtPoint(tableLigas.getMousePosition().getY());
-		        if (arg0.getClickCount() == 2) {
-		        	Liga l = ListaLigas.get(row);
-		        }*/
-			}
-		});
-		tableLigas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tableLigas.setBorder(new LineBorder(new Color(0, 0, 0)));
-		tableLigas.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		tableLigas.setModel(tableLigasModel);
-		tableLigas.setBounds(10, 11, 447, 273);
-		PanelLigas.add(tableLigas);
+		lblApellido = new JLabel("  Apellido: ");
+		lblApellido.setOpaque(true);
+		lblApellido.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblApellido.setBounds(10, 44, 152, 22);
+		PanelDatosJugador.add(lblApellido);
 		
-		PanelInicioAplicación = new JPanel();
-		PanelInicioAplicación.setBackground(Color.WHITE);
-		PanelInicioAplicación.setBounds(126, 0, 457, 294);
-		PanelInformación.add(PanelInicioAplicación);
-		PanelInicioAplicación.setLayout(null);
+		lblDni = new JLabel("  DNI:");
+		lblDni.setOpaque(true);
+		lblDni.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblDni.setBounds(10, 77, 152, 22);
+		PanelDatosJugador.add(lblDni);
 		
-		lblElijaUnaOpcion = new JLabel("Elija una opcion");
-		lblElijaUnaOpcion.setHorizontalAlignment(SwingConstants.CENTER);
-		lblElijaUnaOpcion.setFont(new Font("Agency FB", Font.PLAIN, 50));
-		lblElijaUnaOpcion.setBounds(-12, 11, 459, 272);
-		PanelInicioAplicación.add(lblElijaUnaOpcion);
+		lblNacionalidad = new JLabel("  Nacionalidad:");
+		lblNacionalidad.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblNacionalidad.setOpaque(true);
+		lblNacionalidad.setBounds(10, 110, 152, 22);
+		PanelDatosJugador.add(lblNacionalidad);
 		
-		PanelAplicaciónVacia = new JPanel();
-		PanelAplicaciónVacia.setBackground(Color.WHITE);
-		PanelAplicaciónVacia.setBounds(136, 0, 447, 281);
-		PanelInformación.add(PanelAplicaciónVacia);
-		PanelAplicaciónVacia.setLayout(null);
+		lblFechaDeNacimiento = new JLabel("  Fecha de nacimiento: ");
+		lblFechaDeNacimiento.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblFechaDeNacimiento.setOpaque(true);
+		lblFechaDeNacimiento.setBounds(10, 143, 152, 22);
+		PanelDatosJugador.add(lblFechaDeNacimiento);
 		
-		lblAplicacinVacia = new JLabel("APLICACI\u00D3N VACIA");
-		lblAplicacinVacia.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAplicacinVacia.setFont(new Font("Agency FB", Font.PLAIN, 42));
-		lblAplicacinVacia.setBounds(5, 11, 427, 270);
-		PanelAplicaciónVacia.add(lblAplicacinVacia);
+		lblPeso = new JLabel("  Peso:");
+		lblPeso.setOpaque(true);
+		lblPeso.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblPeso.setBounds(294, 176, 65, 22);
+		PanelDatosJugador.add(lblPeso);
 		
-		PanelMuestraEquipos = new JPanel();
-		PanelMuestraEquipos.setVisible(false);
+		lblEdad = new JLabel("  Edad:");
+		lblEdad.setOpaque(true);
+		lblEdad.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblEdad.setBounds(294, 143, 65, 22);
+		PanelDatosJugador.add(lblEdad);
 		
-		PanelMuestraEquipos.setBounds(121, 0, 455, 284);
-		PanelInformación.add(PanelMuestraEquipos);
-		PanelMuestraEquipos.setBackground(Color.WHITE);
-		PanelMuestraEquipos.setLayout(null);
+		lblAltura = new JLabel("  Altura: ");
+		lblAltura.setOpaque(true);
+		lblAltura.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblAltura.setBounds(10, 176, 152, 22);
+		PanelDatosJugador.add(lblAltura);
 		
-		tableMuestraEquipos = new JTable();
-		tableMuestraEquipos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tableMuestraEquipos.setBorder(new LineBorder(new Color(0, 0, 0)));
-		tableMuestraEquipos.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		tableMuestraEquipos.setModel(tableEquiposModel);
-		tableMuestraEquipos.setBounds(10, 11, 437, 264);
-		PanelMuestraEquipos.add(tableMuestraEquipos);
+		lblEquipo = new JLabel("  Equipo:");
+		lblEquipo.setOpaque(true);
+		lblEquipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblEquipo.setBounds(10, 209, 152, 22);
+		PanelDatosJugador.add(lblEquipo);
 		
-		PanelMuestraJugadores.setBounds(121, 0, 462, 284);
-		PanelInformación.add(PanelMuestraJugadores);
-		PanelMuestraJugadores.setBackground(Color.WHITE);
-		PanelMuestraJugadores.setLayout(null);
+		txtNombre = new JTextField();
+		txtNombre.setBounds(162, 11, 284, 22);
+		PanelDatosJugador.add(txtNombre);
+		txtNombre.setColumns(10);
 		
-		tableMostrarJugadores = new JTable();
-		tableMostrarJugadores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tableMostrarJugadores.setBorder(new LineBorder(new Color(0, 0, 0)));
-		tableMostrarJugadores.setBackground(Color.WHITE);
-		tableMostrarJugadores.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		tableMostrarJugadores.setModel(tableJugadoresModel);
-		tableMostrarJugadores.setBounds(10, 11, 435, 262);
-		PanelMuestraJugadores.add(tableMostrarJugadores);
+		txtApellido = new JTextField();
+		txtApellido.setColumns(10);
+		txtApellido.setBounds(162, 44, 284, 22);
+		PanelDatosJugador.add(txtApellido);
 		
-		PanelMuestraPartidos = new JPanel();
-		PanelMuestraPartidos.setBackground(Color.WHITE);
-		PanelMuestraPartidos.setBounds(116, 0, 467, 294);
-		PanelInformación.add(PanelMuestraPartidos);
-		PanelMuestraPartidos.setLayout(null);
+		txtDNI = new JTextField();
+		txtDNI.setColumns(10);
+		txtDNI.setBounds(162, 77, 284, 22);
+		PanelDatosJugador.add(txtDNI);
 		
-		tablePartidos = new JTable();
-		tablePartidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tablePartidos.setBorder(new LineBorder(new Color(0, 0, 0)));
-		tablePartidos.setBackground(Color.WHITE);
-		tablePartidos.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		tablePartidos.setBounds(10, 11, 447, 272);
-		PanelMuestraPartidos.add(tablePartidos);
+		txtNacionalidad = new JTextField();
+		txtNacionalidad.setColumns(10);
+		txtNacionalidad.setBounds(162, 110, 284, 22);
+		PanelDatosJugador.add(txtNacionalidad);
 		
-		PanelEstadistica = new JPanel();
-		PanelEstadistica.setVisible(false);
+		txtEdad = new JTextField();
+		txtEdad.setColumns(10);
+		txtEdad.setBounds(354, 143, 92, 22);
+		PanelDatosJugador.add(txtEdad);
 		
-		PanelClasificacion = new JPanel();
-		PanelClasificacion.setVisible(false);
-		PanelClasificacion.setBounds(116, 0, 467, 284);
-		PanelInformación.add(PanelClasificacion);
-		PanelClasificacion.setLayout(null);
+		txtAltura = new JTextField();
+		txtAltura.setColumns(10);
+		txtAltura.setBounds(162, 176, 134, 22);
+		PanelDatosJugador.add(txtAltura);
 		
-		tableClasificacion = new JTable();
-		tableClasificacion.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"                    Nombre Equipo ", " Puesto", "  P.G.", "  P.P."},
-			},
-			new String[] {
-				"                   Nombre Equipo", "Puesto", " P.G", " P.P"
-			}
-		));
+		txtPeso = new JTextField();
+		txtPeso.setBounds(354, 176, 92, 22);
+		PanelDatosJugador.add(txtPeso);
+		txtPeso.setColumns(10);
 		
-		tableClasificacion.setGridColor(Color.BLACK);
-		tableClasificacion.setBackground(Color.WHITE);
-		tableClasificacion.setBounds(0, 0, 467, 284);
-		PanelClasificacion.add(tableClasificacion);
-		PanelEstadistica.setLayout(null);
-		PanelEstadistica.setBounds(133, 0, 450, 284);
-		PanelInformación.add(PanelEstadistica);
+		PanelFechaNacimiento = new JPanel();
+		PanelFechaNacimiento.setBounds(162, 143, 134, 22);
+		PanelDatosJugador.add(PanelFechaNacimiento);
+		PanelFechaNacimiento.setLayout(null);
 		
-		tableEstadistica = new JTable();
-		tableEstadistica.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"      Nombre", "       Equipo", "       P. Tiros", "     P. Triples", "      Rebotes"},
-			},
-			new String[] {
-				"     Nombre", "     Equipo", "      P. Tiros", "    P. Triples", "     Rebotes"
-			}
-		));
-		tableEstadistica.getColumnModel().getColumn(2).setPreferredWidth(77);
-		tableEstadistica.setBounds(10, 11, 430, 255);
-		PanelEstadistica.add(tableEstadistica);
+		txtAno = new JTextField();
+		txtAno.setColumns(10);
+		txtAno.setBounds(99, 0, 35, 22);
+		PanelFechaNacimiento.add(txtAno);
 		
-		POpciones = new JPanel();
-		POpciones.setLayout(null);
-		POpciones.setBackground(Color.WHITE);
-		POpciones.setBounds(0, 0, 111, 286);
-		PanelInformación.add(POpciones);
+		txtMes = new JTextField();
+		txtMes.setColumns(10);
+		txtMes.setBounds(50, 1, 35, 21);
+		PanelFechaNacimiento.add(txtMes);
 		
-		CBCategorias = new JComboBox<String>();
-		CBCategorias.setEnabled(false);
-		CBCategorias.setModel(new DefaultComboBoxModel<String>(new String[] {"     CATEGORIA"}));
-		CBCategorias.setFont(new Font("Agency FB", Font.PLAIN, 11));
-		CBCategorias.setEditable(true);
-		CBCategorias.setBounds(10, 11, 91, 41);
-		POpciones.add(CBCategorias);
+		txtDia = new JTextField();
+		txtDia.setColumns(10);
+		txtDia.setBounds(0, 1, 35, 21);
+		PanelFechaNacimiento.add(txtDia);
 		
-		CBGrupos = new JComboBox<String>();
-		CBGrupos.setEnabled(false);
-		CBGrupos.setModel(new DefaultComboBoxModel<String>(new String[] {"     GRUPO"}));
-		CBGrupos.setFont(new Font("Agency FB", Font.PLAIN, 11));
-		CBGrupos.setEditable(true);
-		CBGrupos.setBounds(10, 74, 91, 41);
-		POpciones.add(CBGrupos);
+		label_1 = new JLabel("/");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setBounds(35, 4, 14, 14);
+		PanelFechaNacimiento.add(label_1);
 		
-		CBEquipos = new JComboBox<String>();
-		CBEquipos.setEnabled(false);
-		CBEquipos.setModel(new DefaultComboBoxModel<String>(new String[] {"     EQUIPO"}));
-		CBEquipos.setFont(new Font("Agency FB", Font.PLAIN, 11));
-		CBEquipos.setEditable(true);
-		CBEquipos.setBounds(10, 138, 91, 41);
-		POpciones.add(CBEquipos);
+		label_2 = new JLabel("/");
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		label_2.setBounds(84, 4, 14, 14);
+		PanelFechaNacimiento.add(label_2);
 		
-		btnAtrasPO = new JButton("Atras");
-		btnAtrasPO.addActionListener(this);
-		btnAtrasPO.setForeground(Color.WHITE);
-		btnAtrasPO.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnAtrasPO.setBounds(10, 198, 89, 41);
-		POpciones.add(btnAtrasPO);
+		btnGuardar = new JButton("GUARDAR");
+		btnGuardar.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnGuardar.setBounds(357, 252, 89, 23);
+		PanelDatosJugador.add(btnGuardar);
+		
+		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnEliminar.setBounds(262, 252, 89, 23);
+		PanelDatosJugador.add(btnEliminar);
+		
+		CBEquipoJugador = new JComboBox<String>();
+		CBEquipoJugador.setModel(ModelEquipoJugador);
+		CBEquipoJugador.setEditable(true);
+		CBEquipoJugador.setBounds(162, 209, 284, 22);
+		PanelDatosJugador.add(CBEquipoJugador);
+		
+		btnDatosEstadisticos = new JButton("DATOS ESTADISTICOS");
+		btnDatosEstadisticos.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnDatosEstadisticos.setBounds(117, 252, 134, 23);
+		PanelDatosJugador.add(btnDatosEstadisticos);
 		
 		PanelLogin = new JPanel();
 		PanelLogin.setLayout(null);
@@ -709,9 +678,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnConfiguracion.setFont(new Font("Agency FB", Font.PLAIN, 15));
 		btnConfiguracion.setBounds(0, 236, 112, 39);
 		PanelBAñadirAdmin.add(btnConfiguracion);
-		
-		PanelDatosJugador = new JPanel();
-		PanelDatosJugador.setVisible(false);
 
 
 		
@@ -723,6 +689,185 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		tableJugadoresModel = new DefaultTableModel();
 		tableLigasModel = new DefaultTableModel();
 		tableEquiposModel = new DefaultTableModel();
+		
+		PanelInformación = new JPanel();
+		PanelInformación.setVisible(false);
+		PanelInformación.setBounds(0, 79, 583, 292);
+		contentPane.add(PanelInformación);
+		PanelInformación.setLayout(null);
+		PanelInformación.setBackground(Color.WHITE);
+		
+		PanelMuestraJugadores = new JPanel();
+		PanelMuestraJugadores.setVisible(false);
+		
+		PanelLigas = new JPanel();
+		PanelLigas.setVisible(false);
+		PanelLigas.setBackground(Color.WHITE);
+		PanelLigas.setBounds(116, 0, 467, 295);
+		PanelInformación.add(PanelLigas);
+		PanelLigas.setLayout(null);
+		
+		tableLigas = new JTable();
+		tableLigas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+		    /*   int row = tableLigas.columnAtPoint(tableLigas.getMousePosition().getY());
+		        if (arg0.getClickCount() == 2) {
+		        	Liga l = ListaLigas.get(row);
+		        }*/
+			}
+		});
+		tableLigas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tableLigas.setBorder(new LineBorder(new Color(0, 0, 0)));
+		tableLigas.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		tableLigas.setModel(tableLigasModel);
+		tableLigas.setBounds(10, 11, 447, 273);
+		PanelLigas.add(tableLigas);
+		
+		PanelInicioAplicación = new JPanel();
+		PanelInicioAplicación.setBackground(Color.WHITE);
+		PanelInicioAplicación.setBounds(126, 0, 457, 294);
+		PanelInformación.add(PanelInicioAplicación);
+		PanelInicioAplicación.setLayout(null);
+		
+		lblElijaUnaOpcion = new JLabel("Elija una opcion");
+		lblElijaUnaOpcion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblElijaUnaOpcion.setFont(new Font("Agency FB", Font.PLAIN, 50));
+		lblElijaUnaOpcion.setBounds(-12, 11, 459, 272);
+		PanelInicioAplicación.add(lblElijaUnaOpcion);
+		
+		PanelAplicaciónVacia = new JPanel();
+		PanelAplicaciónVacia.setBackground(Color.WHITE);
+		PanelAplicaciónVacia.setBounds(136, 0, 447, 281);
+		PanelInformación.add(PanelAplicaciónVacia);
+		PanelAplicaciónVacia.setLayout(null);
+		
+		lblAplicacinVacia = new JLabel("APLICACI\u00D3N VACIA");
+		lblAplicacinVacia.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAplicacinVacia.setFont(new Font("Agency FB", Font.PLAIN, 42));
+		lblAplicacinVacia.setBounds(5, 11, 427, 270);
+		PanelAplicaciónVacia.add(lblAplicacinVacia);
+		
+		PanelMuestraEquipos = new JPanel();
+		PanelMuestraEquipos.setVisible(false);
+		
+		PanelMuestraEquipos.setBounds(121, 0, 455, 284);
+		PanelInformación.add(PanelMuestraEquipos);
+		PanelMuestraEquipos.setBackground(Color.WHITE);
+		PanelMuestraEquipos.setLayout(null);
+		
+		tableMuestraEquipos = new JTable();
+		tableMuestraEquipos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tableMuestraEquipos.setBorder(new LineBorder(new Color(0, 0, 0)));
+		tableMuestraEquipos.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		tableMuestraEquipos.setModel(tableEquiposModel);
+		tableMuestraEquipos.setBounds(10, 11, 437, 264);
+		PanelMuestraEquipos.add(tableMuestraEquipos);
+		
+		PanelMuestraJugadores.setBounds(121, 0, 462, 284);
+		PanelInformación.add(PanelMuestraJugadores);
+		PanelMuestraJugadores.setBackground(Color.WHITE);
+		PanelMuestraJugadores.setLayout(null);
+		
+		tableMostrarJugadores = new JTable();
+		tableMostrarJugadores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tableMostrarJugadores.setBorder(new LineBorder(new Color(0, 0, 0)));
+		tableMostrarJugadores.setBackground(Color.WHITE);
+		tableMostrarJugadores.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		tableMostrarJugadores.setModel(tableJugadoresModel);
+		tableMostrarJugadores.setBounds(10, 11, 435, 262);
+		PanelMuestraJugadores.add(tableMostrarJugadores);
+		
+		PanelMuestraPartidos = new JPanel();
+		PanelMuestraPartidos.setBackground(Color.WHITE);
+		PanelMuestraPartidos.setBounds(116, 0, 467, 294);
+		PanelInformación.add(PanelMuestraPartidos);
+		PanelMuestraPartidos.setLayout(null);
+		
+		tablePartidos = new JTable();
+		tablePartidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tablePartidos.setBorder(new LineBorder(new Color(0, 0, 0)));
+		tablePartidos.setBackground(Color.WHITE);
+		tablePartidos.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		tablePartidos.setBounds(10, 11, 447, 272);
+		PanelMuestraPartidos.add(tablePartidos);
+		
+		PanelEstadistica = new JPanel();
+		PanelEstadistica.setVisible(false);
+		
+		PanelClasificacion = new JPanel();
+		PanelClasificacion.setVisible(false);
+		PanelClasificacion.setBounds(116, 0, 467, 284);
+		PanelInformación.add(PanelClasificacion);
+		PanelClasificacion.setLayout(null);
+		
+		tableClasificacion = new JTable();
+		tableClasificacion.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"                    Nombre Equipo ", " Puesto", "  P.G.", "  P.P."},
+			},
+			new String[] {
+				"                   Nombre Equipo", "Puesto", " P.G", " P.P"
+			}
+		));
+		
+		tableClasificacion.setGridColor(Color.BLACK);
+		tableClasificacion.setBackground(Color.WHITE);
+		tableClasificacion.setBounds(0, 0, 467, 284);
+		PanelClasificacion.add(tableClasificacion);
+		PanelEstadistica.setLayout(null);
+		PanelEstadistica.setBounds(133, 0, 450, 284);
+		PanelInformación.add(PanelEstadistica);
+		
+		tableEstadistica = new JTable();
+		tableEstadistica.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"      Nombre", "       Equipo", "       P. Tiros", "     P. Triples", "      Rebotes"},
+			},
+			new String[] {
+				"     Nombre", "     Equipo", "      P. Tiros", "    P. Triples", "     Rebotes"
+			}
+		));
+		tableEstadistica.getColumnModel().getColumn(2).setPreferredWidth(77);
+		tableEstadistica.setBounds(10, 11, 430, 255);
+		PanelEstadistica.add(tableEstadistica);
+		
+		POpciones = new JPanel();
+		POpciones.setLayout(null);
+		POpciones.setBackground(Color.WHITE);
+		POpciones.setBounds(0, 0, 111, 286);
+		PanelInformación.add(POpciones);
+		
+		CBCategorias = new JComboBox<String>();
+		CBCategorias.setEnabled(false);
+		CBCategorias.setModel(new DefaultComboBoxModel<String>(new String[] {"     CATEGORIA"}));
+		CBCategorias.setFont(new Font("Agency FB", Font.PLAIN, 11));
+		CBCategorias.setEditable(true);
+		CBCategorias.setBounds(10, 11, 91, 41);
+		POpciones.add(CBCategorias);
+		
+		CBGrupos = new JComboBox<String>();
+		CBGrupos.setEnabled(false);
+		CBGrupos.setModel(new DefaultComboBoxModel<String>(new String[] {"     GRUPO"}));
+		CBGrupos.setFont(new Font("Agency FB", Font.PLAIN, 11));
+		CBGrupos.setEditable(true);
+		CBGrupos.setBounds(10, 74, 91, 41);
+		POpciones.add(CBGrupos);
+		
+		CBEquipos = new JComboBox<String>();
+		CBEquipos.setEnabled(false);
+		CBEquipos.setModel(new DefaultComboBoxModel<String>(new String[] {"     EQUIPO"}));
+		CBEquipos.setFont(new Font("Agency FB", Font.PLAIN, 11));
+		CBEquipos.setEditable(true);
+		CBEquipos.setBounds(10, 138, 91, 41);
+		POpciones.add(CBEquipos);
+		
+		btnAtrasPO = new JButton("Atras");
+		btnAtrasPO.addActionListener(this);
+		btnAtrasPO.setForeground(Color.WHITE);
+		btnAtrasPO.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnAtrasPO.setBounds(10, 198, 89, 41);
+		POpciones.add(btnAtrasPO);
 		PanelDatosUsuarios.setBackground(Color.WHITE);
 		PanelDatosUsuarios.setBounds(0, 65, 582, 306);
 		contentPane.add(PanelDatosUsuarios);
@@ -1034,147 +1179,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		CBLigas.setBounds(162, 209, 284, 22);
 		PanelDatosEquipo.add(CBLigas);
 		CBLigas.setModel(ModelLigas);
-		
-		PanelDatosJugador.setBounds(127, 79, 456, 286);
-		contentPane.add(PanelDatosJugador);
-		PanelDatosJugador.setBackground(new Color(255, 255, 255));
-		PanelDatosJugador.setLayout(null);
-		
-		lblNombre = new JLabel("  Nombre: ");
-		lblNombre.setOpaque(true);
-		lblNombre.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblNombre.setBounds(10, 11, 152, 22);
-		PanelDatosJugador.add(lblNombre);
-		
-		lblApellido = new JLabel("  Apellido: ");
-		lblApellido.setOpaque(true);
-		lblApellido.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblApellido.setBounds(10, 44, 152, 22);
-		PanelDatosJugador.add(lblApellido);
-		
-		lblDni = new JLabel("  DNI:");
-		lblDni.setOpaque(true);
-		lblDni.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblDni.setBounds(10, 77, 152, 22);
-		PanelDatosJugador.add(lblDni);
-		
-		lblNacionalidad = new JLabel("  Nacionalidad:");
-		lblNacionalidad.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblNacionalidad.setOpaque(true);
-		lblNacionalidad.setBounds(10, 110, 152, 22);
-		PanelDatosJugador.add(lblNacionalidad);
-		
-		lblFechaDeNacimiento = new JLabel("  Fecha de nacimiento: ");
-		lblFechaDeNacimiento.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblFechaDeNacimiento.setOpaque(true);
-		lblFechaDeNacimiento.setBounds(10, 143, 152, 22);
-		PanelDatosJugador.add(lblFechaDeNacimiento);
-		
-		lblPeso = new JLabel("  Peso:");
-		lblPeso.setOpaque(true);
-		lblPeso.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblPeso.setBounds(294, 176, 65, 22);
-		PanelDatosJugador.add(lblPeso);
-		
-		lblEdad = new JLabel("  Edad:");
-		lblEdad.setOpaque(true);
-		lblEdad.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblEdad.setBounds(294, 143, 65, 22);
-		PanelDatosJugador.add(lblEdad);
-		
-		lblAltura = new JLabel("  Altura: ");
-		lblAltura.setOpaque(true);
-		lblAltura.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblAltura.setBounds(10, 176, 152, 22);
-		PanelDatosJugador.add(lblAltura);
-		
-		lblEquipo = new JLabel("  Equipo:");
-		lblEquipo.setOpaque(true);
-		lblEquipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblEquipo.setBounds(10, 209, 152, 22);
-		PanelDatosJugador.add(lblEquipo);
-		
-		txtNombre = new JTextField();
-		txtNombre.setBounds(162, 11, 284, 22);
-		PanelDatosJugador.add(txtNombre);
-		txtNombre.setColumns(10);
-		
-		txtApellido = new JTextField();
-		txtApellido.setColumns(10);
-		txtApellido.setBounds(162, 44, 284, 22);
-		PanelDatosJugador.add(txtApellido);
-		
-		txtDNI = new JTextField();
-		txtDNI.setColumns(10);
-		txtDNI.setBounds(162, 77, 284, 22);
-		PanelDatosJugador.add(txtDNI);
-		
-		txtNacionalidad = new JTextField();
-		txtNacionalidad.setColumns(10);
-		txtNacionalidad.setBounds(162, 110, 284, 22);
-		PanelDatosJugador.add(txtNacionalidad);
-		
-		txtEdad = new JTextField();
-		txtEdad.setColumns(10);
-		txtEdad.setBounds(354, 143, 92, 22);
-		PanelDatosJugador.add(txtEdad);
-		
-		txtAltura = new JTextField();
-		txtAltura.setColumns(10);
-		txtAltura.setBounds(162, 176, 134, 22);
-		PanelDatosJugador.add(txtAltura);
-		
-		txtPeso = new JTextField();
-		txtPeso.setBounds(354, 176, 92, 22);
-		PanelDatosJugador.add(txtPeso);
-		txtPeso.setColumns(10);
-		
-		PanelFechaNacimiento = new JPanel();
-		PanelFechaNacimiento.setBounds(162, 143, 134, 22);
-		PanelDatosJugador.add(PanelFechaNacimiento);
-		PanelFechaNacimiento.setLayout(null);
-		
-		txtAno = new JTextField();
-		txtAno.setColumns(10);
-		txtAno.setBounds(99, 0, 35, 22);
-		PanelFechaNacimiento.add(txtAno);
-		
-		txtMes = new JTextField();
-		txtMes.setColumns(10);
-		txtMes.setBounds(50, 1, 35, 21);
-		PanelFechaNacimiento.add(txtMes);
-		
-		txtDia = new JTextField();
-		txtDia.setColumns(10);
-		txtDia.setBounds(0, 1, 35, 21);
-		PanelFechaNacimiento.add(txtDia);
-		
-		label_1 = new JLabel("/");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(35, 4, 14, 14);
-		PanelFechaNacimiento.add(label_1);
-		
-		label_2 = new JLabel("/");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setBounds(84, 4, 14, 14);
-		PanelFechaNacimiento.add(label_2);
-		
-		btnGuardar = new JButton("GUARDAR");
-		btnGuardar.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnGuardar.setBounds(357, 252, 89, 23);
-		PanelDatosJugador.add(btnGuardar);
-		
-		btnEliminar = new JButton("ELIMINAR");
-		btnEliminar.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnEliminar.setBounds(262, 252, 89, 23);
-		PanelDatosJugador.add(btnEliminar);
-		
-		CBEquipoJugador = new JComboBox<String>();
 		ModelEquipoJugador = new DefaultComboBoxModel<>();
-		CBEquipoJugador.setModel(ModelEquipoJugador);
-		CBEquipoJugador.setEditable(true);
-		CBEquipoJugador.setBounds(162, 209, 284, 22);
-		PanelDatosJugador.add(CBEquipoJugador);
 		
 		PanelDatosPartidos = new JPanel();
 		PanelDatosPartidos.setVisible(false);
@@ -1619,7 +1624,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 
 
 
-/*------------------------------- CONFIGURACIÓN INICIO APLICACIÓN-----------------------------------------------*/	
+/*------------------------------- CONFIGURACIÓN INICIO APLICACIÓN -----------------------------------------------*/	
 
 	/*Metodo que comprueba y devuelve el tipo de cliente para
 	 *  saber que ventanas debe mostrar al iniciar sesion*/
@@ -1828,6 +1833,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		/*PanelDatosJugador*/
 		btnGuardar.setBackground(Color.GREEN);
 		btnEliminar.setBackground(Color.RED);
+		btnDatosEstadisticos.setBackground(new Color(65, 105, 225));
 		lblNombre.setBackground(new Color(135,206,235));
 		lblApellido.setBackground(new Color(135,206,235));
 		lblDni.setBackground(new Color(135,206,235));
@@ -2071,7 +2077,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		passwordField.setText("");
 	}
 	
-/*------------------------------------- BOTONES TRADUCCION -----------------------------------------*/	
+/*---------------------------------------------------- BOTONES TRADUCCION -----------------------------------------------------------*/	
 	
 	/*Metodo encargado de traducir la información del programa a Español*/
 	private void traducirESP() {
@@ -2150,6 +2156,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnEliminarPartido.setText("ELIMINAR");
 		btnAtras.setText("Atras");
 		btnAtrasPO.setText("Atras");
+		btnDatosEstadisticos.setText("DATOS ESTADISTICOS");
 	}
 
 	
@@ -2227,9 +2234,10 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnEliminarPartido.setText("EZABATU");
 		btnAtras.setText("Atzera");
 		btnAtrasPO.setText("Atzera");
+		btnDatosEstadisticos.setText("DATU ESTADISTIKOAK");
 	}
 	
-/*------------------------------------- VENTANA LIGAS ------------------------------------------*/	
+/*---------------------------------------------------- VENTANA LIGAS -----------------------------------------------------------*/		
 	/*Carga en la tableLigas la información que hay en el arrayList listaLigas*/
 	private void cargarTablaLigas() {
 		tableLigasModel.setRowCount(0);
@@ -2312,7 +2320,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		txtCatLiga.setText("");
 	}
 
-/*------------------------------------- VENTANA EQUIPO ------------------------------------------*/
+/*---------------------------------------------------- VENTANA EQUIPO -----------------------------------------------------------*/	
 	
 	/*Cargamos la información del array List de ligas en el comboBox para poder elegir despues la adecuada*/
 	private void cargarCBLigas() {
@@ -2440,29 +2448,9 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		
 	}
 
-/*------------------------------------ VENTANA JUGADOR ----------------------------------------*/	
-	/*Cargamos en el combo box de la ventana datos 
-	 * jugador la información de la lista de equipos.*/
-	private void cargarCBEquiposJugador() {
-		for(int pos =0; pos<ListaEquipos.size();pos ++) {
-			ModelEquipoJugador.addElement(ListaEquipos.get(pos).getNombreEquipo());
-		}
-		CBEquipoJugador.setModel(ModelEquipoJugador);	
-		
-	}
+/*----------------------------------------------------- VENTANA JUGADOR -----------------------------------------------------------*/		
 	
-	private void limpiarDatosJugador() {
-		txtNombre.setText("");
-		txtApellido.setText("");
-		txtDNI.setText("");
-		txtNacionalidad.setText("");
-		txtEdad.setText("");
-		txtAltura.setText("");
-		txtPeso.setText("");
-		txtAno.setText("");
-		txtMes.setText("");
-		txtDia.setText("");
-	}
+/*OPCION BOTON JUGADORES PRA VER LA TABLA*/
 	
 	/*Cargar la información de la tabla jugadores*/
 	private void cargarTablaJugadores() {
@@ -2489,6 +2477,32 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		
 	}
 	
+	
+/*OPCION BOTON JUGADORES PRA VER LA INFORMACIÓN PERSONAL SOBRE EL JUGADOR*/	
+	
+	/*Cargamos en el combo box de la ventana datos 
+	 * jugador la información de la lista de equipos.*/
+	private void cargarCBEquiposJugador() {
+		for(int pos =0; pos<ListaEquipos.size();pos ++) {
+			ModelEquipoJugador.addElement(ListaEquipos.get(pos).getNombreEquipo());
+		}
+		CBEquipoJugador.setModel(ModelEquipoJugador);	
+		
+	}
+	
+	private void limpiarDatosJugador() {
+		txtNombre.setText("");
+		txtApellido.setText("");
+		txtDNI.setText("");
+		txtNacionalidad.setText("");
+		txtEdad.setText("");
+		txtAltura.setText("");
+		txtPeso.setText("");
+		txtAno.setText("");
+		txtMes.setText("");
+		txtDia.setText("");
+	}
+
 
 	private void añadirJugador() {
 		Jugador jAnadir = new Jugador();
@@ -2555,17 +2569,17 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		limpiarDatosJugador();
 	}
 
-private void eliminarDeEquipo() {
+	private void eliminarDeEquipo() {
 		// TODO Auto-generated method stub
 		
 	}
 
-private void eliminarDeListaJugadores() {
+	private void eliminarDeListaJugadores() {
 		// TODO Auto-generated method stub
 		
 	}
 
-/*------------------------------- METODOS DE PARTIDOS, VENTANA DATOS PARTIDO -----------------------------------*/
+/*----------------------------------------------------- VENTANA PARTIDOS -----------------------------------------------------------*/
 
 	private void cargarTablaPartidos() {
 		tablePartidosModel.setRowCount(0);
@@ -2591,7 +2605,7 @@ private void eliminarDeListaJugadores() {
 		
 	}
 	
-/*------------------------------- VENTANA DE USUARIOS -----------------------------------*/
+/*----------------------------------------------------- VENTANA DE USUARIOS -----------------------------------------------------------*/
 
 	/*Carga la información del array de usuarios a la tabla*/
 	private void cargarTablaUsuarios() {
@@ -2614,8 +2628,4 @@ private void eliminarDeListaJugadores() {
 		}
 		tableUsuarios.setModel(tableUsuariosModel);
 	}
-
-
-
-
 }
