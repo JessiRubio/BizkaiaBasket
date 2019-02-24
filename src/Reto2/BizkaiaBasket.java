@@ -2605,7 +2605,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		
 	}
 	
-/*----------------------------------------------------- VENTANA DE USUARIOS -----------------------------------------------------------*/
+/*---------------------------------------------------- VENTANA DE USUARIOS ---------------------------------------------------------*/
 
 	/*Carga la información del array de usuarios a la tabla*/
 	private void cargarTablaUsuarios() {
@@ -2628,4 +2628,16 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		}
 		tableUsuarios.setModel(tableUsuariosModel);
 	}
+
+
+/*---------------------------------------------------- VENTANA DE ESTADISTICA ------------------------------------------------------*/
+
+
+
+
+
+/*---------------------------------------------------- VENTANA DE CLASIFICACIÓN ----------------------------------------------------*/
+
+
+
 }
