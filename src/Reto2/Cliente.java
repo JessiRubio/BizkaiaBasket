@@ -1,10 +1,8 @@
 package Reto2;
 
-public class Cliente {
+public class Cliente extends Persona{
 	//Declaración de los atributos necesarios para crear un perfil de cliente (admin, usuario, observador).
-	private String NombreCliente;
-	private String ApellidosCliente;
-	private String DNICliente;
+
 	private String TelefonoCliente;
 	private String emailCliente;
 	private String Nick;
@@ -12,9 +10,7 @@ public class Cliente {
 	private String TipoCliente;
 	
 	public Cliente() {
-		this.NombreCliente = "";
-		this.ApellidosCliente = "";
-		this.DNICliente = "";
+		super();
 		this.TelefonoCliente = "";
 		this.emailCliente = "";
 		this.Nick = "";
@@ -22,25 +18,7 @@ public class Cliente {
 		this.TipoCliente = "";
 	}
 
-	
-	public String getNombreCliente() {
-		return NombreCliente;
-	}
-	public void setNombreCliente(String nombreCliente) {
-		NombreCliente = nombreCliente;
-	}
-	public String getApellidosCliente() {
-		return ApellidosCliente;
-	}
-	public void setApellidosCliente(String apellidosCliente) {
-		ApellidosCliente = apellidosCliente;
-	}
-	public String getDNICliente() {
-		return DNICliente;
-	}
-	public void setDNICliente(String dNICliente) {
-		DNICliente = dNICliente;
-	}
+
 	public String getTelefonoCliente() {
 		return TelefonoCliente;
 	}
@@ -72,14 +50,12 @@ public class Cliente {
 		TipoCliente = tipoCliente;
 	}
 	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((ApellidosCliente == null) ? 0 : ApellidosCliente.hashCode());
-		result = prime * result + ((DNICliente == null) ? 0 : DNICliente.hashCode());
+		int result = super.hashCode();
 		result = prime * result + ((Nick == null) ? 0 : Nick.hashCode());
-		result = prime * result + ((NombreCliente == null) ? 0 : NombreCliente.hashCode());
 		result = prime * result + ((Password == null) ? 0 : Password.hashCode());
 		result = prime * result + ((TelefonoCliente == null) ? 0 : TelefonoCliente.hashCode());
 		result = prime * result + ((TipoCliente == null) ? 0 : TipoCliente.hashCode());
@@ -90,12 +66,7 @@ public class Cliente {
 
 	@Override
 	public boolean equals(Object obj) {
-		boolean iguales = false;
-		Cliente cli = (Cliente)obj;
-		if(this.DNICliente.equals(cli.DNICliente)) {
-			iguales = true;
-		}
-		return iguales;
+		return super.equals(obj);
 	}
 	
 	public boolean loginEquals(Cliente cliente) {

@@ -286,8 +286,8 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		ListaUsuarios =new ArrayList<Cliente>();
 	/*Administrador por defecto*/
 		Cliente CAdmin = new Cliente();
-		CAdmin.setNombreCliente("Admin");
-		CAdmin.setDNICliente("12345678A");
+		CAdmin.setNombre("Admin");
+		CAdmin.setDNI("12345678A");
 		CAdmin.setTelefonoCliente("631245798");
 		CAdmin.setEmailCliente("ADMIN@gmail.com");
 		CAdmin.setNick("Admin");
@@ -296,8 +296,8 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		ListaUsuarios.add(CAdmin);
 	/*Usuario por defecto*/
 		Cliente CUser = new Cliente();
-		CUser.setNombreCliente("User");
-		CUser.setDNICliente("13579024B");
+		CUser.setNombre("User");
+		CUser.setDNI("13579024B");
 		CUser.setTelefonoCliente("625397842");
 		CUser.setEmailCliente("Usuario@gmail.com");
 		CUser.setNick("User");
@@ -325,154 +325,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelSuperiorUO.setVisible(false);
 		ModelLigas = new DefaultComboBoxModel<>();
 		tablePartidosModel = new DefaultTableModel();
-		
-		PanelDatosJugador = new JPanel();
-		PanelDatosJugador.setVisible(false);
-		
-		PanelDatosJugador.setBounds(127, 79, 456, 286);
-		contentPane.add(PanelDatosJugador);
-		PanelDatosJugador.setBackground(new Color(255, 255, 255));
-		PanelDatosJugador.setLayout(null);
-		
-		lblNombre = new JLabel("  Nombre: ");
-		lblNombre.setOpaque(true);
-		lblNombre.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblNombre.setBounds(10, 11, 152, 22);
-		PanelDatosJugador.add(lblNombre);
-		
-		lblApellido = new JLabel("  Apellido: ");
-		lblApellido.setOpaque(true);
-		lblApellido.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblApellido.setBounds(10, 44, 152, 22);
-		PanelDatosJugador.add(lblApellido);
-		
-		lblDni = new JLabel("  DNI:");
-		lblDni.setOpaque(true);
-		lblDni.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblDni.setBounds(10, 77, 152, 22);
-		PanelDatosJugador.add(lblDni);
-		
-		lblNacionalidad = new JLabel("  Nacionalidad:");
-		lblNacionalidad.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblNacionalidad.setOpaque(true);
-		lblNacionalidad.setBounds(10, 110, 152, 22);
-		PanelDatosJugador.add(lblNacionalidad);
-		
-		lblFechaDeNacimiento = new JLabel("  Fecha de nacimiento: ");
-		lblFechaDeNacimiento.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblFechaDeNacimiento.setOpaque(true);
-		lblFechaDeNacimiento.setBounds(10, 143, 152, 22);
-		PanelDatosJugador.add(lblFechaDeNacimiento);
-		
-		lblPeso = new JLabel("  Peso:");
-		lblPeso.setOpaque(true);
-		lblPeso.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblPeso.setBounds(294, 176, 65, 22);
-		PanelDatosJugador.add(lblPeso);
-		
-		lblEdad = new JLabel("  Edad:");
-		lblEdad.setOpaque(true);
-		lblEdad.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblEdad.setBounds(294, 143, 65, 22);
-		PanelDatosJugador.add(lblEdad);
-		
-		lblAltura = new JLabel("  Altura: ");
-		lblAltura.setOpaque(true);
-		lblAltura.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblAltura.setBounds(10, 176, 152, 22);
-		PanelDatosJugador.add(lblAltura);
-		
-		lblEquipo = new JLabel("  Equipo:");
-		lblEquipo.setOpaque(true);
-		lblEquipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lblEquipo.setBounds(10, 209, 152, 22);
-		PanelDatosJugador.add(lblEquipo);
-		
-		txtNombre = new JTextField();
-		txtNombre.setBounds(162, 11, 284, 22);
-		PanelDatosJugador.add(txtNombre);
-		txtNombre.setColumns(10);
-		
-		txtApellido = new JTextField();
-		txtApellido.setColumns(10);
-		txtApellido.setBounds(162, 44, 284, 22);
-		PanelDatosJugador.add(txtApellido);
-		
-		txtDNI = new JTextField();
-		txtDNI.setColumns(10);
-		txtDNI.setBounds(162, 77, 284, 22);
-		PanelDatosJugador.add(txtDNI);
-		
-		txtNacionalidad = new JTextField();
-		txtNacionalidad.setColumns(10);
-		txtNacionalidad.setBounds(162, 110, 284, 22);
-		PanelDatosJugador.add(txtNacionalidad);
-		
-		txtEdad = new JTextField();
-		txtEdad.setColumns(10);
-		txtEdad.setBounds(354, 143, 92, 22);
-		PanelDatosJugador.add(txtEdad);
-		
-		txtAltura = new JTextField();
-		txtAltura.setColumns(10);
-		txtAltura.setBounds(162, 176, 134, 22);
-		PanelDatosJugador.add(txtAltura);
-		
-		txtPeso = new JTextField();
-		txtPeso.setBounds(354, 176, 92, 22);
-		PanelDatosJugador.add(txtPeso);
-		txtPeso.setColumns(10);
-		
-		PanelFechaNacimiento = new JPanel();
-		PanelFechaNacimiento.setBounds(162, 143, 134, 22);
-		PanelDatosJugador.add(PanelFechaNacimiento);
-		PanelFechaNacimiento.setLayout(null);
-		
-		txtAno = new JTextField();
-		txtAno.setColumns(10);
-		txtAno.setBounds(99, 0, 35, 22);
-		PanelFechaNacimiento.add(txtAno);
-		
-		txtMes = new JTextField();
-		txtMes.setColumns(10);
-		txtMes.setBounds(50, 1, 35, 21);
-		PanelFechaNacimiento.add(txtMes);
-		
-		txtDia = new JTextField();
-		txtDia.setColumns(10);
-		txtDia.setBounds(0, 1, 35, 21);
-		PanelFechaNacimiento.add(txtDia);
-		
-		label_1 = new JLabel("/");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(35, 4, 14, 14);
-		PanelFechaNacimiento.add(label_1);
-		
-		label_2 = new JLabel("/");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setBounds(84, 4, 14, 14);
-		PanelFechaNacimiento.add(label_2);
-		
-		btnGuardar = new JButton("GUARDAR");
-		btnGuardar.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnGuardar.setBounds(357, 252, 89, 23);
-		PanelDatosJugador.add(btnGuardar);
-		
-		btnEliminar = new JButton("ELIMINAR");
-		btnEliminar.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnEliminar.setBounds(262, 252, 89, 23);
-		PanelDatosJugador.add(btnEliminar);
-		
-		CBEquipoJugador = new JComboBox<String>();
-		CBEquipoJugador.setModel(ModelEquipoJugador);
-		CBEquipoJugador.setEditable(true);
-		CBEquipoJugador.setBounds(162, 209, 284, 22);
-		PanelDatosJugador.add(CBEquipoJugador);
-		
-		btnDatosEstadisticos = new JButton("DATOS ESTADISTICOS");
-		btnDatosEstadisticos.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnDatosEstadisticos.setBounds(117, 252, 134, 23);
-		PanelDatosJugador.add(btnDatosEstadisticos);
 		
 		PanelLogin = new JPanel();
 		PanelLogin.setLayout(null);
@@ -1183,6 +1035,154 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		
 		PanelDatosPartidos = new JPanel();
 		PanelDatosPartidos.setVisible(false);
+		
+		PanelDatosJugador = new JPanel();
+		PanelDatosJugador.setVisible(false);
+		
+		PanelDatosJugador.setBounds(127, 79, 456, 286);
+		contentPane.add(PanelDatosJugador);
+		PanelDatosJugador.setBackground(new Color(255, 255, 255));
+		PanelDatosJugador.setLayout(null);
+		
+		lblNombre = new JLabel("  Nombre: ");
+		lblNombre.setOpaque(true);
+		lblNombre.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblNombre.setBounds(10, 11, 152, 22);
+		PanelDatosJugador.add(lblNombre);
+		
+		lblApellido = new JLabel("  Apellido: ");
+		lblApellido.setOpaque(true);
+		lblApellido.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblApellido.setBounds(10, 44, 152, 22);
+		PanelDatosJugador.add(lblApellido);
+		
+		lblDni = new JLabel("  DNI:");
+		lblDni.setOpaque(true);
+		lblDni.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblDni.setBounds(10, 77, 152, 22);
+		PanelDatosJugador.add(lblDni);
+		
+		lblNacionalidad = new JLabel("  Nacionalidad:");
+		lblNacionalidad.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblNacionalidad.setOpaque(true);
+		lblNacionalidad.setBounds(10, 110, 152, 22);
+		PanelDatosJugador.add(lblNacionalidad);
+		
+		lblFechaDeNacimiento = new JLabel("  Fecha de nacimiento: ");
+		lblFechaDeNacimiento.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblFechaDeNacimiento.setOpaque(true);
+		lblFechaDeNacimiento.setBounds(10, 143, 152, 22);
+		PanelDatosJugador.add(lblFechaDeNacimiento);
+		
+		lblPeso = new JLabel("  Peso:");
+		lblPeso.setOpaque(true);
+		lblPeso.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblPeso.setBounds(294, 176, 65, 22);
+		PanelDatosJugador.add(lblPeso);
+		
+		lblEdad = new JLabel("  Edad:");
+		lblEdad.setOpaque(true);
+		lblEdad.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblEdad.setBounds(294, 143, 65, 22);
+		PanelDatosJugador.add(lblEdad);
+		
+		lblAltura = new JLabel("  Altura: ");
+		lblAltura.setOpaque(true);
+		lblAltura.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblAltura.setBounds(10, 176, 152, 22);
+		PanelDatosJugador.add(lblAltura);
+		
+		lblEquipo = new JLabel("  Equipo:");
+		lblEquipo.setOpaque(true);
+		lblEquipo.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lblEquipo.setBounds(10, 209, 152, 22);
+		PanelDatosJugador.add(lblEquipo);
+		
+		txtNombre = new JTextField();
+		txtNombre.setBounds(162, 11, 284, 22);
+		PanelDatosJugador.add(txtNombre);
+		txtNombre.setColumns(10);
+		
+		txtApellido = new JTextField();
+		txtApellido.setColumns(10);
+		txtApellido.setBounds(162, 44, 284, 22);
+		PanelDatosJugador.add(txtApellido);
+		
+		txtDNI = new JTextField();
+		txtDNI.setColumns(10);
+		txtDNI.setBounds(162, 77, 284, 22);
+		PanelDatosJugador.add(txtDNI);
+		
+		txtNacionalidad = new JTextField();
+		txtNacionalidad.setColumns(10);
+		txtNacionalidad.setBounds(162, 110, 284, 22);
+		PanelDatosJugador.add(txtNacionalidad);
+		
+		txtEdad = new JTextField();
+		txtEdad.setColumns(10);
+		txtEdad.setBounds(354, 143, 92, 22);
+		PanelDatosJugador.add(txtEdad);
+		
+		txtAltura = new JTextField();
+		txtAltura.setColumns(10);
+		txtAltura.setBounds(162, 176, 134, 22);
+		PanelDatosJugador.add(txtAltura);
+		
+		txtPeso = new JTextField();
+		txtPeso.setBounds(354, 176, 92, 22);
+		PanelDatosJugador.add(txtPeso);
+		txtPeso.setColumns(10);
+		
+		PanelFechaNacimiento = new JPanel();
+		PanelFechaNacimiento.setBounds(162, 143, 134, 22);
+		PanelDatosJugador.add(PanelFechaNacimiento);
+		PanelFechaNacimiento.setLayout(null);
+		
+		txtAno = new JTextField();
+		txtAno.setColumns(10);
+		txtAno.setBounds(99, 0, 35, 22);
+		PanelFechaNacimiento.add(txtAno);
+		
+		txtMes = new JTextField();
+		txtMes.setColumns(10);
+		txtMes.setBounds(50, 1, 35, 21);
+		PanelFechaNacimiento.add(txtMes);
+		
+		txtDia = new JTextField();
+		txtDia.setColumns(10);
+		txtDia.setBounds(0, 1, 35, 21);
+		PanelFechaNacimiento.add(txtDia);
+		
+		label_1 = new JLabel("/");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setBounds(35, 4, 14, 14);
+		PanelFechaNacimiento.add(label_1);
+		
+		label_2 = new JLabel("/");
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		label_2.setBounds(84, 4, 14, 14);
+		PanelFechaNacimiento.add(label_2);
+		
+		btnGuardar = new JButton("GUARDAR");
+		btnGuardar.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnGuardar.setBounds(357, 252, 89, 23);
+		PanelDatosJugador.add(btnGuardar);
+		
+		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnEliminar.setBounds(262, 252, 89, 23);
+		PanelDatosJugador.add(btnEliminar);
+		
+		CBEquipoJugador = new JComboBox<String>();
+		CBEquipoJugador.setModel(ModelEquipoJugador);
+		CBEquipoJugador.setEditable(true);
+		CBEquipoJugador.setBounds(162, 209, 284, 22);
+		PanelDatosJugador.add(CBEquipoJugador);
+		
+		btnDatosEstadisticos = new JButton("DATOS ESTADISTICOS");
+		btnDatosEstadisticos.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		btnDatosEstadisticos.setBounds(117, 252, 134, 23);
+		PanelDatosJugador.add(btnDatosEstadisticos);
 		PanelDatosPartidos.setLayout(null);
 		PanelDatosPartidos.setBackground(Color.WHITE);
 		PanelDatosPartidos.setBounds(127, 79, 456, 286);
@@ -2464,7 +2464,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		tableJugadoresModel.addRow(new Object[]{"NOMBRE", "APELLIDO", "DNI", "NACIONALIDAD", "F.NACIMIENTO", "PESO", "ALTURA"});
 		for(int pos = 0; pos <ListaUsuarios.size();pos++) {
 			String nom = ListaJugador.get(pos).getNombre();
-			String ap = ListaJugador.get(pos).getApellido();
+			String ap = ListaJugador.get(pos).getApellidos();
 			String dni = ListaJugador.get(pos).getDNI();
 			String nac = ListaJugador.get(pos).getNacionalidad();
 			String fNaci = ListaJugador.get(pos).getFechaNacimiento().toString();
@@ -2516,7 +2516,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	/*Lee los datos introducidos para actualizar el jugador y poder más tarde añadirlo o actualizarlo*/
 	private void leerJugador(Jugador jAnadir) {
 		jAnadir.setNombre(txtNombre.getText());
-		jAnadir.setApellido(txtApellido.getText());
+		jAnadir.setApellidos(txtApellido.getText());
 		jAnadir.setDNI(txtDNI.getText());
 		jAnadir.setNacionalidad(txtNacionalidad.getText());
 		jAnadir.setEdad(Integer.parseInt(txtEdad.getText()));
@@ -2618,9 +2618,9 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		tableUsuariosModel.addColumn("EMAIL");
 		tableUsuariosModel.addRow(new Object[]{"NOMBRE", "APELLIDO", "DNI", "TELEFONO", "EMAIL"});
 		for(int pos = 0; pos <ListaUsuarios.size();pos++) {
-			String nom = ListaUsuarios.get(pos).getNombreCliente();
-			String ap = ListaUsuarios.get(pos).getApellidosCliente();
-			String dni = ListaUsuarios.get(pos).getDNICliente();
+			String nom = ListaUsuarios.get(pos).getNombre();
+			String ap = ListaUsuarios.get(pos).getApellidos();
+			String dni = ListaUsuarios.get(pos).getDNI();
 			String tel = ListaUsuarios.get(pos).getTelefonoCliente();
 			String email = ListaUsuarios.get(pos).getEmailCliente();
 			String[] usuario = new String[]{nom, ap, dni, tel, email};
