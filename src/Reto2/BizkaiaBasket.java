@@ -253,8 +253,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	private ArrayList<Partido> ListaPartidos;
 	private ArrayList<Cliente> ListaUsuarios;
 	private String usuarioLogado;
-	
-	
 
 
 	/**
