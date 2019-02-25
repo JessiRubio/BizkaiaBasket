@@ -5,9 +5,9 @@ public class Jugador extends Persona implements Comparable <Jugador> {
 	private String Nacionalidad;
 	private String Equipo;
 	private Fecha FechaNacimiento;
-	private double  Altura;
-	private double  Peso;
-	private int Edad; 
+	private String  Altura;
+	private String  Peso;
+	private String Edad; 
 	private int TirosTirados; 
 	private int TirosMetidos; 
 	private int TriplesTirados;
@@ -20,9 +20,9 @@ public class Jugador extends Persona implements Comparable <Jugador> {
 		this.Nacionalidad = ""; 
 		this.Equipo = ""; 
 		this.FechaNacimiento = new Fecha(); 
-		this.Altura = 0; 
-		this.Peso = 0;
-		this.Edad = 0; 
+		this.Altura = ""; 
+		this.Peso = "";
+		this.Edad = ""; 
 		this.TirosTirados = 0;
 		this.TirosMetidos = 0; 
 		this.TriplesTirados = 0; 
@@ -50,24 +50,24 @@ public class Jugador extends Persona implements Comparable <Jugador> {
 	public void setFechaNacimiento(Fecha fechaNacimiento) {
 		FechaNacimiento = fechaNacimiento;
 	}
-	public double getAltura() {
+	public String getAltura() {
 		return Altura;
 	}
-	public void setAltura(double altura) {
+	public void setAltura(String altura) {
 		Altura = altura;
 	}
-	public double getPeso() {
+	public String getPeso() {
 		return Peso;
 	}
 
-	public void setPeso(double peso) {
+	public void setPeso(String peso) {
 		Peso = peso;
 	}
 
-	public int getEdad() {
+	public String getEdad() {
 		return Edad;
 	}
-	public void setEdad(int edad) {
+	public void setEdad(String edad) {
 		Edad = edad;
 	}
 	public int getTirosTirados() {
