@@ -16,6 +16,7 @@ public class Jugador extends Persona implements Comparable <Jugador> {
 
 //Métodos, personalizados 
 	public Jugador() {
+		super();
 		this.Nacionalidad = ""; 
 		this.Equipo = ""; 
 		this.FechaNacimiento = new Fecha(); 
@@ -105,4 +106,7 @@ public class Jugador extends Persona implements Comparable <Jugador> {
 		//Comparo el DNI 
 		return super.compareTo(other);
 	}
+	
+	
+
 }
