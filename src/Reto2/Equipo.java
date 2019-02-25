@@ -12,6 +12,8 @@ public class Equipo {
 	private String TerrenoDeJuego;
 	private ArrayList<Jugador> ListaJugadores;
 	private String CodLiga;
+	private int partidosGanados;
+	private int PartidosPerdidos;
 	
 	public Equipo() {
 		CodEquipo = "";
@@ -21,6 +23,8 @@ public class Equipo {
 		CorreoElectronico = "";
 		TerrenoDeJuego = "";
 		CodLiga = "";
+		partidosGanados = 0;
+		PartidosPerdidos = 0;
 	}
 
 	public String getCodEquipo() {
@@ -86,11 +90,27 @@ public class Equipo {
 	public void setCodLiga(String codLiga) {
 		CodLiga = codLiga;
 	}
+	
+	public int getPartidosGanados() {
+		return partidosGanados;
+	}
+
+	public void setPartidosGanados(int partidosGanados) {
+		this.partidosGanados = partidosGanados;
+	}
+
+	public int getPartidosPerdidos() {
+		return PartidosPerdidos;
+	}
+
+	public void setPartidosPerdidos(int partidosPerdidos) {
+		PartidosPerdidos = partidosPerdidos;
+	}
 
 
 	@Override
 	public String toString() {
-		return "Equipo [NombreEquipo=" + NombreEquipo + "]";
+		return NombreEquipo;
 	}
 
 	@Override
@@ -110,4 +130,24 @@ public class Equipo {
 		}
 		return igual;
 	}
+	
+	public int compareTo(Equipo other) {
+		int comparar = 0;
+		if (this.partidosGanados >other.partidosGanados) {
+			comparar = 1;
+		}
+		else if (this.partidosGanados<other.partidosGanados) {
+			comparar = -1;
+		}
+		else {
+			if(this.PartidosPerdidos<other.PartidosPerdidos) {
+				comparar = 1;
+			}
+		}
+		
+		return comparar;
+	}
+
+
+	
 }
