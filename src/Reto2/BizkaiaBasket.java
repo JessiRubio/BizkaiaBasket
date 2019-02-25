@@ -19,6 +19,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.util.Collections;
+import java.util.List;
 import java.awt.SystemColor;
 import javax.swing.border.BevelBorder;
 import javax.swing.JPasswordField;
@@ -1455,6 +1457,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 			PanelDatosJugador.setVisible(false);
 			PanelDatosPartidos.setVisible(false);
 		}
+		//Botones atras de perfil administrador
 		else if(((JButton)o == btnAtrasPO) || ((JButton)o == btnAtras)) {
 			PanelBSuperAdmin.setVisible(true);
 			PanelBAñadirAdmin.setVisible(true);
@@ -1467,6 +1470,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		}
 		
 		/*Configuración de tablas para visualización*/
+		//VER LISTA JUGADORES
 		else if((JButton)o == btnJugadores) {
 			PanelBSuperAdmin.setVisible(true);
 			PanelBAñadirAdmin.setVisible(false);
@@ -1517,6 +1521,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 			PanelDatosJugador.setVisible(false);
 			PanelDatosPartidos.setVisible(false);
 		}
+		//VER LISTA PARTIDOS
 		else if((JButton)o == btnPartidos) {
 			PanelBSuperAdmin.setVisible(true);
 			PanelBAñadirAdmin.setVisible(false);
@@ -1543,6 +1548,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 			PanelDatosJugador.setVisible(false);
 			PanelDatosPartidos.setVisible(false);
 		}
+		//VER LISTA LIGAS
 		else if((JButton)o == btnLiga) {
 			PanelBSuperAdmin.setVisible(true);
 			PanelBAñadirAdmin.setVisible(false);
@@ -1563,7 +1569,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 			cargarTablaLigas();
 		}
 		/*Visualización desde user u observador*/
-		/*VISUALIZAR EQUIPOS*/
+		/*VISUALIZAR JUGADORES*/
 		else if((JButton)o == btnVerJugadores) {
 			PanelBSuperAdmin.setVisible(false);
 			PanelBAñadirAdmin.setVisible(false);
@@ -1572,16 +1578,16 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 				PanelAplicaciónVacia.setVisible(false);
 				PanelInicioAplicación.setVisible(false);
 				POpciones.setVisible(true);
-				PanelMuestraJugadores.setVisible(false);
+				PanelMuestraEquipos.setVisible(false);
 				PanelClasificacion.setVisible(false);
 				PanelLigas.setVisible(false);
-				if(ListaEquipos.size()==0) {
+				if(ListaJugador.size()==0) {
 					PanelAplicaciónVacia.setVisible(true);
-					PanelMuestraEquipos.setVisible(false);
+					PanelMuestraJugadores.setVisible(false);
 				}
 				else {
-					PanelMuestraEquipos.setVisible(true);
-					cargarTablaEquipos();
+					PanelMuestraJugadores.setVisible(true);
+					cargarTablaJugadores();
 				}
 			PanelDatosUsuarios.setVisible(false);
 			PanelDatosLigas.setVisible(false);
@@ -1617,9 +1623,36 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 			PanelDatosPartidos.setVisible(false);
 		}
 		/*VISUALIZAR CLASIFICACIÓN*/
+		else if((JButton)o == btnVerClasificación) {
+			PanelBSuperAdmin.setVisible(false);
+			PanelBAñadirAdmin.setVisible(false);
+			PanelSuperiorUO.setVisible(true);
+			PanelInformación.setVisible(true);
+				PanelAplicaciónVacia.setVisible(false);
+				PanelInicioAplicación.setVisible(false);
+				POpciones.setVisible(true);
+				PanelMuestraJugadores.setVisible(false);
+				PanelClasificacion.setVisible(false);
+				PanelLigas.setVisible(false);
+				if(ListaJugador.size()==0) {
+					PanelAplicaciónVacia.setVisible(true);
+					PanelMuestraEquipos.setVisible(false);
+				}
+				else {
+					PanelMuestraEquipos.setVisible(true);
+					cargarTablaEquiposOrdenados();
+				}
+			PanelDatosUsuarios.setVisible(false);
+			PanelDatosLigas.setVisible(false);
+			PanelDatosEquipo.setVisible(false);
+			PanelDatosJugador.setVisible(false);
+			PanelDatosPartidos.setVisible(false);
+		}
 		
 	
 	}
+
+
 
 
 
@@ -2341,15 +2374,15 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		tableEquiposModel.addColumn("EMAIL");
 		tableEquiposModel.addColumn("TERRENO DE JUEGO");
 		tableEquiposModel.addRow(new Object[]{"CODIGO", "NOMBRE", "MUNICIPIO", "TELEFONO CONTACTO", "EMAIL", "TERRENO DE JUEGO"});
-		for(int pos = 0; pos <ListaLigas.size();pos++) {
+		for(int pos = 0; pos <ListaEquipos.size();pos++) {
 			String cod = ListaEquipos.get(pos).getCodEquipo();
 			String nom = ListaEquipos.get(pos).getNombreEquipo();
 			String mun = ListaEquipos.get(pos).getMunicipio();
 			String tel = ListaEquipos.get(pos).getTelefono();
 			String terre = ListaEquipos.get(pos).getTerrenoDeJuego();
 			String ema = ListaEquipos.get(pos).getCorreoElectronico();
-			String[] liga = new String[]{cod, nom, mun, tel, ema, terre};
-			tableEquiposModel.addRow(liga);
+			String[] equipo = new String[]{cod, nom, mun, tel, ema, terre};
+			tableEquiposModel.addRow(equipo);
 			
 		}
 		tableMuestraEquipos.setModel(tableEquiposModel);
@@ -2478,7 +2511,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	}
 	
 	
-/*OPCION BOTON JUGADORES PRA VER LA INFORMACIÓN PERSONAL SOBRE EL JUGADOR*/	
+/*OPCION BOTON JUGADORES PARA VER LA INFORMACIÓN PERSONAL SOBRE EL JUGADOR*/	
 	
 	/*Cargamos en el combo box de la ventana datos 
 	 * jugador la información de la lista de equipos.*/
@@ -2638,6 +2671,40 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 
 /*---------------------------------------------------- VENTANA DE CLASIFICACIÓN ----------------------------------------------------*/
 
-
+	/*Metodo que carga la informacion de los equipos de manera ordenada
+	 * Se diferencia de la visión del administrador
+	 * porque en este cao lo que se verán serán los datos clasificatorios
+	 * en vez de los datos personales del equipo*/	
+	private void cargarTablaEquiposOrdenados() {
+		ArrayList<Equipo> ListaEquiposClasificacion = new ArrayList<Equipo>();
+		ListaEquiposClasificacion = ListaEquipos;
+		Collections.sort(ListaEquiposClasificacion);
+		cargarTablaClasificacion(ListaEquiposClasificacion);
+		
+	}
+	
+	/*Metodo encargado de cargar la información ordenada*/
+	private void cargarTablaClasificacion(ArrayList<Equipo> ListaEquiposClasificacion) {
+		tableEquiposModel.setRowCount(0);
+		tableEquiposModel.setColumnCount(0);
+		tableEquiposModel.addColumn("NOMBRE");
+		tableEquiposModel.addColumn("PUESTO");
+		tableEquiposModel.addColumn("P.J.");
+		tableEquiposModel.addColumn("P.G.");
+		tableEquiposModel.addColumn("P.P");
+		tableEquiposModel.addRow(new Object[]{"NOMBRE", "PUESTO", "P.J.", "P.G.", "P.P"});
+		for(int pos = 0; pos <ListaEquiposClasificacion.size();pos++) {
+			String nom = ListaEquiposClasificacion.get(pos).getNombreEquipo();
+			int puesto = pos++;
+			int pj = ListaEquiposClasificacion.get(pos).getPartidosGanados() + ListaEquiposClasificacion.get(pos).getPartidosPerdidos();
+			int pg = ListaEquiposClasificacion.get(pos).getPartidosGanados();
+			int pp = ListaEquiposClasificacion.get(pos).getPartidosPerdidos();
+			Object[] equipoO = new Object[]{nom, puesto, pj, pg, pp};
+			tableEquiposModel.addRow(equipoO);
+			
+		}
+		tableMuestraEquipos.setModel(tableEquiposModel);
+	
+	}
 
 }

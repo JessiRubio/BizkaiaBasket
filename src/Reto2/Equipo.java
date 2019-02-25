@@ -2,7 +2,7 @@ package Reto2;
 
 import java.util.ArrayList;
 
-public class Equipo {
+public class Equipo implements Comparable<Equipo>{
 	//Declaración de los atributos necesarios para crear un equipo
 	private String CodEquipo;
 	private String NombreEquipo;
