@@ -2864,6 +2864,8 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	private void cargarTablaEquiposOrdenados() {
 		ArrayList<Equipo> ListaEquiposClasificacion = new ArrayList<Equipo>();
 		ListaEquiposClasificacion = ListaEquipos;
+		System.out.println("ListaEquipos tiene " + ListaEquipos.size() + " equipos");
+		System.out.println("ListaEquiposClasificacion tiene " + ListaEquiposClasificacion.size() + " equipos");
 		Collections.sort(ListaEquiposClasificacion);
 		cargarTablaClasificacion(ListaEquiposClasificacion);
 		

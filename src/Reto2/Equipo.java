@@ -153,6 +153,9 @@ public class Equipo implements Comparable<Equipo>{
 			else if(this.PartidosPerdidos>other.PartidosPerdidos) {
 				comparar = -1;
 			}
+			else {
+				comparar = this.NombreEquipo.compareTo(other.NombreEquipo);
+			}
 		}
 		
 		return comparar;
