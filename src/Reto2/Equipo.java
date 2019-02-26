@@ -27,6 +27,9 @@ public class Equipo implements Comparable<Equipo>{
 		PartidosPerdidos = 0;
 	}
 
+	
+	//Getters and Setters
+	
 	public String getCodEquipo() {
 		return CodEquipo;
 	}
@@ -108,11 +111,14 @@ public class Equipo implements Comparable<Equipo>{
 	}
 
 
+	//toString
 	@Override
 	public String toString() {
 		return NombreEquipo;
 	}
 
+	//HashCode and Equals
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -131,6 +137,7 @@ public class Equipo implements Comparable<Equipo>{
 		return igual;
 	}
 	
+	//CompareTo
 	public int compareTo(Equipo other) {
 		int comparar = 0;
 		if (this.partidosGanados >other.partidosGanados) {
@@ -142,6 +149,9 @@ public class Equipo implements Comparable<Equipo>{
 		else {
 			if(this.PartidosPerdidos<other.PartidosPerdidos) {
 				comparar = 1;
+			}
+			else if(this.PartidosPerdidos>other.PartidosPerdidos) {
+				comparar = -1;
 			}
 		}
 		

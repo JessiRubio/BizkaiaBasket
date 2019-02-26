@@ -1748,10 +1748,6 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	}
 
 
-
-
-
-
 /*------------------------------- CONFIGURACIÓN INICIO APLICACIÓN -----------------------------------------------*/	
 
 
@@ -2215,6 +2211,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		passwordField.setText("");
 	}
 	
+
 /*---------------------------------------------------- BOTONES TRADUCCION -----------------------------------------------------------*/	
 	
 	/*Metodo encargado de traducir la información del programa a Español*/
@@ -2388,6 +2385,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	}
 	
 /*---------------------------------------------------- VENTANA LIGAS -----------------------------------------------------------*/		
+	
 	/*Carga en la tableLigas la información que hay en el arrayList listaLigas*/
 	private void cargarTablaLigas() {
 		tableLigasModel.setRowCount(0);
@@ -2791,14 +2789,14 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		tableJugadoresModel.setRowCount(0);
 		tableJugadoresModel.setColumnCount(0);
 		tableJugadoresModel.addColumn("NOMBRE");
-		tableJugadoresModel.addColumn("EQUIPO");
+		tableJugadoresModel.addColumn("APELLIDOS");
 		tableJugadoresModel.addColumn("E. TIROS");
 		tableJugadoresModel.addColumn("E. TRIPLES");
 		tableJugadoresModel.addColumn("E. REBOTES");
-		tableJugadoresModel.addRow(new Object[]{"NOMBRE", "EQUIPO", "E. TIROS", "E. TRIPLES", "E. REBOTES"});
+		tableJugadoresModel.addRow(new Object[]{"NOMBRE", "APELLIDOS", "E. TIROS", "E. TRIPLES", "E. REBOTES"});
 		for(int pos = 0; pos <ListaUsuarios.size();pos++) {
 			String nom = ListaJugador.get(pos).getNombre();
-			String eq = ListaJugador.get(pos).getEquipo();
+			String ap = ListaJugador.get(pos).getApellidos();
 			double calculot;
 			double calculotr;
 			if(ListaJugador.get(pos).getTirosTirados() == 0) {
@@ -2816,7 +2814,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 			}
 			String etr = calculotr + "%";
 			int er = ListaJugador.get(pos).getRebotesCogidos();
-			Object[] jugador = new Object[]{nom, eq, et, etr, er};
+			Object[] jugador = new Object[]{nom, ap, et, etr, er};
 			tableJugadoresModel.addRow(jugador);
 			tableUsuarios.setModel(tableJugadoresModel);
 		}
