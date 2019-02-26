@@ -65,31 +65,50 @@ public class Fecha implements Comparable <Fecha> {
 //CompareTo de la clase fecha 
 	@Override
 	public int compareTo(Fecha other) {
-		// TODO Auto-generated method stub
 		//comparo las propiedades de los objetos de la clase fecha 
 		//comparo el año  
 		int comparacion = 0; 
-		if (this.año < other.año) {
-			comparacion = 1; 
+		if(this.año > other.año) {
+			comparacion = 1;
 		}
-		else { 
-		// comparo el mes
-			if(this.mes < other.mes) {
-				comparacion = 1; 
+		else if (this.año < other.año) {
+			comparacion = -1;
+		}
+		else {
+			// Como año es igual comparo mes
+			if (this.mes > other.mes) {
+				comparacion = 1;
 			}
-		// comparo el dia 
-			else if (this.dia < other.dia) {
-				comparacion = 1; 
+			else if (this.mes < other.mes) {
+				comparacion = -1;
 			}
-		// comparo hora 
-				if (this.hora < other.hora) {
-					comparacion =1; 
+			else {
+				//Como mes y año son iguales comparamos el dia
+				if (this.dia > other.dia) {
+					comparacion = 1;
 				}
-		// comparo los minutos 
-		else if (this.min < other.min) { 
-			comparacion = 1; 
+				else if (this.dia < other.dia) {
+					comparacion = -1;
+				}
+				else {
+					if(this.hora > other.hora) {
+						comparacion = 1;
+					}
+					else if(this.hora < other.hora) {
+						comparacion = -1;
+					}
+					else {
+						if(this.min > other.min) {
+							comparacion = 1;
+						}
+						else if (this.min < other.min) {
+							comparacion = -1;
+						}
+					}
+				}
+			}
 		}
-		}
+
 		return (comparacion);
 	}
 
