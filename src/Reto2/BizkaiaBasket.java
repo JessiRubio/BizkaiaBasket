@@ -575,15 +575,42 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		PanelLigas.setLayout(null);
 		
 		tableLigas = new JTable();
-		tableLigas.addMouseListener(new MouseAdapter() {
+		tableLigas.setEditingColumn(0);
+		tableLigas.setEditingRow(0);
+		/*tableLigas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-		    /*   int row = tableLigas.columnAtPoint(tableLigas.getMousePosition().getY());
-		        if (arg0.getClickCount() == 2) {
-		        	Liga l = ListaLigas.get(row);
-		        }*/
+				if(arg0.getClickCount()==2) {
+					int selected = tableLigasModel.getColumnCount() -1;
+					txtLiga.setText(ListaLigas.get(selected).getNombreLiga());
+					txtCodLiga.setText(ListaLigas.get(selected).getCodigo());
+					txtCatLiga.setText(ListaLigas.get(selected).getCategoriaLiga());
+					txtGrupoLiga.setText(ListaLigas.get(selected).getGrupo());
+					
+					if(usuarioLogado.equals("Admin")) {
+						PanelBSuperAdmin.setVisible(true);
+						PanelBAñadirAdmin.setVisible(true);
+						PanelInformación.setVisible(false);
+						PanelDatosUsuarios.setVisible(false);
+						PanelDatosLigas.setVisible(true);
+						PanelDatosEquipo.setVisible(false);
+						PanelDatosJugador.setVisible(false);
+						PanelDatosPartidos.setVisible(false);
+					}
+					else {
+						PanelBSuperAdmin.setVisible(false);
+						PanelBAñadirAdmin.setVisible(false);
+						PanelSuperiorUO.setVisible(true);
+						PanelInformación.setVisible(false);
+						PanelDatosUsuarios.setVisible(false);
+						PanelDatosLigas.setVisible(true);
+						PanelDatosEquipo.setVisible(false);
+						PanelDatosJugador.setVisible(false);
+						PanelDatosPartidos.setVisible(false);
+					}
+				}
 			}
-		});
+		});*/
 		tableLigas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableLigas.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tableLigas.setFont(new Font("Agency FB", Font.PLAIN, 15));
@@ -1517,6 +1544,16 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 			HacerVisibleDatosJugador();
 			limpiarDatosEstadisticos();
 		}
+		else if((JButton)o == btnAadirPartido) {
+			PanelBSuperAdmin.setVisible(true);
+			PanelBAñadirAdmin.setVisible(true);
+			PanelInformación.setVisible(false);
+			PanelDatosUsuarios.setVisible(false);
+			PanelDatosLigas.setVisible(false);
+			PanelDatosEquipo.setVisible(false);
+			PanelDatosJugador.setVisible(false);
+			PanelDatosPartidos.setVisible(true);
+		}
 		/*OPCIONES CREAR USUARIOS*/
 		else if(((JButton)o == btnConfiguracion) || ((JButton)o == btnListaUsuarios)) {
 			PanelBSuperAdmin.setVisible(true);
@@ -2039,7 +2076,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		lbl1.setBackground(new Color(175,238,238));
 		lbl2.setBackground(new Color(175,238,238));
 		btnGuardarPartido.setBackground(Color.GREEN);
-		btnEliminarEquipo.setBackground(Color.RED);
+		btnEliminarPartido.setBackground(Color.RED);
 		/*Panel Información CBOpciones*/
 		CBCategorias.setBackground(new Color(65, 105, 225));
 		CBGrupos.setBackground(new Color(65, 105, 225));
@@ -2776,6 +2813,32 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		tablePartidos.setModel(tablePartidosModel);
 		
 	}
+	
+	
+//METODOS DE CREACION, ELIMINACION Y MODIFICACIÓN DE METODOS	
+	/*Carga de Combobox*/
+	/*Combobox local*/
+	
+	
+	/*Combobox Visitante*/
+
+	
+	/*Vacia los txt tras guardar, modificar o eliminar, 
+	 * para poder seguir trabajando con otros partidos*/
+	private void limpiarVentanaDatosPartidos() {
+		txtCodPartido.setText("");
+		txtCategoria.setText("");
+		txtGrupo.setText("");
+		txtResulLocal.setText("");
+		txtResulVisitante.setText("");
+		txtHora.setText("");
+		txtMinutos.setText("");
+		txtAnoPartido.setText("");
+		txtMesParido.setText("");
+		txtDiaPartido.setText("");
+	}
+	
+	
 	
 /*---------------------------------------------------- VENTANA DE USUARIOS ---------------------------------------------------------*/
 
