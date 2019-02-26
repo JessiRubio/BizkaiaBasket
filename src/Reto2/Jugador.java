@@ -5,8 +5,8 @@ public class Jugador extends Persona implements Comparable <Jugador> {
 	private String Nacionalidad;
 	private String Equipo;
 	private Fecha FechaNacimiento;
-	private String  Altura;
-	private String  Peso;
+	private String Altura;
+	private String Peso;
 	private String Edad; 
 	private int TirosTirados; 
 	private int TirosMetidos; 
@@ -30,7 +30,31 @@ public class Jugador extends Persona implements Comparable <Jugador> {
 		this.RebotesCogidos = 0;	
 	}
 //Geters and Seters 
-
+	
+	public String getNombre() {
+		return super.getNombre();
+	}
+	
+	public void setNombre(String nombre) {
+		super.setNombre(nombre);
+	}
+	
+	public String getApellido() {
+		return super.getApellidos();
+	}
+	
+	public void setApellido(String apellido) {
+		super.setApellidos(apellido);
+	}
+	
+	public String getDni() {
+		return super.getDNI();
+	}
+	
+	public void setDni(String dni) {
+		super.setDNI(dni);
+	}
+	
 	public String getNacionalidad() {
 		return Nacionalidad;
 	}
@@ -105,6 +129,30 @@ public class Jugador extends Persona implements Comparable <Jugador> {
 	public int compareTo(Jugador other) {
 		//Comparo el DNI 
 		return super.compareTo(other);
+	}
+
+//HashCode and Equals
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((Altura == null) ? 0 : Altura.hashCode());
+		result = prime * result + ((Edad == null) ? 0 : Edad.hashCode());
+		result = prime * result + ((Equipo == null) ? 0 : Equipo.hashCode());
+		result = prime * result + ((FechaNacimiento == null) ? 0 : FechaNacimiento.hashCode());
+		result = prime * result + ((Nacionalidad == null) ? 0 : Nacionalidad.hashCode());
+		result = prime * result + ((Peso == null) ? 0 : Peso.hashCode());
+		result = prime * result + RebotesCogidos;
+		result = prime * result + TirosMetidos;
+		result = prime * result + TirosTirados;
+		result = prime * result + TriplesMetidos;
+		result = prime * result + TriplesTirados;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 	
 	

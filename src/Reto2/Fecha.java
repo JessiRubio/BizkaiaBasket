@@ -96,7 +96,7 @@ public class Fecha implements Comparable <Fecha> {
 	//toString
 	@Override
 	public String toString() {
-		return dia + "/" + mes + "/" + año + hora + "/" + min;
+		return dia + "/" + mes + "/" + año + "  " + hora + ":" + min;
 	}	
 	
 	
