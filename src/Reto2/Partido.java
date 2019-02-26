@@ -75,39 +75,11 @@ public class Partido implements Comparable <Partido> {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Partido other = (Partido) obj;
-		if (CodPartido == null) {
-			if (other.CodPartido != null)
-				return false;
-		} else if (!CodPartido.equals(other.CodPartido))
-			return false;
-		if (EquipoLocal == null) {
-			if (other.EquipoLocal != null)
-				return false;
-		} else if (!EquipoLocal.equals(other.EquipoLocal))
-			return false;
-		if (EquipoVisitante == null) {
-			if (other.EquipoVisitante != null)
-				return false;
-		} else if (!EquipoVisitante.equals(other.EquipoVisitante))
-			return false;
-		if (FechaPartido == null) {
-			if (other.FechaPartido != null)
-				return false;
-		} else if (!FechaPartido.equals(other.FechaPartido))
-			return false;
-		if (ResultadoEquipoLocal != other.ResultadoEquipoLocal)
-			return false;
-		if (ResultadoEquipoVisitante != other.ResultadoEquipoVisitante)
-			return false;
-		return true;
+		Partido par = (Partido) obj;
+		
+		return this.CodPartido.equals(par.CodPartido);
 	}
+	
 //CompareTo de Partido
 // Que compara el código de un equipo 
 		@Override
