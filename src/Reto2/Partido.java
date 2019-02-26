@@ -82,10 +82,10 @@ public class Partido implements Comparable <Partido> {
 	
 //CompareTo de Partido
 // Que compara el código de un equipo 
-		@Override
-		public int compareTo(Partido other) {
-			int comparacion = this.CodPartido.compareTo(other.CodPartido);
-		return comparacion;	
+	@Override
+	public int compareTo(Partido other) {
+		int comparacion = this.CodPartido.compareTo(other.CodPartido);
+	return comparacion;	
 	}
 //CompareTo de Victoria/Derrota 
    public int compareTo1 (Partido victoria) {
