@@ -507,6 +507,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		btnLiga.setFont(new Font("Agency FB", Font.PLAIN, 15));
 		btnLiga.setBounds(461, 23, 110, 39);
 		PanelBSuperAdmin.add(btnLiga);
+		
 		PanelBAñadirAdmin.setBackground(new Color(255, 255, 255));
 		PanelBAñadirAdmin.setBounds(5, 79, 112, 286);
 		contentPane.add(PanelBAñadirAdmin);
@@ -765,11 +766,13 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		panelDatosUsuario.add(lblContrasea);
 		
 		btnGuardarUsuario = new JButton("GUARDAR");
+		btnGuardarUsuario.addActionListener(this);
 		btnGuardarUsuario.setFont(new Font("Agency FB", Font.PLAIN, 15));
 		btnGuardarUsuario.setBounds(356, 261, 89, 23);
 		panelDatosUsuario.add(btnGuardarUsuario);
 		
 		btnEliminarUsuario = new JButton("ELIMINAR");
+		btnEliminarUsuario.addActionListener(this);
 		btnEliminarUsuario.setFont(new Font("Agency FB", Font.PLAIN, 15));
 		btnEliminarUsuario.setBounds(250, 261, 89, 23);
 		panelDatosUsuario.add(btnEliminarUsuario);
@@ -1490,19 +1493,28 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 			eliminarJugador();
 		}
 		else if((JButton)o == btnDatosEstadisticos) {
-			PanelBSuperAdmin.setVisible(true);
-			PanelBAñadirAdmin.setVisible(true);
-			PanelInformación.setVisible(false);
-			PanelDatosUsuarios.setVisible(false);
-			PanelDatosLigas.setVisible(false);
-			PanelDatosEquipo.setVisible(false);
-			PanelDatosJugador.setVisible(true);
-				panelDatosEstadisticos.setVisible(true);
-			PanelDatosPartidos.setVisible(false);
-			cargarDatosJugadorPantalla();
+			if(panelDatosEstadisticos.isVisible()) {
+				panelDatosEstadisticos.setVisible(false);
+				HacerVisibleDatosJugador();
+			}
+			else {
+				PanelBSuperAdmin.setVisible(true);
+				PanelBAñadirAdmin.setVisible(true);
+				PanelInformación.setVisible(false);
+				PanelDatosUsuarios.setVisible(false);
+				PanelDatosLigas.setVisible(false);
+				PanelDatosEquipo.setVisible(false);
+				PanelDatosJugador.setVisible(true);
+					panelDatosEstadisticos.setVisible(true);
+				PanelDatosPartidos.setVisible(false);
+				cargarDatosJugadorPantalla();
+				HacerInvisibleLoInferior();
+			}
 		}
 		else if((JButton)o == btnGuardarDatosEstadisticos) {
+			ActualizarDatosEstadisticosJugador();
 			panelDatosEstadisticos.setVisible(false);
+			HacerVisibleDatosJugador();
 			limpiarDatosEstadisticos();
 		}
 		/*OPCIONES CREAR USUARIOS*/
@@ -1531,6 +1543,10 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 			PanelDatosJugador.setVisible(false);
 			PanelDatosPartidos.setVisible(false);
 		}
+		else if((JButton)o == btnGuardarUsuario) {
+			AñadirUsuario();
+			limpiarVentanaDatosUsuario();
+		}
 		//Botones atras de perfil administrador
 		else if(((JButton)o == btnAtrasPO) || ((JButton)o == btnAtras)) {
 			PanelBSuperAdmin.setVisible(true);
@@ -1553,6 +1569,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 				PanelAplicaciónVacia.setVisible(false);
 				PanelInicioAplicación.setVisible(false);
 				POpciones.setVisible(true);
+				btnAtrasPO.setVisible(true);
 				PanelMuestraEquipos.setVisible(false);
 				PanelLigas.setVisible(false);
 				if(ListaJugador.size()==0) {
@@ -1577,6 +1594,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 				PanelAplicaciónVacia.setVisible(false);
 				PanelInicioAplicación.setVisible(false);
 				POpciones.setVisible(true);
+				btnAtrasPO.setVisible(true);
 				PanelMuestraJugadores.setVisible(false);
 				PanelLigas.setVisible(false);
 				if(ListaEquipos.size()==0) {
@@ -1602,6 +1620,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 				PanelAplicaciónVacia.setVisible(false);
 				PanelInicioAplicación.setVisible(false);
 				POpciones.setVisible(true);
+				btnAtrasPO.setVisible(true);
 				PanelMuestraJugadores.setVisible(false);
 				PanelMuestraEquipos.setVisible(false);
 				PanelLigas.setVisible(false);
@@ -1628,6 +1647,7 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 				PanelAplicaciónVacia.setVisible(false);
 				PanelInicioAplicación.setVisible(false);
 				POpciones.setVisible(true);
+				btnAtrasPO.setVisible(true);
 				PanelMuestraJugadores.setVisible(false);
 				PanelMuestraEquipos.setVisible(false);
 				PanelLigas.setVisible(true);
@@ -2780,6 +2800,40 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		}
 		tableUsuarios.setModel(tableUsuariosModel);
 	}
+	
+	//CREACIÓN, GUARDADO Y ELIMINACIÓN
+	public void AñadirUsuario() {
+		Cliente cl = new Cliente();
+		cl.setNombre(txtNombreUsuario.getText());
+		cl.setApellidos(txtApellidoUsuario.getText());
+		cl.setDNI(txtDniUsuario.getText());
+		cl.setEmailCliente(txtEmailUsuario.getText());
+		cl.setTelefonoCliente(txtTelefonoUsuario.getText());
+		cl.setNick(txtNickUsuario.getText());
+		cl.setPassword(txtPasswordUsuario.getText());
+		if(rdbtnAdmin.isSelected()) {
+			cl.setTipoCliente(rdbtnAdmin.getText());
+		}
+		else if(rdbtnUsuario.isSelected()) {
+			cl.setTipoCliente(rdbtnUsuario.getText());
+		}
+		else {
+			cl.setTipoCliente(rdbtnObservador.getText());
+		}
+		
+		ListaUsuarios.add(cl);
+	}
+	
+	public void limpiarVentanaDatosUsuario() {
+		txtNombreUsuario.setText("");
+		txtApellidoUsuario.setText("");
+		txtDniUsuario.setText("");
+		txtTelefonoUsuario.setText("");
+		txtEmailUsuario.setText("");
+		txtNickUsuario.setText("");
+		txtPasswordUsuario.setText("");
+		
+	}
 
 
 /*---------------------------------------------------- VENTANA DE ESTADISTICA ------------------------------------------------------*/
@@ -2803,14 +2857,14 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 				calculot = 0;
 			}
 			else {
-				calculot = (double) (ListaJugador.get(pos).getTirosMetidos() / ListaJugador.get(pos).getTirosTirados());
+				calculot = (double) (ListaJugador.get(pos).getTirosMetidos() / ListaJugador.get(pos).getTirosTirados() * 100);
 			}
 			
 			String et = calculot + "%";
 			if(ListaJugador.get(pos).getTriplesTirados() == 0) {
 				calculotr = 0;
 			}else {
-				calculotr = (double) (ListaJugador.get(pos).getTriplesMetidos() / ListaJugador.get(pos).getTriplesTirados());
+				calculotr = (double) (ListaJugador.get(pos).getTriplesMetidos() / ListaJugador.get(pos).getTriplesTirados() * 100);
 			}
 			String etr = calculotr + "%";
 			int er = ListaJugador.get(pos).getRebotesCogidos();
@@ -2847,6 +2901,52 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		txtRebotesCogidos.setText(r);
 	}
 	
+	public void HacerInvisibleLoInferior() {
+		lblNombre.setVisible(false);
+		lblApellido.setVisible(false);
+		lblDni.setVisible(false);
+		lblNacionalidad.setVisible(false);
+		lblFechaDeNacimiento.setVisible(false);
+		lblPeso.setVisible(false);
+		lblAltura.setVisible(false);
+		lblEdad.setVisible(false);
+		lblEquipo.setVisible(false);
+		txtNombre.setVisible(false);
+		txtApellido.setVisible(false);
+		txtDNI.setVisible(false);
+		txtNacionalidad.setVisible(false);
+		PanelFechaNacimiento.setVisible(false);
+		txtEdad.setVisible(false);
+		txtAltura.setVisible(false);
+		txtPeso.setVisible(false);
+		CBEquipoJugador.setVisible(false);
+		btnEliminar.setVisible(false);
+		btnGuardar.setVisible(false);
+	}
+	
+	public void HacerVisibleDatosJugador() {
+		lblNombre.setVisible(true);
+		lblApellido.setVisible(true);
+		lblDni.setVisible(true);
+		lblNacionalidad.setVisible(true);
+		lblFechaDeNacimiento.setVisible(true);
+		lblPeso.setVisible(true);
+		lblAltura.setVisible(true);
+		lblEdad.setVisible(true);
+		lblEquipo.setVisible(true);
+		txtNombre.setVisible(true);
+		txtApellido.setVisible(true);
+		txtDNI.setVisible(true);
+		txtNacionalidad.setVisible(true);
+		PanelFechaNacimiento.setVisible(true);
+		txtEdad.setVisible(true);
+		txtAltura.setVisible(true);
+		txtPeso.setVisible(true);
+		CBEquipoJugador.setVisible(true);
+		btnEliminar.setVisible(true);
+		btnGuardar.setVisible(true);
+	}
+	
 	private void limpiarDatosEstadisticos() {
 		txtTirosTirados.setText("");
 		txtTirosMetidos.setText("");
@@ -2855,6 +2955,18 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 		txtRebotesCogidos.setText("");
 	}
 
+	public void ActualizarDatosEstadisticosJugador() {
+		String DNIJugadorElegido = txtDNI.getText();
+		for(int pos = 0; ListaJugador.size()>pos; pos++) {
+			if(ListaJugador.get(pos).getDNI().equals(DNIJugadorElegido)) {
+				ListaJugador.get(pos).setTirosTirados((int) Integer.parseInt(txtTirosTirados.getText()));
+				ListaJugador.get(pos).setTirosMetidos((int) Integer.parseInt(txtTirosMetidos.getText()));
+				ListaJugador.get(pos).setTriplesTirados((int) Integer.parseInt(txtTriplesTirados.getText()));
+				ListaJugador.get(pos).setTriplesMetidos((int) Integer.parseInt(txtTriplesMetidos.getText()));
+				break;
+			}
+		}
+	}
 /*---------------------------------------------------- VENTANA DE CLASIFICACIÓN ----------------------------------------------------*/
 
 	/*Metodo que carga la informacion de los equipos de manera ordenada
