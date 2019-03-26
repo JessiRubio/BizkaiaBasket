@@ -289,6 +289,8 @@ public class BizkaiaBasket extends JFrame implements ActionListener {
 	 */
 	
 	public BizkaiaBasket() {
+		setUndecorated(true);
+		setVisible(true);
 		setResizable(false);
 	/*Necesidades previas*/
 		ListaLigas = new ArrayList<Liga>();
